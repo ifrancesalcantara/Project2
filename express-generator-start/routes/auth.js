@@ -48,8 +48,10 @@ router.post('/signup', function(req, res) {
                     res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
                 } else if (passConf === password) {
                     User.create({username, password})
-                    .then(newUser=>console.log(newUser))
-                    res.render("secure/map")
+                    .then(newUser=>
+                        res.render("secure/map", newUser)
+                        )
+                    
                 } else {
                     res.render("auth-views/signup", {errorMessage: "Password is not the same."})
                 }
