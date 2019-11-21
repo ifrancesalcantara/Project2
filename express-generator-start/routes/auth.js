@@ -19,20 +19,31 @@ router.get('/signup', function(req, res) {
 
 router.post('/signup', function(req, res) {    
     const { username, password, passConf} = req.body;
-    User.find({username})
-    .then(undefined=>{
-        if(undefined) {
-            if(passConf === password) {
-                User.create({username, password})
-                .then(newUser=>console.log(newUser))
-                res.render("secure/map")
+    
+    if (username==="") {
+        res.render("auth-views/signup", {errorMessage: "Please provide a username."})
+    } 
+    
+    else {
+        User.find({username})
+        .then(undefined=>{
+            if(undefined) {
+                if(password==="") {
+                    res.render("auth-views/signup", {errorMessage: "Password must not be empty."})
+                } else if (password.split("").length < 8) {
+                    res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
+                } else if (passConf === password) {
+                    User.create({username, password})
+                    .then(newUser=>console.log(newUser))
+                    res.render("secure/map")
+                } else {
+                    res.render("auth-views/signup", {errorMessage: "Password is not the same."})
+                }
             } else {
-                res.render("auth-views/signup", {errorMessage: "Password is not the same."})
+                res.render("auth-views/signup", {errorMessage: "Username already exists."})
             }
-        } else {
-            res.render("auth-views/signup", {errorMessage: "Username already exists."})
-        }
-    })
+        })
+    }
 });
 
 
