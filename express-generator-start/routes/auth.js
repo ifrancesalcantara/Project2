@@ -11,7 +11,9 @@ router.get('/signup', function(req, res) {
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
     console.log(username, password);
-    User.create({username, password}).find({}).then(allusers=>console.log(allusers))
+    User.create({username, password})
+    User.find({})
+    .then(allusers=>console.log(allusers))
     
     res.render("index")
 })
