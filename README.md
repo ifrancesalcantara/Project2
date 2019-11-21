@@ -219,8 +219,9 @@ Project 2 repository
 
   #### Comment Write view (comment-write secured area)
 
-  - As a user I want to write comments 
-
+  - As a user I want to write comments --> render comment-write
+- As a user I want 
+  
   ​	
 
 
