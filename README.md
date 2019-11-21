@@ -1,110 +1,16 @@
-## Description
-
-Interactive map to leave comments related to diverse local topics.
-
-
-
-## User Stories
-
-- **404** - As a user I want to see a funny Not Found page.
-
-- **500** - As a user I want to see an apology when there is an internal error.
-
-- **homepage** - As a user I want to see the homepage and be able to introduce my data, accessing the app if I already have an account, being redirected to the same page with error message. Also, I want to access sign up page in case I want to create a new account. 
-
-- **sign up** - As a user I want to sign up on the web page so that I can .
-
-- **login** - As a user I want to be able to log in on the web page so that I can get back to my account
-
-- **logout** - As a user I want to be able to log out from the web page so that I can make sure no one will access my account
-
-- **favorite list** - As a user I want to see the list of my favorite and delete them.
-
-- **edit user** - As a user I want to be able to edit my profile.
-
-- **result** - As a user I want to see the list of restaurant filter by my preferences.
-
-- **restaurant listing** - As a user I want to see more details of the restaurant, be able to call them and visit their website and save it as favorites.
-
-  ## API Routes (Back-end):
-
-| **Method** | **Route**                | **Description**                                              | Request - Body                                           |
-| ---------- | ------------------------ | ------------------------------------------------------------ | -------------------------------------------------------- |
-| `GET`      | `/`                      | Main page route. Renders home `index` view.                  |                                                          |
-| `POST`     | `/login`                 | Sends Login form data to the server.                         | { username, password }                                   |
-| `GET`      | `/signup`                | Renders `signup` form view.                                  |                                                          |
-| `POST`     | `/signup`                | Sends Sign Up info to the server and creates user in the DB. | { username, password }                                   |
-| `GET`      | `/private/profile`       | Private route. Renders `edit-profile` form view.             |                                                          |
-| `PUT`      | `/private/profile-edit`  | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
-| `DELETE`   | /private/profile-delete  | Private route. Render the `favorites` view.                  |                                                          |
-| GET        | /private/map/:lat/:long  | Map of near comments.                                        |                                                          |
-| GET        | /private/map/:comment_id | Comment display. Backlog: comments on comment and likes.     |                                                          |
-| GET        | /private/map/write       | Displays write screen                                        |                                                          |
-| POST       | /private/map/write/post  | Posts new comment                                            | { user_id, comment_title, comment_text, location }       |
-
-## Models
-
-User model
-
-```
-{
-  name: String,
-  password: String,
-  comments: [CommentId],
-  likes: [likeId]
-}
-```
-
-Comment model
-
-```
-{
-  title: String,
-  text: String,
-  user: UserId,
-  likes: [likeId],
-}
-```
-
-Favorites model
-
-```
-{
-  userId: String
-}
-```
-
-
-
-## Backlog
-
-[See the Trello Board](https://trello.com/b/z4mwyULn/project-2)
-
-
-
-## Links
-
-### Git
-
-[Repository Link](https://gist.github.com/ross-u/8f91ec13aeaf35a1ba7603848284703f)
-
-[Deploy Link]()
-
-
-
-### Slides
-
-[Slides Link](https://docs.google.com/presentation/d/1Zi7FQcl9imwjfVpgVau7Zex-KJJuxnzDYFTnYQ73A8c/edit?usp=sharing)
-
-
 
 
 # hoody
+
 Project 2 repository
 
 
 
-## User story
+## Description
+
+Interactive map to leave comments related to diverse local topics.
+
+## User stories
 
 #### Index view (not secured area)
 
@@ -194,6 +100,7 @@ Project 2 repository
     --> rendering the comment write view
 
     ###### CASE 2 commets already on this location 
+
     - As a user I want to click on a mark on the map to read the comments other users left 
 
       --> rendering comment read view
@@ -222,36 +129,130 @@ Project 2 repository
   - As a user I want to write comments 
 
     --> render write comment view
-  
+
   - As a user I want to delete comments
-  
+
     --> add a delete button to the comment-write view, await 2nd confirmation to delete
-  
+
   - As a user I want to edit my comments
-  
+
     --> add a edit button to the comment-write view
+
   
-  
-  
+
   #### Navigation Bar (secured view)
-  
+
   - As a user I want to navigate easy from every page to necessary options and content
-  
+
     --> Add navigation bar to the top of the view, dropdown -> Layout for secured views
-  
+
     - As a user I want to navigage to my profile
-  
+
       ->  add Link to user profile, use user id
-  
+
     - As a user I want to navigate to the Map
-  
+
       -> add link to the Map/main view
-  
+
     - As a user I want to navigate to my comment i have wrote
-  
+
       -> add link to the user comment 
-  
+
   ​	
+
+## 
+
+- **404** - As a user I want to see a funny Not Found page.
+
+- **500** - As a user I want to see an apology when there is an internal error.
+
+- **homepage** - As a user I want to see the homepage and be able to introduce my data, accessing the app if I already have an account, being redirected to the same page with error message. Also, I want to access sign up page in case I want to create a new account. 
+
+- **sign up** - As a user I want to sign up on the web page so that I can .
+
+- **login** - As a user I want to be able to log in on the web page so that I can get back to my account
+
+- **logout** - As a user I want to be able to log out from the web page so that I can make sure no one will access my account
+
+- **favorite list** - As a user I want to see the list of my favorite and delete them.
+
+- **edit user** - As a user I want to be able to edit my profile.
+
+- **result** - As a user I want to see the list of restaurant filter by my preferences.
+
+- **restaurant listing** - As a user I want to see more details of the restaurant, be able to call them and visit their website and save it as favorites.
+
+  
+  
+  ## API Routes (Back-end):
+
+| **Method** | **Route**                | **Description**                                              | Request - Body                                           |
+| ---------- | ------------------------ | ------------------------------------------------------------ | -------------------------------------------------------- |
+| `GET`      | `/`                      | Main page route. Renders home `index` view.                  |                                                          |
+| `POST`     | `/login`                 | Sends Login form data to the server.                         | { username, password }                                   |
+| `GET`      | `/signup`                | Renders `signup` form view.                                  |                                                          |
+| `POST`     | `/signup`                | Sends Sign Up info to the server and creates user in the DB. | { username, password }                                   |
+| `GET`      | `/private/profile`       | Private route. Renders `edit-profile` form view.             |                                                          |
+| `PUT`      | `/private/profile-edit`  | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
+| `DELETE`   | /private/profile-delete  | Private route. Render the `favorites` view.                  |                                                          |
+| GET        | /private/map/:lat/:long  | Map of near comments.                                        |                                                          |
+| GET        | /private/map/:comment_id | Comment display. Backlog: comments on comment and likes.     |                                                          |
+| GET        | /private/map/write       | Displays write screen                                        |                                                          |
+| POST       | /private/map/write/post  | Posts new comment                                            | { user_id, comment_title, comment_text, location }       |
+
+## Models
+
+User model
+
+```
+{
+  name: String,
+  password: String,
+  comments: [CommentId],
+  likes: [likeId]
+}
+```
+
+Comment model
+
+```
+{
+  title: String,
+  text: String,
+  user: UserId,
+  likes: [likeId],
+}
+```
+
+Favorites model
+
+```
+{
+  userId: String
+}
+```
+
+
+
+## Backlog
+
+[See the Trello Board](https://trello.com/b/z4mwyULn/project-2)
+
+
+
+## Links
+
+### Git
+
+[Repository Link](https://gist.github.com/ross-u/8f91ec13aeaf35a1ba7603848284703f)
+
+[Deploy Link]()
+
+
+
+### Slides
+
+[Slides Link](https://docs.google.com/presentation/d/1Zi7FQcl9imwjfVpgVau7Zex-KJJuxnzDYFTnYQ73A8c/edit?usp=sharing)
 
 
 
