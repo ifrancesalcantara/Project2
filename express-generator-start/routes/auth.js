@@ -5,11 +5,21 @@ var User = require("./../models/User")
 
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
+    console.log(req.body);
+    if(req.session.currentUser){
+        res.render("secure/map")
+    }
     User.find({username, password})
     .then(userData=>{
-        req.session.currentUser = userData;
-        res.render("secure/map")
+        if(userData){
+            req.session.currentUser = userData;
+            res.render("secure/map")
+        }
+        else {
+            res.render("index", {errorMessage: "Incorrect username or password."})
+        }
     })
+    .catch(err=>console.log(err))
     
 })
 
@@ -47,5 +57,17 @@ router.post('/signup', function(req, res) {
     }
 });
 
+router.get("/logout", (req, res)=>{
+    req.session.destroy((err)=>
+    {
+    console.log(err)
+    
+    console.log("here");
+    // res.render("index", {errorMessage: "Session ended."})
+    })
+    .then(something=>{
+        res.redirect("/")
+    })
+})
 
 module.exports = router;
