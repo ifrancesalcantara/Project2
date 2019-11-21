@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require("mongoose")
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -20,6 +21,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true})
+.then(x => {
+  console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+})
+.catch(err => {
+  console.error('Error connecting to mongo', err)
+});
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter)
