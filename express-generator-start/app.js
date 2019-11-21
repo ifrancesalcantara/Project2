@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true })
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
 })
