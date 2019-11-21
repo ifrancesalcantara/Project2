@@ -28,7 +28,7 @@ router.post("/login", (req, res)=>{
 
 /* GET home page. */
 router.get('/signup', function(req, res) {
-  res.render('auth-views/signup')
+res.render('auth-views/signup')
 });
 
 router.post('/signup', function(req, res) {    
