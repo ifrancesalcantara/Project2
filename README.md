@@ -219,10 +219,6 @@ Project 2 repository
 
   #### Comment Write view (comment-write secured area)
 
-<<<<<<< HEAD
-  - As a user I want to write comments --> render comment-write
-- As a user I want 
-=======
   - As a user I want to write comments 
 
     --> render write comment view
@@ -254,7 +250,6 @@ Project 2 repository
     - As a user I want to navigate to my comment i have wrote
   
       -> add link to the user comment 
->>>>>>> feet-readme.md
   
   ​	
 
