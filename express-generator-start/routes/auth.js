@@ -17,14 +17,18 @@ router.get('/signup', function(req, res) {
   res.render('auth-views/signup')
 });
 
-router.post('/signup', function(req, res) {
-    const { username, password } = req.body;
+router.post('/signup', function(req, res) {    
+    const { username, password, passConf} = req.body;
     User.find({username})
-    .then(user=>{
-        if(!user){
-            User.create({username, password})
-            .then(newUser=>console.log(newUser))
-            res.render("secure/map")
+    .then(undefined=>{
+        if(undefined) {
+            if(passConf === password) {
+                User.create({username, password})
+                .then(newUser=>console.log(newUser))
+                res.render("secure/map")
+            } else {
+                res.render("auth-views/signup", {errorMessage: "Password is not the same."})
+            }
         } else {
             res.render("auth-views/signup", {errorMessage: "Username already exists."})
         }
