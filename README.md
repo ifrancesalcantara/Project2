@@ -37,7 +37,7 @@ Interactive map to leave comments related to diverse local topics.
 | `GET`      | `/private/profile`       | Private route. Renders `edit-profile` form view.             |                                                          |
 | `PUT`      | `/private/profile-edit`  | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
 | `DELETE`   | /private/profile-delete  | Private route. Render the `favorites` view.                  |                                                          |
-| GET        | /private/map/:lat/:long  | Map of near comments.                                        |                    HELLO                                      |
+| GET        | /private/map/:lat/:long  | Map of near comments.                                        |                                                          |
 | GET        | /private/map/:comment_id | Comment display. Backlog: comments on comment and likes.     |                                                          |
 | GET        | /private/map/write       | Displays write screen                                        |                                                          |
 | POST       | /private/map/write/post  | Posts new comment                                            | { user_id, comment_title, comment_text, location }       |
