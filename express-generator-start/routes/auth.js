@@ -7,18 +7,16 @@ router.post("/login", (req, res)=>{
     const {username, password} = req.body;
     if(req.session.currentUser){
         console.log("using cookie");
-        
         res.render("secure/map")
     } else {
         console.log("not using cookie");
-        
         User.findOne({username, password})
         .then(userData=>{
             if(userData){
                 console.log(userData);
                 req.session.currentUser = userData;
                 res.render("secure/map")
-            }
+                    }
             else {
                 res.render("index", {errorMessage: "Incorrect username or password."})
             }
@@ -64,15 +62,9 @@ router.post('/signup', function(req, res) {
 
 router.get("/logout", (req, res)=>{
     req.session.destroy((err)=>
-    {
-    console.log(err)
-    
-    console.log("here");
-    // res.render("index", {errorMessage: "Session ended."})
-    })
-    .then(something=>{
-        res.redirect("/")
-    })
+    res.render("index", {errorMessage: "Session ended."})
+    )
 })
+
 
 module.exports = router;
