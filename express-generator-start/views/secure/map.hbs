@@ -1,1 +1,19 @@
 <h1>MAP</h1>
+<div id="map"></div>
+<script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
+{{!-- <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script> --}}
+<script>
+    var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
+
+    const map = document.querySelector("#map")
+
+    console.log("hey");
+    console.log(map)
+
+    client.geocodeForward('Chester, NJ', function(err, data, res) {
+  // data is the geocoding result as parsed JSON
+  // res is the http response, including: status, headers and entity properties;
+  console.log(data)
+
+});
+</script>
