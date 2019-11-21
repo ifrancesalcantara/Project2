@@ -6,7 +6,8 @@ var User = require("./../models/User")
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
     User.find({username, password})
-    .then(user=>{
+    .then(userData=>{
+        req.session.currentUser = userData;
         res.render("secure/map")
     })
     

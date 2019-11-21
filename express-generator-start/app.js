@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require("mongoose")
 
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require("./routes/auth")
@@ -28,6 +31,21 @@ mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnified
 .catch(err => {
   console.error('Error connecting to mongo', err)
 });
+
+app.use(
+  session({
+    secret: "secretword",
+    // cookie: { maxAge: 3600000 } // 1 hour
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 60 * 60 * 24 * 7, // Default - 14 days
+    }),
+  }),
+);
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter)
