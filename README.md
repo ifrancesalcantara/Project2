@@ -99,7 +99,7 @@ Favorites model
 
 
 
-# Project2
+# hoody
 Project 2 repository
 
 
@@ -219,8 +219,42 @@ Project 2 repository
 
   #### Comment Write view (comment-write secured area)
 
+<<<<<<< HEAD
   - As a user I want to write comments --> render comment-write
 - As a user I want 
+=======
+  - As a user I want to write comments 
+
+    --> render write comment view
+  
+  - As a user I want to delete comments
+  
+    --> add a delete button to the comment-write view, await 2nd confirmation to delete
+  
+  - As a user I want to edit my comments
+  
+    --> add a edit button to the comment-write view
+  
+  
+  
+  #### Navigation Bar (secured view)
+  
+  - As a user I want to navigate easy from every page to necessary options and content
+  
+    --> Add navigation bar to the top of the view, dropdown -> Layout for secured views
+  
+    - As a user I want to navigage to my profile
+  
+      ->  add Link to user profile, use user id
+  
+    - As a user I want to navigate to the Map
+  
+      -> add link to the Map/main view
+  
+    - As a user I want to navigate to my comment i have wrote
+  
+      -> add link to the user comment 
+>>>>>>> feet-readme.md
   
   ​	
 
