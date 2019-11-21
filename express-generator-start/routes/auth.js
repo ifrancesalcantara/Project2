@@ -5,21 +5,26 @@ var User = require("./../models/User")
 
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
-    console.log(req.body);
     if(req.session.currentUser){
+        console.log("using cookie");
+        
         res.render("secure/map")
+    } else {
+        console.log("not using cookie");
+        
+        User.findOne({username, password})
+        .then(userData=>{
+            if(userData){
+                console.log(userData);
+                req.session.currentUser = userData;
+                res.render("secure/map")
+            }
+            else {
+                res.render("index", {errorMessage: "Incorrect username or password."})
+            }
+        })
+        .catch(err=>console.log(err))
     }
-    User.find({username, password})
-    .then(userData=>{
-        if(userData){
-            req.session.currentUser = userData;
-            res.render("secure/map")
-        }
-        else {
-            res.render("index", {errorMessage: "Incorrect username or password."})
-        }
-    })
-    .catch(err=>console.log(err))
     
 })
 
