@@ -62,15 +62,8 @@ router.post('/signup', function(req, res) {
 
 router.get("/logout", (req, res)=>{
     req.session.destroy((err)=>
-    {
-    console.log(err)
-    
-    console.log("here");
-    // res.render("index", {errorMessage: "Session ended."})
-    })
-    .then(something=>{
-        res.redirect("/")
-    })
+    res.render("index", {errorMessage: "Session ended."})
+    )
 })
 
 
