@@ -37,8 +37,8 @@ Interactive map to leave comments related to diverse local topics.
 | `GET`      | `/private/profile`       | Private route. Renders `edit-profile` form view.             |                                                          |
 | `PUT`      | `/private/profile-edit`  | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
 | `DELETE`   | /private/profile-delete  | Private route. Render the `favorites` view.                  |                                                          |
-| GET        | /private/map/:lat/:long  | Map of near comments.                                        | { position }                                             |
-| GET        | /private/map/:comment_id | Comment display. Backlog: comments on comment and likes.     | { comment_id }                                           |
+| GET        | /private/map/:lat/:long  | Map of near comments.                                        |                    HELLO                                      |
+| GET        | /private/map/:comment_id | Comment display. Backlog: comments on comment and likes.     |                                                          |
 | GET        | /private/map/write       | Displays write screen                                        |                                                          |
 | POST       | /private/map/write/post  | Posts new comment                                            | { user_id, comment_title, comment_text, location }       |
 
@@ -95,26 +95,4 @@ Favorites model
 ### Slides
 
 [Slides Link](https://docs.google.com/presentation/d/1Zi7FQcl9imwjfVpgVau7Zex-KJJuxnzDYFTnYQ73A8c/edit?usp=sharing)
-
-
-
-```
-starter-code/
-├── .gitignore
-├── app.js
-├── bin
-│   └── www
-├── package.json
-├── public
-│   ├── images
-│   ├── javascripts
-│   │   └── financial-data.js
-│   └── stylesheets
-│       └── style.css
-├── routes
-│   ├── index.js
-└── views
-    ├── error.hbs
-    └── index.hbs
-```
 
