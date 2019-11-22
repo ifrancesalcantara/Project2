@@ -74,15 +74,18 @@ main {
 .nav-top ul, .nav-bot ul {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
+  height: 100%
 }
 
 .nav-bot li, .nav-top li {
   list-style-type: none;
   color: #ffffff;
   font-weight: bold;
-  padding: 30px 25px;
+  padding: 0 3vw;
 }
+
 
 .nav-bot a, .nav-top a {
   color: #ffffff;
@@ -95,4 +98,8 @@ main {
   visibility: hidden;
   position: absolute;
   z-index: -1;
+}
+
+.add-img-plus{
+  height: 5vh;
 }

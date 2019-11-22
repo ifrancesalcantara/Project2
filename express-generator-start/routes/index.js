@@ -15,7 +15,6 @@ router.get('/', function(req, res, next) {
     .then( (user)=> {
 
         const userHomeLocation = user.defaultLocation;
-        console.log("coords for /map: ", userHomeLocation)
         res.render('secure/map', userHomeLocation)
         })
     return;
