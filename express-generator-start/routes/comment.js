@@ -18,13 +18,17 @@ router.get("/", (req, res)=>{
 
 
 router.post('/', (req, res) => {
-    User.find({_id: req.session.currentUser._id})
+    User.findOne({_id: req.session.currentUser._id})
         .then(user=>{
             const  { title, text, lng, lat} =  req.body;
             Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id})
                 .then( comment => {
                     res.render('secure/map', comment.location)
-                    console.log(comment)
+                    console.log(user.comments.push(comment._id));
+                    
+                    User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
+                        .then( (data) => console.log(data))
+                        .catch( (err) => console.log(err));
                 })
                 .catch( err => console.log(err))
         })
