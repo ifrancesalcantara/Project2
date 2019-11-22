@@ -94,7 +94,7 @@ main {
   font-weight: bold;
 }
 
-#userHomeLng, #userHomeLat{
+#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat {
   visibility: hidden;
   position: absolute;
   z-index: -1;

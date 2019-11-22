@@ -17,10 +17,18 @@ router.get("/", (req, res)=>{
 })
 
 
-router.post('/comment', (req, res) => {
-    const  { title, text } =  req.body;
-
-    Comment.create({ title, text })
+router.post('/', (req, res) => {
+    User.find({_id: req.session.currentUser._id})
+        .then(user=>{
+            const  { title, text, lng, lat} =  req.body;
+            Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id})
+                .then( comment => {
+                    res.render('secure/map', comment.location)
+                    console.log(comment)
+                })
+                .catch( err => console.log(err))
+        })
+        .catch(err=>console.log(err))
 })
 
 

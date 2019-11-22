@@ -2,35 +2,29 @@
 <span id="userHomeLat" display="none" type='hidden'>{{userHomeLocation.lat}}</span> --}}
 
 
-<span id="userHomeLng" display="none" type='hidden'>{{this.lng}}</span>
-<span id="userHomeLat" display="none" type='hidden'>{{this.lat}}</span>
-
-
+<span id="userHomeLng">{{this.lng}}</span>
+<span id="userHomeLat">{{this.lat}}</span>
 
 <div id="map"></div>
 <pre id='info'></pre>
 
-<form class="add-comment-form" action='/endPointName' method='POST'>
+<form class="add-comment-form" action='/comment' method='POST'>
 
-  <label for=''>Title</label>
-  <input type='text' name='title' required>
+  <input type='text' name='title' value="title" required>
 
-  <label for=''>Text</label>
-  <input type='text' name='text'>
+  <input type='text' name='text' value="text">
 
-  <input type='text' name='long' required>
+  <input id="newCommentLng" type='text' name='lng' required>
 
-  <input type='text' name='lat' required>
+  <input id="newCommentLat" type='text' name='lat' required>
 
 
   <button type='submit'>Submit</button>
 </form>
 
-
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
     var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
-    console.log(document.querySelector("#userHomeLng").innerHTML)
     const map = document.querySelector("#map")
     const query=""
     const commentTitle = "Home";
@@ -62,10 +56,16 @@
         .addTo(map);
 
         map.on('click', function (e) {
-            const newCommentLong = e.lngLat.wrap().lng
+            const newCommentLng = e.lngLat.wrap().lng
             const newCommentLat = e.lngLat.wrap().lat
+
+            const newCommentLngInput = document.querySelector("#newCommentLng");
+            const newCommentLatInput = document.querySelector("#newCommentLat");
+            newCommentLngInput.value = newCommentLng
+            newCommentLatInput.value = newCommentLat
+
             const markerOnClick = new mapboxgl.Marker()
-                .setLngLat([newCommentLong, newCommentLat])
+                .setLngLat([newCommentLng, newCommentLat])
                 .addTo(map);
             if(lastMarker[0]){
                 lastMarker[0].remove();
@@ -74,6 +74,8 @@
             lastMarker.push(markerOnClick)
         });
 
+
+        
 
 
         const addCommentIcon = document.querySelector(".add-img-plus");

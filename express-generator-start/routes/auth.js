@@ -68,7 +68,7 @@ router.post('/signup', function(req, res) {
                     const salt = bcrypt.genSaltSync(saltRounds);
                     const hashedPassword = bcrypt.hashSync( req.body.password, salt);
                     
-                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat} })
+                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [] })
                         .then(newUser=>{
                             var userHomeLocation =  newUser.defaultLocation;
                             req.session.currentUser = newUser;
