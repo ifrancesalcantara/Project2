@@ -45,18 +45,14 @@ router.post('/signup', function(req, res) {
                 } else if (password.split("").length < 8) {
                     res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
                 } else if (passConf === password) {
-                    console.log(JSON.parse(defaultLocation));
                     const lng = JSON.parse(defaultLocation).lng;
                     const lat = JSON.parse(defaultLocation).lat;
-                    console.log(lng, lat);
                     
                     
                     User.create({username, password, defaultLocation: {lng, lat} })
                         .then(newUser=>{
-                            // const userHomeLocation = JSON.parse(newUser.defaultLocation)
-                            // console.log(userHomeLocation);
                             var userHomeLocation =  newUser.defaultLocation
-                            res.render("secure/map", userHomeLocation) //Will center map there
+                            res.render("secure/map", {userHomeLocation}) //Will center map there
                         })
                         .catch(err=>{ //Not catching if nohome selected
                             console.log("error to create user", err);                            

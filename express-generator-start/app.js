@@ -45,7 +45,6 @@ app.use(
   }),
 );
 
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter)
