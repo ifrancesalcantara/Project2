@@ -9,41 +9,29 @@ const saltRounds = 10;
 
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
-    console.log("clicked log in");
-    
-    
-    if(req.session.currentUser){
-        
-        res.render("secure/map")
-    } else {
-        
-        User.findOne({username})
-        .then(userData=>{
-            
-            
-            if(userData){
-                const hashedPass = userData.password;
-                
-                const passwordCorrect = bcrypt.compareSync(password, hashedPass)
-                // console.log("\n\n>>>>>>>>>>>>\n\n", password, "-", hashedPass, "\n\n");
+   
+    User.findOne({username})
+    .then(userData=>{
+        if(userData){
+            const hashedPass = userData.password;
+            const passwordCorrect = bcrypt.compareSync(password, hashedPass)
+                if (passwordCorrect) {
+                    console.log(userData.defaultLocation);
                     
-                    if (passwordCorrect){
-                        // console.log("location", location);
-                        res.render("secure/map", userData.defaultLocation)
-                    } else {
-                        res.render("index", {errorMessage: "Incorrect username or password."})
-                    }
-                    return
+                    res.render("secure/map", userData.defaultLocation)
                 } else {
-                res.render("index", {errorMessage: "Incorrect username or password."})
+                    res.render("index", {errorMessage: "Incorrect password."})
                 }
-            })
-            .catch(err=>console.log(err))                   
-            // res.render("index", {errorMessage: "Incorrect username or password."})
-    }
-    
-    
-    
+                return
+            }
+            else {
+                res.render("index", {errorMessage: "Incorrect username."})
+            }
+        })
+    .catch(err=>{
+        res.render("index", {errorMessage: "Something went wrong"})
+        console.log(err)
+    })                   
 })
 
 /* GET home page. */
@@ -62,11 +50,16 @@ router.post('/signup', function(req, res) {
         User.findOne({username})
         .then(user=>{
             if(!user) {
+
                 if(password==="") {
                     res.render("auth-views/signup", {errorMessage: "Password must not be empty."})
-                } else if (password.split("").length < 8) {
+                } 
+                
+                else if (password.split("").length < 8) {
                     res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
-                } else if (passConf === password) {
+                } 
+                
+                else if (passConf === password) {
                     const lng = JSON.parse(defaultLocation).lng;
                     const lat = JSON.parse(defaultLocation).lat;
                     
@@ -85,10 +78,11 @@ router.post('/signup', function(req, res) {
                             console.log("error to create user", err);                            
                             res.render("auth-views/signup", {errorMessage: "Click on the map to set your home."})
                         })
-
+                        
                 } else {
                     res.render("auth-views/signup", {errorMessage: "Password is not the same."})
                 }
+
             } else {
                 res.render("auth-views/signup", {errorMessage: "Username already exists."})
             }

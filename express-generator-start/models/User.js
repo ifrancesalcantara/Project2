@@ -6,8 +6,8 @@ const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     defaultLocation: {
-        lng: {type: Number/*, required: true*/},
-        lat: {type: Number/*, required: true*/},
+        lng: {type: Number, required: true},
+        lat: {type: Number, required: true},
     },
     comments: []
 })

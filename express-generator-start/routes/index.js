@@ -7,13 +7,13 @@ router.get('/', function(req, res, next) {
   console.log(req.session);
   
 
-  // if(req.session.currentUser){
-  //   console.log("cookie dected");
+  if(req.session.currentUser){
+    console.log("cookie dected");
     
     
-  //   res.render("secure/map");
-  //   return;
-  // }
+    res.render("secure/map");
+    return;
+  }
   console.log("no cookie");
   
   res.render('index');
