@@ -1,7 +1,3 @@
-{{!-- <span id="userHomeLng" display="none" type='hidden'>{{userHomeLocation.lng}}</span>
-<span id="userHomeLat" display="none" type='hidden'>{{userHomeLocation.lat}}</span> --}}
-
-
 <span id="userHomeLng">{{this.lng}}</span>
 <span id="userHomeLat">{{this.lat}}</span>
 
@@ -19,30 +15,36 @@
   <input id="newCommentLat" type='text' name='lat' required>
 
 
-  <button type='submit'>Submit</button>
+  <button id="add-comment-btn" type='submit'>Submit</button>
 </form>
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
-    var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
+    const userHomeLong = document.querySelector("#userHomeLng").innerHTML
+    const userHomeLat = document.querySelector("#userHomeLat").innerHTML
+    const addCommentBtn = document.querySelector("#add-comment-btn");
+    const client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
     const map = document.querySelector("#map")
     const query=""
-    const commentTitle = "Home";
-    const commentText = "A good school.";
-    var userHomeLong = document.querySelector("#userHomeLng").innerHTML
-    var userHomeLat = document.querySelector("#userHomeLat").innerHTML
     const lastMarker = []
     var isAddCommentDisplayed = false;
 
-    var popup = new mapboxgl.Popup()
-    .setHTML(`<h3>${commentTitle}</h3>`);
+    //Stop page reload for add comment button click
+    addCommentBtn.addEventListener("click", e=>{
+        e.preventDefault();
+    })
 
-    map.style.height="80vh";
-    map.style.width="100vw";
 
+    //Set popup for Home Icon
+    const popup = new mapboxgl.Popup()
+    .setHTML(`<h3>Home</h3>`);
+
+
+    //Draw map
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
-    
+
+        //Map setup
         const map = new mapboxgl.Map({
             container: 'map', // HTML container id
             style: 'mapbox://styles/mapbox/streets-v9', // style URL
@@ -50,11 +52,13 @@
             zoom: 13
         });
 
+        //Add home marker
         const marker = new mapboxgl.Marker()
         .setLngLat([userHomeLong, userHomeLat])
         .setPopup(popup)
         .addTo(map);
 
+        //Add selected location marker, set input values to coords
         map.on('click', function (e) {
             const newCommentLng = e.lngLat.wrap().lng
             const newCommentLat = e.lngLat.wrap().lat
@@ -74,10 +78,10 @@
             lastMarker.push(markerOnClick)
         });
 
-
+        //TO DO: PRINT ALL COMMENTS OF USER
         
 
-
+        //TO DO: Add comment icon should slide form 
         const addCommentIcon = document.querySelector(".add-img-plus");
         addCommentIcon.addEventListener("click",()=>{
             if(isAddCommentDisplayed){

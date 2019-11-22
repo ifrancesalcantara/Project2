@@ -17,7 +17,7 @@ var mapRouter =require('./routes/map');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
 })

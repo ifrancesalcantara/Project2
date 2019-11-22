@@ -48,6 +48,15 @@ table {
 }
 
 
+
+
+
+
+
+
+
+
+
 a {
   color: #00B7FF;
 }
@@ -110,4 +119,9 @@ main {
 
 .add-img-plus{
   height: 5vh;
+}
+
+#map {
+  height: 80vh;
+  width: 100vw;
 }
