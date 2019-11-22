@@ -90,3 +90,9 @@ main {
   text-decoration: none;
   font-weight: bold;
 }
+
+#userHomeLng, #userHomeLat {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+}

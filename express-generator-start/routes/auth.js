@@ -1,29 +1,37 @@
 var express = require('express');
 var router = express.Router();
-var User = require("./../models/User")
+var User = require("./../models/User");
+
+const zxcvbn = require("zxcvbn");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
-    if(req.session.currentUser){
-        console.log("using cookie");
-        res.render("secure/map")
-    } else {
-        console.log("not using cookie");
-        User.findOne({username, password})
-        .then(userData=>{
-            if(userData){
-                console.log(userData);
-                req.session.currentUser = userData;
-                res.render("secure/map")
-                    }
+   
+    User.findOne({username})
+    .then(userData=>{
+        if(userData){
+            const hashedPass = userData.password;
+            const passwordCorrect = bcrypt.compareSync(password, hashedPass)
+                if (passwordCorrect) {
+                    console.log(userData.defaultLocation);
+                    
+                    res.render("secure/map", userData.defaultLocation)
+                } else {
+                    res.render("index", {errorMessage: "Incorrect password."})
+                }
+                return
+            }
             else {
-                res.render("index", {errorMessage: "Incorrect username or password."})
+                res.render("index", {errorMessage: "Incorrect username."})
             }
         })
-        .catch(err=>console.log(err))
-    }
-    
+    .catch(err=>{
+        res.render("index", {errorMessage: "Something went wrong"})
+        console.log(err)
+    })                   
 })
 
 /* GET home page. */
@@ -32,40 +40,49 @@ res.render('auth-views/signup')
 });
 
 router.post('/signup', function(req, res) {   
-    console.log(req.body);
-     
     const { username, password, passConf, defaultLocation } = req.body;
-    console.log(JSON.parse(defaultLocation));
-    
-    
     
     if (username==="") {
         res.render("auth-views/signup", {errorMessage: "Please provide a username."})
     } 
     
     else {
-        User.find({username})
-        .then(undefined=>{
-            if(undefined) {
+        User.findOne({username})
+        .then(user=>{
+            if(!user) {
+
                 if(password==="") {
                     res.render("auth-views/signup", {errorMessage: "Password must not be empty."})
-                } else if (password.split("").length < 8) {
+                } 
+                
+                else if (password.split("").length < 8) {
                     res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
-                } else if (passConf === password) {
-                    User.create({username, password, defaultLocation: JSON.parse(defaultLocation) })
+                } 
+                
+                else if (passConf === password) {
+                    const lng = JSON.parse(defaultLocation).lng;
+                    const lat = JSON.parse(defaultLocation).lat;
+                    
+                    const salt = bcrypt.genSaltSync(saltRounds);
+                    const hashedPassword = bcrypt.hashSync( req.body.password, salt);
+                    
+                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat} })
                         .then(newUser=>{
-                            const userHomeLocation = JSON.parse(newUser.defaultLocation)
-                            console.log(userHomeLocation);
-                            
-                            res.render("secure/map", userHomeLocation) //Will center map there
+                            var userHomeLocation =  newUser.defaultLocation;
+                            req.session.currentUser = newUser;
+
+
+                            res.render("secure/map", {userHomeLocation}) //Will center map there
                         })
                         .catch(err=>{ //Not catching if nohome selected
-                            console.log("error to create user");
+                            console.log("error to create user", err);                            
                             res.render("auth-views/signup", {errorMessage: "Click on the map to set your home."})
                         })
+                        
                 } else {
                     res.render("auth-views/signup", {errorMessage: "Password is not the same."})
                 }
+
             } else {
                 res.render("auth-views/signup", {errorMessage: "Username already exists."})
             }
