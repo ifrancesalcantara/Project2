@@ -1,10 +1,12 @@
 
+{{userHomeLocation}}
+<span id="userHomeLng">{{userHomeLocation.lng}}</span>
 <div id="map"></div>
 <pre id='info'></pre>
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
     var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
-    
+    console.log(document.querySelector("#userHomeLng").innerHTML)
     const map = document.querySelector("#map")
     const query=""
     const commentTitle = "Ironhack";
@@ -20,29 +22,22 @@
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
     
-    
+        var map = new mapboxgl.Map({
+            container: 'map', // HTML container id
+            style: 'mapbox://styles/mapbox/streets-v9', // style URL
+            center: [userHomeLong, userHomeLat],
+            zoom: 13
+        });
 
-    var map = new mapboxgl.Map({
-        container: 'map', // HTML container id
-        style: 'mapbox://styles/mapbox/streets-v9', // style URL
-        center: [userHomeLong, userHomeLat],
-        zoom: 13
-    });
+        var marker = new mapboxgl.Marker()
+        .setLngLat([2.190471916, 41.3977381])
+        .setPopup(popup)
+        .addTo(map);
 
-    var marker = new mapboxgl.Marker()
-    .setLngLat([2.190471916, 41.3977381])
-    .setPopup(popup)
-    .addTo(map);
-    
-
-    map.on('click', function (e) {
-        document.getElementById('info').innerHTML =
-        JSON.stringify(e.lngLat.wrap());
-    });
-
-    
+        map.on('click', function (e) {
+            document.getElementById('info').innerHTML =
+            JSON.stringify(e.lngLat.wrap());
+        });
 
     });
-
-
 </script>

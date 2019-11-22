@@ -9,8 +9,49 @@
   <label for=''>Confirm your password</label>
   <input type='text' name='passConf'>
 
-  <label for=''>User hood location</label>
-  <input type='text' name='location'>
+  <input id="location-input" type='hidden' name='defaultLocation'>
+
+<div id="map"></div>
+<pre id='info'></pre>
+<script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
+
+<script>
+    var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
+    
+    const map = document.querySelector("#map")
+    const query=""
+    const commentTitle = "Ironhack";
+    const commentText = "A good school.";
+    var userHomeLong = 2.190471916
+    var userHomeLat = 41.3977381
+    var popup = new mapboxgl.Popup()
+    .setHTML(`<h3>${commentTitle}</h3><p>${commentText}</p>`);
+
+    map.style.height="20vh";
+    map.style.width="80vw";
+
+    client.geocodeForward(query, function(err, data, res) {
+    mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
+        
+        var map = new mapboxgl.Map({
+            container: 'map', // HTML container id
+            style: 'mapbox://styles/mapbox/streets-v9', // style URL
+            center: [userHomeLong, userHomeLat],    //This should be the geolocation
+            zoom: 12
+        });
+
+        map.on('click', function (e) {
+            document.getElementById('info').innerHTML =
+            JSON.stringify(e.lngLat.wrap());
+            var userHomeCoords = document.getElementById('info').innerHTML
+            document.querySelector("#location-input").value=userHomeCoords
+        });
+        
+    });
+    var userHomeCoords = document.getElementById('info').innerHTML
+    console.log(userHomeCoords)
+</script>
+
 
   <button type='submit'>Sign Up</button>
 </form>
