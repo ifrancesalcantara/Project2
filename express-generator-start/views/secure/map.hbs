@@ -33,13 +33,14 @@
     console.log(document.querySelector("#userHomeLng").innerHTML)
     const map = document.querySelector("#map")
     const query=""
-    const commentTitle = "Ironhack";
+    const commentTitle = "Home";
     const commentText = "A good school.";
     var userHomeLong = document.querySelector("#userHomeLng").innerHTML
     var userHomeLat = document.querySelector("#userHomeLat").innerHTML
+    const lastMarker = []
 
     var popup = new mapboxgl.Popup()
-    .setHTML(`<h3>${commentTitle}</h3><p>${commentText}</p>`);
+    .setHTML(`<h3>${commentTitle}</h3>`);
 
     map.style.height="80vh";
     map.style.width="100vw";
@@ -47,22 +48,31 @@
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
     
-        var map = new mapboxgl.Map({
+        const map = new mapboxgl.Map({
             container: 'map', // HTML container id
             style: 'mapbox://styles/mapbox/streets-v9', // style URL
             center: [userHomeLong, userHomeLat],
             zoom: 13
         });
 
-        var marker = new mapboxgl.Marker()
-        .setLngLat([2.190471916, 41.3977381])
+        const marker = new mapboxgl.Marker()
+        .setLngLat([userHomeLong, userHomeLat])
         .setPopup(popup)
         .addTo(map);
 
         map.on('click', function (e) {
-            document.getElementById('info').innerHTML = JSON.stringify(e.lngLat.wrap());
-            console.log('>>>>>>>>>>>Latitude>>>>>>',e.lngLat.wrap());
-
+            console.log(e.lngLat.wrap())
+            const newCommentLong = e.lngLat.wrap().lng
+            const newCommentLat = e.lngLat.wrap().lat
+            const markerOnClick = new mapboxgl.Marker()
+                .setLngLat([newCommentLong, newCommentLat])
+                .addTo(map);
+            if(lastMarker[0]){
+                lastMarker[0].remove();
+                lastMarker.splice(0,1)
+            }
+            lastMarker.push(markerOnClick)
+            console.log(lastMarker)
         });
 
     });
