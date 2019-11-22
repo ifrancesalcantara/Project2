@@ -1,7 +1,32 @@
-<span id="userHomeLng" display="none" type='hidden'>{{userHomeLocation.lng}}</span>
-<span id="userHomeLat" display="none" type='hidden'>{{userHomeLocation.lat}}</span>
+{{!-- <span id="userHomeLng" display="none" type='hidden'>{{userHomeLocation.lng}}</span>
+<span id="userHomeLat" display="none" type='hidden'>{{userHomeLocation.lat}}</span> --}}
+
+
+<span id="userHomeLng" display="none" type='hidden'>{{this.lng}}</span>
+<span id="userHomeLat" display="none" type='hidden'>{{this.lat}}</span>
+
+
+
 <div id="map"></div>
 <pre id='info'></pre>
+
+<form action='/endPointName' method='POST'>
+
+  <label for=''>Title</label>
+  <input type='text' name='title'>
+
+  <label for=''>Text</label>
+  <input type='text' name='text'>
+
+  <input type='text' name='long'>
+
+  <input type='text' name='lat'>
+
+
+  <button type='submit'>Submit</button>
+</form>
+
+
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
     var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
@@ -35,9 +60,15 @@
         .addTo(map);
 
         map.on('click', function (e) {
-            document.getElementById('info').innerHTML =
-            JSON.stringify(e.lngLat.wrap());
+            document.getElementById('info').innerHTML = JSON.stringify(e.lngLat.wrap());
+            console.log('>>>>>>>>>>>Latitude>>>>>>',e.lngLat.wrap());
+
         });
 
     });
+
+
 </script>
+
+{{!-- navigator.geolocation.getCurrentPosition((posObj) => console.log(posObj))  --}}
+

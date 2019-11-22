@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require("./../models/User");
 
+var Comment = require("./../models/Comment");
+
 const zxcvbn = require("zxcvbn");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -17,7 +19,7 @@ router.post("/login", (req, res)=>{
             const passwordCorrect = bcrypt.compareSync(password, hashedPass)
                 if (passwordCorrect) {
                     console.log(userData.defaultLocation);
-                    
+                    req.session.currentUser = userData;
                     res.render("secure/map", userData.defaultLocation)
                 } else {
                     res.render("index", {errorMessage: "Incorrect password."})
@@ -71,8 +73,9 @@ router.post('/signup', function(req, res) {
                             var userHomeLocation =  newUser.defaultLocation;
                             req.session.currentUser = newUser;
 
-
-                            res.render("secure/map", {userHomeLocation}) //Will center map there
+                            console.log(userHomeLocation);
+                            
+                            res.render("secure/map", req.session.currentUser.defaultLocation) //Will center map there
                         })
                         .catch(err=>{ //Not catching if nohome selected
                             console.log("error to create user", err);                            

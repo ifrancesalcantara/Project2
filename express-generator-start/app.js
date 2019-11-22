@@ -10,19 +10,12 @@ const MongoStore = require('connect-mongo')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var authRouter = require("./routes/auth")
+var authRouter = require("./routes/auth");
+var commentRouter = require('./routes/comment');
+var profileRouter = require('./routes/profile')
+var mapRouter =require('./routes/map');
 
 var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
-app.use(logger('combined', {skip: function (req, res) { return res.statusCode < 400}}))
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true })
 .then(x => {
@@ -32,6 +25,19 @@ mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnified
   console.error('Error connecting to mongo', err)
 });
 
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+// MIDDLEWARE
+app.use(logger('combined', {skip: function (req, res) { return res.statusCode < 400}}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// EXPRESS SESSION MIDDLEWARE    -  req.session.currentUser
 app.use(
   session({
     secret: "secretword",
@@ -47,7 +53,10 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/auth', authRouter)
+app.use('/auth', authRouter);
+app.use('/comment', commentRouter);
+app.use('/profile', profileRouter);
+app.use('/map', mapRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
