@@ -31,8 +31,13 @@ router.get('/signup', function(req, res) {
 res.render('auth-views/signup')
 });
 
-router.post('/signup', function(req, res) {    
-    const { username, password, passConf} = req.body;
+router.post('/signup', function(req, res) {   
+    console.log(req.body);
+     
+    const { username, password, passConf, defaultLocation } = req.body;
+    console.log(JSON.parse(defaultLocation));
+    
+    
     
     if (username==="") {
         res.render("auth-views/signup", {errorMessage: "Please provide a username."})
@@ -47,11 +52,17 @@ router.post('/signup', function(req, res) {
                 } else if (password.split("").length < 8) {
                     res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
                 } else if (passConf === password) {
-                    User.create({username, password})
-                    .then(newUser=>
-                        res.render("secure/map", newUser)
-                        )
-                    
+                    User.create({username, password, defaultLocation: JSON.parse(defaultLocation) })
+                        .then(newUser=>{
+                            const userHomeLocation = JSON.parse(newUser.defaultLocation)
+                            console.log(userHomeLocation);
+                            
+                            res.render("secure/map", userHomeLocation) //Will center map there
+                        })
+                        .catch(err=>{ //Not catching if nohome selected
+                            console.log("error to create user");
+                            res.render("auth-views/signup", {errorMessage: "Click on the map to set your home."})
+                        })
                 } else {
                     res.render("auth-views/signup", {errorMessage: "Password is not the same."})
                 }
