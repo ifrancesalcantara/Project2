@@ -28,7 +28,7 @@
     .setHTML(`<h3>${commentTitle}</h3><p>${commentText}</p>`);
 
     map.style.height="20vh";
-    map.style.width="80vw";
+    map.style.width="500px";
 
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env

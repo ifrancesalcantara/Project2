@@ -6,10 +6,8 @@ var User = require("./../models/User")
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
     if(req.session.currentUser){
-        console.log("using cookie");
         res.render("secure/map")
     } else {
-        console.log("not using cookie");
         User.findOne({username, password})
         .then(userData=>{
             if(userData){
@@ -32,12 +30,7 @@ res.render('auth-views/signup')
 });
 
 router.post('/signup', function(req, res) {   
-    console.log(req.body);
-     
     const { username, password, passConf, defaultLocation } = req.body;
-    console.log(JSON.parse(defaultLocation));
-    
-    
     
     if (username==="") {
         res.render("auth-views/signup", {errorMessage: "Please provide a username."})
@@ -52,17 +45,24 @@ router.post('/signup', function(req, res) {
                 } else if (password.split("").length < 8) {
                     res.render("auth-views/signup", {errorMessage: "Password must be 8 characters long at least."})
                 } else if (passConf === password) {
-                    User.create({username, password, defaultLocation: JSON.parse(defaultLocation) })
+                    console.log(JSON.parse(defaultLocation));
+                    const lng = JSON.parse(defaultLocation).lng;
+                    const lat = JSON.parse(defaultLocation).lat;
+                    console.log(lng, lat);
+                    
+                    
+                    User.create({username, password, defaultLocation: {lng, lat} })
                         .then(newUser=>{
-                            const userHomeLocation = JSON.parse(newUser.defaultLocation)
-                            console.log(userHomeLocation);
-                            
+                            // const userHomeLocation = JSON.parse(newUser.defaultLocation)
+                            // console.log(userHomeLocation);
+                            var userHomeLocation =  newUser.defaultLocation
                             res.render("secure/map", userHomeLocation) //Will center map there
                         })
                         .catch(err=>{ //Not catching if nohome selected
-                            console.log("error to create user");
+                            console.log("error to create user", err);                            
                             res.render("auth-views/signup", {errorMessage: "Click on the map to set your home."})
                         })
+
                 } else {
                     res.render("auth-views/signup", {errorMessage: "Password is not the same."})
                 }

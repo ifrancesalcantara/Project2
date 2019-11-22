@@ -1,5 +1,9 @@
 
 {{userHomeLocation}}
+{{this}}
+{{#each userHomeLocation}}
+    {{this}}
+{{/each}}
 <span id="userHomeLng">{{userHomeLocation.lng}}</span>
 <div id="map"></div>
 <pre id='info'></pre>
