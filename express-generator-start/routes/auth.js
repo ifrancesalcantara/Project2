@@ -1,26 +1,48 @@
 var express = require('express');
 var router = express.Router();
-var User = require("./../models/User")
+var User = require("./../models/User");
+
+const zxcvbn = require("zxcvbn");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
+    console.log("clicked log in");
+    
+    
     if(req.session.currentUser){
+        
         res.render("secure/map")
     } else {
-        User.findOne({username, password})
+        
+        User.findOne({username})
         .then(userData=>{
+            
+            
             if(userData){
-                console.log(userData);
-                req.session.currentUser = userData;
-                res.render("secure/map")
+                const hashedPass = userData.password;
+                
+                const passwordCorrect = bcrypt.compareSync(password, hashedPass)
+                // console.log("\n\n>>>>>>>>>>>>\n\n", password, "-", hashedPass, "\n\n");
+                    
+                    if (passwordCorrect){
+                        // console.log("location", location);
+                        res.render("secure/map", userData.defaultLocation)
+                    } else {
+                        res.render("index", {errorMessage: "Incorrect username or password."})
                     }
-            else {
+                    return
+                } else {
                 res.render("index", {errorMessage: "Incorrect username or password."})
-            }
-        })
-        .catch(err=>console.log(err))
+                }
+            })
+            .catch(err=>console.log(err))                   
+            // res.render("index", {errorMessage: "Incorrect username or password."})
     }
+    
+    
     
 })
 
@@ -37,9 +59,9 @@ router.post('/signup', function(req, res) {
     } 
     
     else {
-        User.find({username})
-        .then(undefined=>{
-            if(undefined) {
+        User.findOne({username})
+        .then(user=>{
+            if(!user) {
                 if(password==="") {
                     res.render("auth-views/signup", {errorMessage: "Password must not be empty."})
                 } else if (password.split("").length < 8) {
@@ -48,10 +70,15 @@ router.post('/signup', function(req, res) {
                     const lng = JSON.parse(defaultLocation).lng;
                     const lat = JSON.parse(defaultLocation).lat;
                     
+                    const salt = bcrypt.genSaltSync(saltRounds);
+                    const hashedPassword = bcrypt.hashSync( req.body.password, salt);
                     
-                    User.create({username, password, defaultLocation: {lng, lat} })
+                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat} })
                         .then(newUser=>{
-                            var userHomeLocation =  newUser.defaultLocation
+                            var userHomeLocation =  newUser.defaultLocation;
+                            req.session.currentUser = newUser;
+
+
                             res.render("secure/map", {userHomeLocation}) //Will center map there
                         })
                         .catch(err=>{ //Not catching if nohome selected

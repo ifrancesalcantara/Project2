@@ -1,5 +1,5 @@
-<span id="userHomeLng" style="hidden">{{userHomeLocation.lng}}</span>
-<span id="userHomeLat" style="hidden">{{userHomeLocation.lat}}</span>
+<span id="userHomeLng" display="none" type='hidden'>{{userHomeLocation.lng}}</span>
+<span id="userHomeLat" display="none" type='hidden'>{{userHomeLocation.lat}}</span>
 <div id="map"></div>
 <pre id='info'></pre>
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
@@ -12,8 +12,6 @@
     const commentText = "A good school.";
     var userHomeLong = document.querySelector("#userHomeLng").innerHTML
     var userHomeLat = document.querySelector("#userHomeLat").innerHTML
-    console.log(userHomeLong)
-    console.log(userHomeLat)
 
     var popup = new mapboxgl.Popup()
     .setHTML(`<h3>${commentTitle}</h3><p>${commentText}</p>`);
