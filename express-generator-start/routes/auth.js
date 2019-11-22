@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require("./../models/User");
 
+var Comment = require("./../models/Comment");
+
 const zxcvbn = require("zxcvbn");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
@@ -17,7 +19,7 @@ router.post("/login", (req, res)=>{
             const passwordCorrect = bcrypt.compareSync(password, hashedPass)
                 if (passwordCorrect) {
                     console.log(userData.defaultLocation);
-                    
+                    req.session.currentUser = userData;
                     res.render("secure/map", userData.defaultLocation)
                 } else {
                     res.render("index", {errorMessage: "Incorrect password."})

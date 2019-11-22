@@ -5,13 +5,14 @@ const Comment = require('./../models/Comment');
 const User = require('./../models/User');
 
 
-router.get('/comment', (req, res) => {
-    
-    if (req.session.currentUser){
-        console.log('session');
+router.get("/", (req, res)=>{
+    console.log("heree");
+
+    if (req.session.currentUser) {
+        res.render('secure/comment');
     }
-    res.render('secure/comment')
 })
+
 
 router.post('/comment', (req, res) => {
     const  { title, text } =  req.body;

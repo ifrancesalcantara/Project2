@@ -10,11 +10,12 @@ router.get('/', function(req, res, next) {
   if(req.session.currentUser){
     console.log("cookie dected");
     
+    console.log('<<<<<<<<<<<>>>>>>>>>>>>', req.session.currentUser);
     
     res.render("secure/map");
     return;
   }
-  console.log("no cookie");
+  console.log("no cookie after reload");
   
   res.render('index');
 });

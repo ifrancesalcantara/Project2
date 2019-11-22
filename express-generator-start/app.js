@@ -15,16 +15,6 @@ var commentRouter = require('./routes/comment')
 
 var app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-
-app.use(logger('combined', {skip: function (req, res) { return res.statusCode < 400}}))
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-
 mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true })
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -33,6 +23,19 @@ mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnified
   console.error('Error connecting to mongo', err)
 });
 
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+// MIDDLEWARE
+app.use(logger('combined', {skip: function (req, res) { return res.statusCode < 400}}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// EXPRESS SESSION MIDDLEWARE    -  req.session.currentUser
 app.use(
   session({
     secret: "secretword",
