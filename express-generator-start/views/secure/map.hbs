@@ -10,17 +10,17 @@
 <div id="map"></div>
 <pre id='info'></pre>
 
-<form action='/endPointName' method='POST'>
+<form class="add-comment-form" action='/endPointName' method='POST'>
 
   <label for=''>Title</label>
-  <input type='text' name='title'>
+  <input type='text' name='title' required>
 
   <label for=''>Text</label>
   <input type='text' name='text'>
 
-  <input type='text' name='long'>
+  <input type='text' name='long' required>
 
-  <input type='text' name='lat'>
+  <input type='text' name='lat' required>
 
 
   <button type='submit'>Submit</button>
@@ -38,6 +38,7 @@
     var userHomeLong = document.querySelector("#userHomeLng").innerHTML
     var userHomeLat = document.querySelector("#userHomeLat").innerHTML
     const lastMarker = []
+    var isAddCommentDisplayed = false;
 
     var popup = new mapboxgl.Popup()
     .setHTML(`<h3>${commentTitle}</h3>`);
@@ -61,7 +62,6 @@
         .addTo(map);
 
         map.on('click', function (e) {
-            console.log(e.lngLat.wrap())
             const newCommentLong = e.lngLat.wrap().lng
             const newCommentLat = e.lngLat.wrap().lat
             const markerOnClick = new mapboxgl.Marker()
@@ -72,9 +72,25 @@
                 lastMarker.splice(0,1)
             }
             lastMarker.push(markerOnClick)
-            console.log(lastMarker)
         });
 
+
+
+        const addCommentIcon = document.querySelector(".add-img-plus");
+        addCommentIcon.addEventListener("click",()=>{
+            if(isAddCommentDisplayed){
+                const commentForm = document.querySelector(".add-comment-form");
+                /*commentForm.style.visibility = "hidden";*/
+                commentForm.style.height = "0vh";
+                isAddCommentDisplayed = false;
+            }
+            else {
+                const commentForm = document.querySelector(".add-comment-form");
+                /*commentForm.style.visibility = "visible";*/
+                commentForm.style.height = "10vh";
+                isAddCommentDisplayed = true;
+            }
+        })
     });
 
 
