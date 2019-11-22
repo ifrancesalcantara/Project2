@@ -6,18 +6,17 @@ const User = require('./../models/User');
 
 
 router.get("/", (req, res)=>{
-    console.log("heree");
 
     if (req.session.currentUser) {
-        res.render('secure/comment');
-    }
+        res.render('secure/profile');
+    } 
     else {
-    res.render("index", {errorMessage: "Session ended."})
+        res.render("index", {errorMessage: "Session ended."})
     }
 })
 
 
-router.post('/comment', (req, res) => {
+router.post('/profile', (req, res) => {
     const  { title, text } =  req.body;
 
     Comment.create({ title, text })
