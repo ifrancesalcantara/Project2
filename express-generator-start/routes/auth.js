@@ -74,8 +74,9 @@ router.post('/signup', function(req, res) {
                             var userHomeLocation =  newUser.defaultLocation;
                             req.session.currentUser = newUser;
 
-
-                            res.render("secure/map", {userHomeLocation}) //Will center map there
+                            console.log(userHomeLocation);
+                            
+                            res.render("secure/map", req.session.currentUser.defaultLocation) //Will center map there
                         })
                         .catch(err=>{ //Not catching if nohome selected
                             console.log("error to create user", err);                            
