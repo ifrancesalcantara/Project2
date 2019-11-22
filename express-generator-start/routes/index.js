@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
   
 
   if(req.session.currentUser){
-    console.log("cookie dected");
+    console.log("cookie detected");
     
     User.findOne({_id: req.session.currentUser._id}) //CHANGE WHEN TIME TO MATCHING
     .then( (user)=> {

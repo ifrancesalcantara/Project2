@@ -18,7 +18,6 @@ router.post("/login", (req, res)=>{
             const hashedPass = userData.password;
             const passwordCorrect = bcrypt.compareSync(password, hashedPass)
                 if (passwordCorrect) {
-                    console.log(userData.defaultLocation);
                     req.session.currentUser = userData;
                     res.render("secure/map", userData.defaultLocation)
                 } else {
@@ -72,8 +71,6 @@ router.post('/signup', function(req, res) {
                         .then(newUser=>{
                             var userHomeLocation =  newUser.defaultLocation;
                             req.session.currentUser = newUser;
-
-                            console.log(userHomeLocation);
                             
                             res.render("secure/map", req.session.currentUser.defaultLocation) //Will center map there
                         })

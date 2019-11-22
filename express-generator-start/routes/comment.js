@@ -28,9 +28,11 @@ router.post('/', (req, res) => {
                     
                     User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                         .then( (data) => console.log(data))
-                        .catch( (err) => console.log(err));
+                        .catch( (err) => console.log(err));  
                 })
                 .catch( err => console.log(err))
+
+
         })
         .catch(err=>console.log(err))
 })
