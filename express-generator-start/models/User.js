@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 const mongoose = require("mongoose")
+=======
+const mongoose = require("mongoose");
+
+>>>>>>> feat
 const Schema = mongoose.Schema;
-
-
 
 const userSchema = new Schema({
     username: {type: String, required: true, unique: true},
@@ -10,7 +13,7 @@ const userSchema = new Schema({
         lng: {type: Number, required: true},
         lat: {type: Number, required: true},
     },
-    comments: []
+    comments: [ { type: Schema.Types.ObjectId, ref: 'Comment'} ]
 })
 
 const User = mongoose.model("User", userSchema)
