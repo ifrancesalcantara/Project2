@@ -55,7 +55,9 @@ table {
 
 
 
-
+body {
+  font-family: 'Fredoka One', cursive;
+}
 
 a {
   color: #00B7FF;
@@ -63,6 +65,49 @@ a {
 
 main {
   margin: 10vh auto;
+}
+
+#signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 75vh;
+  padding: 5vh 0 0 0;
+  position: "relative"  
+}
+
+#welcome-title{
+  font-size: 3rem;
+}
+
+.signup-form-input {
+  width: 40vw;
+  height: 5vh;
+  border-radius: 10px
+}
+
+.signup-form-input:first-of-type {
+  margin-top: 3vh;
+}
+
+.signup-form-input:nth-child(4) {
+  margin-bottom: 3vh;
+}
+
+#signup-map {
+  width: 70vw !important;
+  height: 30vh !important;
+  border: 5px solid grey;
+  border-radius: 20px;
+}
+
+#signup-btn {
+  height: 5vh;
+  width: 20vw;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.2em;
+  margin-bottom: 3vh;
 }
 
 .nav-top {
@@ -103,7 +148,7 @@ main {
   font-weight: bold;
 }
 
-#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat, #userComments {
+#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat, #userComments, #info {
   visibility: hidden;
   position: absolute;
   z-index: -1;
@@ -119,6 +164,10 @@ main {
 
 .add-img-plus{
   height: 5vh;
+}
+
+.add-img-plus:active {
+  content: url("./../images/plus\ inverted2.png")
 }
 
 #map {
