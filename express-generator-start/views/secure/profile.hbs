@@ -1,13 +1,15 @@
 <form action='/profile' method='post'>
 
+<h4>Hello {{this.username}}.</h4>
+<label for=''></label>
 
-<label for=''>{{this.username}}</label>
 
-
-<label for='password'>Password</label>
-<input type='text' name='password'>
+<label for='password' >Password</label>
+<input type='password' name='password' id='passShow' >
 <label for="passwordConfirm"></label>
-<input type="text" name='passConf'>
+<input type="password" name='passConf' id='passConfShow'>
+<input type="checkbox" name="passShow" onclick="showPassword()">
+<label for="">Show Password</label>
 
 <button type='submit'>Submit</button>
 </form>
@@ -15,3 +17,20 @@
 <p>
     {{this.errorMessage}}
 </p>
+
+<script>
+    function showPassword  () {
+                    const passShow = document.getElementById('passShow')
+
+                    if ( passShow.type === 'password' && passConfShow.type === 'password') 
+                    {
+                        passShow.type = 'text';
+                        passConfShow.type = 'text';
+                    }
+                    else 
+                    {
+                        passShow.type = 'password';
+                        passConfShow.type = 'password'
+                    }
+            }
+</script>
