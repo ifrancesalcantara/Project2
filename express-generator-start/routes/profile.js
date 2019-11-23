@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
     {
         User.findByIdAndUpdate({_id: _id}, {password: hashedPassword}, {new: true})
             .then( () => {
-                    res.render('secure/map')
+                    res.render('secure/profile', {errorMessage: "password changed succesfull", currentUser})
             })
             .catch((err) => console.log(err))
     }
