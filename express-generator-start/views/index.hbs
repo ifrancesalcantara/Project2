@@ -4,7 +4,10 @@
   <input type='text' name='username'>
 
   <label for=''>Password</label>
-  <input type='text' name='password'>
+  <input type='password' name='password' id="passShow">
+
+  <input type="checkbox" name="passShow" onclick="showPassword()">
+        <label for="">Show Password</label>
 
   <button type='submit'>Log In</button>
 </form>
@@ -12,3 +15,18 @@
 <form action="/auth/signup" method="GET">
   <button type="submit">SIGN UP</button>
 </form>
+
+<script>
+    function showPassword  () {
+                    const passShow = document.getElementById('passShow')
+
+                    if ( passShow.type === 'password')
+                    {
+                        passShow.type = 'text';
+                    }
+                    else 
+                    {
+                        passShow.type = 'password';
+                    }
+            }
+</script>
