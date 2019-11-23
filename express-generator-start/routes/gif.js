@@ -16,15 +16,13 @@ router.post('/', parser.single('photo'), ( req, res) => {
     
     newGif.save({
     })
-    
-    
     .then( ( newGif) => {
         User.findById({_id: req.session.currentUser._id})
-        console.log('////>>>>>>>>>>>>>>>>>///<<<<<<<<<<<<<<<// IMAGE', req.session.currentUser.profilePicture)
-            .populate("profilePicture")
-            .then( () => {
-                User.findByIdAndUpdate({_id: req.session.currentUser._id}, {$push: {profilePicture: newGif._id}})
-            })  
+        .populate("profilepicture")
+        .then( (newGif) => {
+            User.findByIdAndUpdate({_id: req.session.currentUser._id}, {$push: {profilepicture: newGif._id}})
+            console.log('////>>>>>>>>>>>>>>>>>///<<<<<<<<<<<<<<<// IMAGE', newGif._id)
+        })  
         
     })
     .then(()=> res.render('secure/profile', req.session.currentUser))
