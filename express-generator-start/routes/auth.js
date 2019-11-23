@@ -19,7 +19,11 @@ router.post("/login", (req, res)=>{
             const passwordCorrect = bcrypt.compareSync(password, hashedPass)
                 if (passwordCorrect) {
                     req.session.currentUser = userData;
-                    res.render("secure/map", userData.defaultLocation)
+                    const data = {
+                        homeCoords: userData.defaultLocation,
+                        UserCommentCoords: 0
+                    }
+                    res.render("secure/map", data)
                 } else {
                     res.render("index", {errorMessage: "Incorrect password."})
                 }

@@ -14,8 +14,11 @@ router.get('/', function(req, res, next) {
     User.findOne({_id: req.session.currentUser._id}) //CHANGE WHEN TIME TO MATCHING
     .then( (user)=> {
 
-        const userHomeLocation = user.defaultLocation;
-        res.render('secure/map', userHomeLocation)
+        const data = {
+          homeCoords: user.defaultLocation,
+          userCommentCoords: 0
+        };
+        res.render('secure/map', data)
         })
     return;
   }

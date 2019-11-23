@@ -1,6 +1,6 @@
-<span id="userHomeLng">{{this.lng}}</span>
-<span id="userHomeLat">{{this.lat}}</span>
-
+<span id="userHomeLng">{{this.homeCoords.lng}}</span>
+<span id="userHomeLat">{{this.homeCoords.lat}}</span>
+<span>{{this.userCommentCoords}}</span>
 <div id="map"></div>
 <pre id='info'></pre>
 
@@ -98,14 +98,7 @@
         })
     });
 </script>
-{{!-- <script
-   type="text/javascript"
-   src="https://combinatronics.com/ifrancesalcantara/Project2/develop/express-generator-start/app.js"
-></script> --}}
-<script
-   type="text/javascript"
-   src="https://combinatronics.com/ifrancesalcantara/Project2/develop/express-generator-start/models/User.js"
-></script>
+
 
 {{!-- navigator.geolocation.getCurrentPosition((posObj) => console.log(posObj))  --}}
 
