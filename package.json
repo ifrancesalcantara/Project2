@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "browserify": "^16.5.0",
     "cookie-parser": "^1.4.4",
     "express-generator": "^4.16.1",
     "hbs": "^4.0.6",
@@ -26,6 +27,8 @@
     "connect-mongo": "^3.1.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "mongodb-client-encryption": "^0.3.1",
+    "uniq": "^1.0.1",
     "zxcvbn": "^4.4.2"
   }
 }

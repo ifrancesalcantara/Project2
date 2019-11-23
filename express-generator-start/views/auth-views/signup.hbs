@@ -17,7 +17,7 @@
 
 <script>
     var client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
-    
+    const lastMarker = []
     const map = document.querySelector("#map")
     const query=""
     const commentTitle = "Ironhack";
@@ -40,16 +40,26 @@
             zoom: 12
         });
 
+        //Add selected location marker, set input values to coords
         map.on('click', function (e) {
             document.getElementById('info').innerHTML =
             JSON.stringify(e.lngLat.wrap());
             var userHomeCoords = document.getElementById('info').innerHTML
             document.querySelector("#location-input").value=userHomeCoords
+            
+            const newCommentLng = e.lngLat.wrap().lng
+            const newCommentLat = e.lngLat.wrap().lat
+
+            const markerOnClick = new mapboxgl.Marker()
+                .setLngLat([newCommentLng, newCommentLat])
+                .addTo(map);
+            if(lastMarker[0]){
+                lastMarker[0].remove();
+                lastMarker.splice(0,1)
+            }
+            lastMarker.push(markerOnClick)
         });
-        
     });
-    var userHomeCoords = document.getElementById('info').innerHTML
-    console.log(userHomeCoords)
 </script>
 
 
