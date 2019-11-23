@@ -1,32 +1,40 @@
 <form action='/auth/login' method='POST'>
 
-  <label for=''>Username</label>
-  <input type='text' name='username'>
+  <input type='text' name='username' placeholder="Username">
+  <input type='password' name='password' id="passShow" placeholder="Password">
 
-  <label for=''>Password</label>
-  <input type='password' name='password' id="passShow">
-
-  <input type="checkbox" name="passShow" onclick="showPassword()">
-        <label for="">Show Password</label>
+  <div>
+    <input type="checkbox" name="passShow" onclick="showPassword()">
+    <label for="">Show Password</label>
+  </div>
 
   <button type='submit'>Log In</button>
 </form>
 
-<form action="/auth/signup" method="GET">
-  <button type="submit">SIGN UP</button>
+<form id="signup-index-form" action="/auth/signupDisplay/" method="POST">
+  <input id="signup-lng" type="text" name="lng" hidden>
+  <input id="signup-lat" type="text" name="lat" hidden>
+  <button id="signup-index-btn" type="submit">SIGN UP</button>
 </form>
 
 <script>
     function showPassword  () {
-                    const passShow = document.getElementById('passShow')
+            const passShow = document.getElementById('passShow')
 
-                    if ( passShow.type === 'password')
-                    {
-                        passShow.type = 'text';
-                    }
-                    else 
-                    {
-                        passShow.type = 'password';
-                    }
+            if ( passShow.type === 'password')
+            {
+                passShow.type = 'text';
             }
+            else 
+            {
+                passShow.type = 'password';
+            }
+    }
+
+  //GET current position by GPS for the form in signup
+  navigator.geolocation.getCurrentPosition(function(position) {
+    document.querySelector("#signup-lng").value = position.coords.longitude
+    document.querySelector("#signup-lat").value = position.coords.latitude
+  });
+    
 </script>

@@ -65,9 +65,9 @@ router.post("/login", (req, res)=>{
     })                   
 })
 
-/* GET home page. */
-router.get('/signup', function(req, res) {
-res.render('auth-views/signup')
+//Pass geolocation parameters to center signup map
+router.post('/signupDisplay', function(req, res) {
+    res.render('auth-views/signup', req.body)
 });
 
 router.post('/signup', function(req, res) {   

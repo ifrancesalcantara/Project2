@@ -1,4 +1,9 @@
+<p id="lng" hidden>{{this.lng}}</p>
+<p id="lat" hidden>{{this.lat}}</p>
+<pre id='info' hidden></pre>
+
 <form id="signup-form" action='/auth/signup' method='POST'>
+
 
     <p id="welcome-title">Welcome to Hoodie</p>
     <input class="signup-form-input" type='text' name='username' placeholder="Username">
@@ -9,16 +14,14 @@
         <label for="">Show Password</label>
     </div>
 
-    <input id="location-input" type='hidden' name='defaultLocation'>
-
     <div id="signup-map"></div>
-    <pre id='info'></pre>
     <p>Choose your home location</p>
     <p>
         {{this.errorMessage}}
     </p>
-
     <button id="signup-btn" type='submit'>Sign Up</button>
+
+    <input id="location-input" name='defaultLocation' hidden>
 </form>
 
 
@@ -31,13 +34,25 @@
     const query=""
     const commentTitle = "Ironhack";
     const commentText = "A good school.";
-    var userHomeLong = 2.190471916
-    var userHomeLat = 41.3977381
+    var userHomeLong= 2.190471916
+    var userHomeLat= 41.3977381
     var popup = new mapboxgl.Popup()
     .setHTML(`<h3>${commentTitle}</h3><p>${commentText}</p>`);
 
     map.style.height="20vh";
     map.style.width="500px";
+
+    //Set map center according to GPS allowance
+    if(document.querySelector("#lng").innerHTML){
+        userHomeLong = document.querySelector("#lng").innerHTML
+    }
+    if(document.querySelector("#lat").innerHTML){
+        userHomeLat = document.querySelector("#lat").innerHTML
+    }
+
+
+    //Display map centered on user geolocation, with a marker that says you are here.
+
 
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
