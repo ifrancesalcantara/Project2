@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-const mongoose = require("mongoose")
-=======
 const mongoose = require("mongoose");
-
->>>>>>> feat
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -13,7 +8,7 @@ const userSchema = new Schema({
         lng: {type: Number, required: true},
         lat: {type: Number, required: true},
     },
-    comments: [ { type: Schema.Types.ObjectId, ref: 'Comment'} ]
+    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ]
 })
 
 const User = mongoose.model("User", userSchema)

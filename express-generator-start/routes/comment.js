@@ -20,7 +20,7 @@ router.get("/", (req, res)=>{
 router.post('/', (req, res) => {
     
     User.findOne({_id: req.session.currentUser._id})
-        .populate("comments.comments")
+        .populate("comments")
         .then(user=>{
             const  { title, text, lng, lat} =  req.body;
             Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id})
