@@ -26,20 +26,20 @@ router.get("/", (req, res)=>{
 
 router.post('/', (req, res) => {
     const _id = req.session.currentUser._id;
-    const   {password}  =  req.body;
+    const   {password, passConf}  =  req.body;
     const currentUser = req.session.currentUser;
     console.log('>>>>>>>>>>>>>><<<<<<<<<<<<<<///', {password});
-  
-    User.findByIdAndUpdate({_id: _id}, {password: password}, {new: true})
-        .then( () => {
-                res.render('secure/map')
-        })
-        .catch((err) => console.log(err))
-    // if (req.session.currentUser) {
-    // } 
-    // else {
-    //     res.render("index", {errorMessage: "Session ended."})
-    // }
+
+    if ( password === '' || password != passConf || password.split('').length < 8  ) {
+        res.render('/', {errorMessage: "Password cant be empty", currentUser})
+    }
+    else {
+        User.findByIdAndUpdate({_id: _id}, {password: password}, {new: true})
+            .then( () => {
+                    res.render('secure/map')
+            })
+            .catch((err) => console.log(err))
+    }
 
 })
 
