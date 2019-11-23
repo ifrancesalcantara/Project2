@@ -8,7 +8,8 @@ const userSchema = new Schema({
         lng: {type: Number, required: true},
         lat: {type: Number, required: true},
     },
-    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ]
+    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ],
+    profilePicture: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gif"}]
 })
 
 const User = mongoose.model("User", userSchema);

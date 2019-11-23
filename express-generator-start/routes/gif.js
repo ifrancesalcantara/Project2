@@ -9,18 +9,25 @@ const Gif = require('./../models/Gif');
 
 router.post('/', parser.single('photo'), ( req, res) => {
     const image_url = req.file.secure_url;
-    const currentUser = req.session.currentUser;
-    console.log('////>>>>>>>>>>>>>>>>>///<<<<<<<<<<<<<<<// IMAGE', image_url);
-
+    
     const newGif = new Gif({
         image_url
     })
-
     
-
     newGif.save({
     })
-    .then(()=> res.render('secure/profile', currentUser))
+    
+    
+    .then( ( newGif) => {
+        User.findById({_id: req.session.currentUser._id})
+        console.log('////>>>>>>>>>>>>>>>>>///<<<<<<<<<<<<<<<// IMAGE', req.session.currentUser.profilePicture)
+            .populate("profilePicture")
+            .then( () => {
+                User.findByIdAndUpdate({_id: req.session.currentUser._id}, {$push: {profilePicture: newGif._id}})
+            })  
+        
+    })
+    .then(()=> res.render('secure/profile', req.session.currentUser))
     .catch((err)=> console.log(err))
 })
 
