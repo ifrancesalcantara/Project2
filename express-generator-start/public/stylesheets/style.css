@@ -103,7 +103,7 @@ main {
   font-weight: bold;
 }
 
-#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat, #userCommentCoords {
+#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat, #userComments {
   visibility: hidden;
   position: absolute;
   z-index: -1;

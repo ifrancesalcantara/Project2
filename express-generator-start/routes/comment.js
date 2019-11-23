@@ -25,12 +25,11 @@ router.post('/', (req, res) => {
             const  { title, text, lng, lat} =  req.body;
             Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id})
                 .then( comment => {
-                    const userCommentCoords = user.comments.map(comment=> {return {lng: comment.location.lng, lat: comment.location.lat}})
-                    console.log(userCommentCoords);
+                    const userComments = user.comments.map(comment=> {return {comment}})
                     
                     const data = {
                         homeCoords: comment.location,
-                        userCommentCoords: JSON.stringify(userCommentCoords)
+                        userComments: JSON.stringify(userComments)
                     }
                     res.render('secure/map', data)
                     
