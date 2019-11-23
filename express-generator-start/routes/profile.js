@@ -1,8 +1,10 @@
 const express = require('express');
 const  router = express.Router();
+const parser = require('../config/cloudinary');
 
 const Comment = require('./../models/Comment');
 const User = require('./../models/User');
+const Gif = require('./../models/Gif');
 
 const zxcvbn = require("zxcvbn");
 const bcrypt = require("bcrypt");
@@ -51,6 +53,8 @@ router.post('/', (req, res) => {
             .catch((err) => console.log(err))
     }
 })
+
+
 
 
 module.exports = router;
