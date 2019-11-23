@@ -13,15 +13,17 @@ router.post("/login", (req, res)=>{
     const {username, password} = req.body;
    
     User.findOne({username})
+    .populate("comments")
     .then(userData=>{
         if(userData){
             const hashedPass = userData.password;
             const passwordCorrect = bcrypt.compareSync(password, hashedPass)
                 if (passwordCorrect) {
+                    const userComments = userData.comments.map(comment=> {return {comment}})
                     req.session.currentUser = userData;
                     const data = {
                         homeCoords: userData.defaultLocation,
-                        UserCommentCoords: 0
+                        userComments: JSON.stringify(userComments)
                     }
                     res.render("secure/map", data)
                 } else {
