@@ -17,6 +17,35 @@ router.get("/", (req, res)=>{
 })
 
 
+router.get("/:commentId", (req, res)=>{
+    Comment.findById(req.params.commentId)
+    .populate("creatorId")
+    .then( (data) => {{
+        if (req.session.currentUser) {            
+            res.render('secure/comment', data);
+        }
+        else {
+        res.render("index", {errorMessage: "Session ended."})
+        }
+    }})
+    .catch( (err) => {
+        console.log(err)
+        User.findById(req.session.currentUser._id)
+        .populate("comments")
+        .then(userData=>{
+            userComments = userData.comments.map(comment=> {return {comment}})
+            const data = {
+                homeCoords: userData.defaultLocation,
+                userComments: JSON.stringify(userComments)
+            }
+            res.render("secure/map", data)
+        })
+    });
+
+
+})
+
+
 router.post('/', (req, res) => {
     
     User.findOne({_id: req.session.currentUser._id})
