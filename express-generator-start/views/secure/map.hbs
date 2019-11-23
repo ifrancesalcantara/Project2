@@ -1,6 +1,6 @@
 <span id="userHomeLng">{{this.homeCoords.lng}}</span>
 <span id="userHomeLat">{{this.homeCoords.lat}}</span>
-<span>{{this.userCommentCoords}}</span>
+<span id="userCommentCoords">{{this.userCommentCoords}}</span>
 <div id="map"></div>
 <pre id='info'></pre>
 
@@ -18,7 +18,6 @@
   <button id="add-comment-btn" type='submit'>Submit</button>
 </form>
 
-
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
 
@@ -30,12 +29,6 @@
     const query=""
     const lastMarker = []
     var isAddCommentDisplayed = false;
-
-    //Stop page reload for add comment button click
-    addCommentBtn.addEventListener("click", e=>{
-        e.preventDefault();
-    })
-
 
     //Set popup for Home Icon
     const popup = new mapboxgl.Popup()
