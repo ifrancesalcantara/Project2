@@ -9,7 +9,8 @@ const userSchema = new Schema({
         lat: {type: Number, required: true},
     },
     comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ],
-    hasHome: {type: Boolean, default: false}
+    hasHome: {type: Boolean, default: false},
+    profilePicture: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gif"}]
 })
 
 const User = mongoose.model("User", userSchema);

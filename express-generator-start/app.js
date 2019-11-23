@@ -13,6 +13,7 @@ var authRouter = require("./routes/auth");
 var commentRouter = require('./routes/comment');
 var profileRouter = require('./routes/profile')
 var mapRouter =require('./routes/map');
+var gifRouter = require('./routes/gif');
 
 var app = express();
 
@@ -56,6 +57,8 @@ app.use('/auth', authRouter);
 app.use('/comment', commentRouter);
 app.use('/profile', profileRouter);
 app.use('/map', mapRouter);
+app.use('/gif', gifRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
