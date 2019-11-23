@@ -14,7 +14,7 @@ router.get("/", (req, res)=>{
             const userHomeLocation = user.defaultLocation;
             res.render('secure/map', userHomeLocation)
             })
-        
+        .catch(err=>console.log(err))
     } 
     else {
         res.render("index", {errorMessage: "Session ended."})
