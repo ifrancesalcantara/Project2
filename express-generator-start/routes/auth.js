@@ -21,7 +21,7 @@ router.post("/login", (req, res)=>{
             if (passwordCorrect) {
                 let userComments
                 
-                if(userData.session=="public") {
+                if(userData.session=="Public") {
                     const allUserComments = [];                
                     User.find({})
                     .populate("comments")
@@ -39,7 +39,7 @@ router.post("/login", (req, res)=>{
                         res.render("secure/map", data)
                     })
                     .catch( (err) => console.log(err));
-                } else if (userData.session=="private") {
+                } else if (userData.session=="Private") {
                     console.log("private");
                     
                     userComments = userData.comments.map(comment=> {return {comment}})
