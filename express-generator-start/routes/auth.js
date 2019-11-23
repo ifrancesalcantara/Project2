@@ -15,26 +15,48 @@ router.post("/login", (req, res)=>{
     User.findOne({username})
     .populate("comments")
     .then(userData=>{
-        if(userData){
+        if(userData) {
             const hashedPass = userData.password;
             const passwordCorrect = bcrypt.compareSync(password, hashedPass)
-                if (passwordCorrect) {
-                    const userComments = userData.comments.map(comment=> {return {comment}})
-                    req.session.currentUser = userData;
-                    const data = {
-                        homeCoords: userData.defaultLocation,
-                        userComments: JSON.stringify(userComments)
-                    }
-                    res.render("secure/map", data)
-                } else {
-                    res.render("index", {errorMessage: "Incorrect password."})
+            if (passwordCorrect) {
+                let userComments
+                
+                if(userData.session=="public") {
+                    const allUserComments = [];                
+                    User.find({})
+                    .populate("comments")
+                    .then( (allUsersArr) => {
+                        allUsersArr.forEach(user=>{
+                            user.comments.forEach(comment=>{
+                                allUserComments.push(comment)
+                            })
+                        })
+                        userComments = allUserComments
+                        console.log(allUserComments.length);
+                        
+                        // userComments = userData.comments.map(comment=> {return {comment}})
+                    })
+                    .catch( (err) => console.log(err));
+                } else if (userData.session=="public"){
+                userComments = userData.comments.map(comment=> {return {comment}})
                 }
-                return
+
+
+                console.log("<<<<<<<<<<<<<", userComments);
+                req.session.currentUser = userData;
+                const data = {
+                    homeCoords: userData.defaultLocation,
+                    userComments: JSON.stringify(userComments)
+                }
+                res.render("secure/map", data)
+            } else {
+                res.render("index", {errorMessage: "Incorrect password."})
             }
-            else {
-                res.render("index", {errorMessage: "Incorrect username."})
-            }
-        })
+            return
+        }
+        else {
+            res.render("index", {errorMessage: "Incorrect username."})
+        }})
     .catch(err=>{
         res.render("index", {errorMessage: "Something went wrong"})
         console.log(err)
@@ -74,7 +96,7 @@ router.post('/signup', function(req, res) {
                     const hashedPassword = bcrypt.hashSync( req.body.password, salt);
                     
                     //CREATE NEW USER
-                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [] })
+                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [], session: "public"})
                         .then(newUser=>{
                             req.session.currentUser = newUser;
 
