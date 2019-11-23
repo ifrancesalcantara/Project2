@@ -31,24 +31,25 @@ router.post("/login", (req, res)=>{
                                 allUserComments.push(comment)
                             })
                         })
-                        userComments = allUserComments
-                        console.log(allUserComments.length);
-                        
-                        // userComments = userData.comments.map(comment=> {return {comment}})
+                        userComments = allUserComments.map(comment=> {return {comment}})
+                        const data = {
+                            homeCoords: userData.defaultLocation,
+                            userComments: JSON.stringify(userComments)
+                        }
+                        res.render("secure/map", data)
                     })
                     .catch( (err) => console.log(err));
-                } else if (userData.session=="public"){
-                userComments = userData.comments.map(comment=> {return {comment}})
+                } else if (userData.session=="private") {
+                    userComments = userData.comments.map(comment=> {return {comment}})
+                    console.log("<<<<<<<<<<<<<", userComments);
+                    const data = {
+                        homeCoords: userData.defaultLocation,
+                        userComments: JSON.stringify(userComments)
+                    }
+                    res.render("secure/map", data)
                 }
-
-
-                console.log("<<<<<<<<<<<<<", userComments);
                 req.session.currentUser = userData;
-                const data = {
-                    homeCoords: userData.defaultLocation,
-                    userComments: JSON.stringify(userComments)
-                }
-                res.render("secure/map", data)
+
             } else {
                 res.render("index", {errorMessage: "Incorrect password."})
             }
