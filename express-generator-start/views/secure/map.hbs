@@ -89,6 +89,15 @@
                 isAddCommentDisplayed = true;
             }
         })
+
+        const userCommentCoords = JSON.parse(document.querySelector("#userCommentCoords").innerHTML)
+        userCommentCoords.forEach(comment=>{
+            const previousCommentMarker = new mapboxgl.Marker()
+        .setLngLat([comment.lng.$numberDecimal, comment.lat.$numberDecimal])
+        .setPopup(popup)
+        .addTo(map);
+        })
+        
     });
 </script>
 
