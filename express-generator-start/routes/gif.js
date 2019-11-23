@@ -19,9 +19,10 @@ router.post('/', parser.single('photo'), ( req, res) => {
     .then( ( newGif) => {
         User.findById({_id: req.session.currentUser._id})
         .populate("profilepicture")
-        .then( (newGif) => {
+        .then( () => {
             User.findByIdAndUpdate({_id: req.session.currentUser._id}, {$push: {profilepicture: newGif._id}})
-            console.log('////>>>>>>>>>>>>>>>>>///<<<<<<<<<<<<<<<// IMAGE', newGif._id)
+            .then( () => console.log('////>>>>>>>>>>>>>>>>>///<<<<<<<<<<<<<<<// IMAGE', req.session.currentUser._id))
+            
         })  
         
     })
