@@ -17,6 +17,7 @@ router.get("/", (req, res)=>{
     
 
         if (req.session.currentUser) {
+        console.log(currentUser);
         
         res.render('secure/profile', currentUser);
     } 
@@ -54,7 +55,23 @@ router.post('/', (req, res) => {
     }
 })
 
-
+router.post("/session", (req,res)=>{
+    const actualSession = req.body.session
+    console.log("actual session",actualSession);
+    let nextSession
+    if(actualSession=="Public"){        
+        nextSession="Private"
+    } else {nextSession="Public"}
+    console.log("changing to ", nextSession);
+    
+    User.findByIdAndUpdate({_id: req.session.currentUser._id}, {session: nextSession})
+            .then( (updatedUser) => {
+                console.log("updated session", updatedUser.session);
+                res.render('secure/profile', updatedUser)
+                    
+            })
+            .catch((err) => console.log(err))    
+})
 
 
 module.exports = router;

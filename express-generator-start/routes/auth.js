@@ -98,7 +98,7 @@ router.post('/signup', function(req, res) {
                     const hashedPassword = bcrypt.hashSync( req.body.password, salt);
                     
                     //CREATE NEW USER
-                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [], session: "public"})
+                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [], session: "Public"})
                         .then(newUser=>{
                             req.session.currentUser = newUser;
 

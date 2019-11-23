@@ -19,6 +19,11 @@
     <button type="submit">New GIF</button>
 </form>
 
+<form action='/profile/session' method='POST'>
+  <input id="sessionChangeInput" type='text' name='session'>
+  <button id="sessionChangeBtn" type='submit'>{{this.session}}</button>
+</form>
+
 
 <p>
     {{this.errorMessage}}
@@ -39,4 +44,15 @@
                         passConfShow.type = 'password'
                     }
             }
+
+    var sessionChangeBtn = document.querySelector("#sessionChangeBtn")
+    sessionChangeBtn.addEventListener("click", (e)=>{
+        if(e.target.innerHTML=="Public"){
+            e.target.innerHTML="Private"
+            document.querySelector("#sessionChangeInput").value="Public"
+        } else {
+            e.target.innerHTML="Public"
+            document.querySelector("#sessionChangeInput").value="Private"
+        }
+    })
 </script>

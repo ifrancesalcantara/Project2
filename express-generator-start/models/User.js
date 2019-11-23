@@ -11,7 +11,7 @@ const userSchema = new Schema({
     comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ],
     hasHome: {type: Boolean, default: false},
     profilepicture: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gif"}],
-    session: {type: String, default: "public"}
+    session: {type: String, default: "Public"}
 })
 
 const User = mongoose.model("User", userSchema);
