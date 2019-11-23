@@ -152,6 +152,10 @@ main {
   visibility: hidden;
   position: absolute;
   z-index: -1;
+  height: 0;
+  width: 0;
+  text-overflow: hidden;
+  white-space: nowrap;
 }
 
 .add-comment-form{
@@ -171,6 +175,6 @@ main {
 }
 
 #map {
-  height: 80vh;
+  height: 78vh;
   width: 100vw;
 }
