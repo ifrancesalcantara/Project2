@@ -17,7 +17,7 @@ router.get("/", (req, res)=>{
     
 
         if (req.session.currentUser) {
-        console.log(currentUser);
+        console.log('//>>>>>>>>>>>>>>%///>>>>>>>>>>>>>>>>>>>>>>////', currentUser.profilepicture[0]);
         
         res.render('secure/profile', currentUser);
     } 
