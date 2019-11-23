@@ -28,19 +28,28 @@ router.post('/', (req, res) => {
     const _id = req.session.currentUser._id;
     const   {password, passConf}  =  req.body;
     const currentUser = req.session.currentUser;
-    console.log('>>>>>>>>>>>>>><<<<<<<<<<<<<<///', {password});
+    
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hashedPassword = bcrypt.hashSync(req.body.password, salt);
+    
 
-    if ( password === '' || password != passConf || password.split('').length < 8  ) {
-        res.render('/', {errorMessage: "Password cant be empty", currentUser})
+    if ( password === '' ) {
+        res.render('secure/profile', {errorMessage: "Password cant be empty", currentUser})
     }
-    else {
-        User.findByIdAndUpdate({_id: _id}, {password: password}, {new: true})
+    else if (password != passConf) {
+        res.render('secure/profile', {errorMessage: "Password and Password Confirm must be the same", currentUser})
+    }
+    else if (password.split('').length < 8) {
+        res.render('secure/profile', {errorMessage: "Password must be at least 8 characters long", currentUser})
+    }
+    else 
+    {
+        User.findByIdAndUpdate({_id: _id}, {password: hashedPassword}, {new: true})
             .then( () => {
                     res.render('secure/map')
             })
             .catch((err) => console.log(err))
     }
-
 })
 
 
