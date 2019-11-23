@@ -25,21 +25,23 @@ router.post('/', (req, res) => {
             const  { title, text, lng, lat} =  req.body;
             Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id})
                 .then( comment => {
-                    const userComments = user.comments.map(comment=> {return {comment}})
-                    
-                    const data = {
-                        homeCoords: comment.location,
-                        userComments: JSON.stringify(userComments)
-                    }
-                    res.render('secure/map', data)
                     
                     User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
-                        .then( (data) => {return})
+                        .populate("comments")
+                        .then( (updatedUser) => {
+                            const userComments = updatedUser.comments.map(comment=> {return {comment}})
+                            console.log(updatedUser);
+                            
+
+                            const data = {
+                                homeCoords: comment.location,
+                                userComments: JSON.stringify(userComments)
+                            }
+                            res.render('secure/map', data)
+                        })
                         .catch( (err) => console.log(err));  
                 })
                 .catch( err => console.log(err))
-
-
         })
         .catch(err=>console.log(err))
 })

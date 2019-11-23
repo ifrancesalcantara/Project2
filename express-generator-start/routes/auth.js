@@ -71,13 +71,30 @@ router.post('/signup', function(req, res) {
                     const salt = bcrypt.genSaltSync(saltRounds);
                     const hashedPassword = bcrypt.hashSync( req.body.password, salt);
                     
+                    //CREATE NEW USER
                     User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [] })
                         .then(newUser=>{
-                            var userHomeLocation =  newUser.defaultLocation;
                             req.session.currentUser = newUser;
-                            
-                            res.render("secure/map", req.session.currentUser.defaultLocation) //Will center map there
-                        })
+
+                            //CREATE HOME COMMENT
+                            Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home"})
+                                .then( comment => {
+                                    const data = {
+                                        homeCoords: comment.location,
+                                        userComments: JSON.stringify(comment)
+                                    }
+                                    console.log(data.userComments);
+                                    
+                                    res.render('secure/map', data)
+
+                                    //PUSH THAT HOME COMMENT ID TO USER COMMENTS 
+                                    User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
+                                        .then( (data) => {return})
+                                        .catch( (err) => console.log(err))
+                                })
+                                .catch(err=>console.log(err))
+
+                        })  
                         .catch(err=>{ //Not catching if nohome selected
                             console.log("error to create user", err);                            
                             res.render("auth-views/signup", {errorMessage: "Click on the map to set your home."})

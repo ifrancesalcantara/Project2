@@ -21,8 +21,8 @@
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
 
-    const userHomeLong = document.querySelector("#userHomeLng").innerHTML
-    const userHomeLat = document.querySelector("#userHomeLat").innerHTML
+    const centerLong = document.querySelector("#userHomeLng").innerHTML
+    const centerLat = document.querySelector("#userHomeLat").innerHTML
     const addCommentBtn = document.querySelector("#add-comment-btn");
     const client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
     const map = document.querySelector("#map")
@@ -43,15 +43,15 @@
         const map = new mapboxgl.Map({
             container: 'map', // HTML container id
             style: 'mapbox://styles/mapbox/streets-v9', // style URL
-            center: [userHomeLong, userHomeLat],
+            center: [centerLong, centerLat],
             zoom: 13
         });
 
         //Add home marker
-        const marker = new mapboxgl.Marker()
+        /*const marker = new mapboxgl.Marker()
         .setLngLat([userHomeLong, userHomeLat])
         .setPopup(popup)
-        .addTo(map);
+        .addTo(map);*/
 
         //Add selected location marker, set input values to coords
         map.on('click', function (e) {
@@ -78,29 +78,37 @@
         addCommentIcon.addEventListener("click",()=>{
             if(isAddCommentDisplayed){
                 const commentForm = document.querySelector(".add-comment-form");
-                /*commentForm.style.visibility = "hidden";*/
                 commentForm.style.height = "0vh";
                 isAddCommentDisplayed = false;
             }
             else {
                 const commentForm = document.querySelector(".add-comment-form");
-                /*commentForm.style.visibility = "visible";*/
                 commentForm.style.height = "10vh";
                 isAddCommentDisplayed = true;
             }
         })
 
         const userComments = JSON.parse(document.querySelector("#userComments").innerHTML)
-        console.log("aaaaaaaaa", userComments)
         userComments.forEach(comment=>{
-            const commentPopup =new mapboxgl.Popup()
-                .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment" method="GET"><input name="commentId" value=${comment.comment._id}><button type="submit">See details</button></form>`);
-            const previousCommentMarker = new mapboxgl.Marker()
-        .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
-        .setPopup(commentPopup)
-        .addTo(map);
+
+            //TO DO: Style comments accordingly
+            if(comment.comment.type=="home"){
+                const commentPopup =new mapboxgl.Popup()
+                    .setHTML(`<h3>Home</h3>`);
+                const previousCommentMarker = new mapboxgl.Marker()
+                    .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
+                    .setPopup(commentPopup)
+                    .addTo(map);
+            } else {
+                console.log("comment:", comment)
+                const commentPopup =new mapboxgl.Popup()
+                    .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment" method="GET"><input name="commentId" value=${comment.comment._id}><button type="submit">See details</button></form>`);
+                const previousCommentMarker = new mapboxgl.Marker()
+                    .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
+                    .setPopup(commentPopup)
+                    .addTo(map);
+            }
         })
-        
     });
 </script>
 

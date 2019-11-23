@@ -8,7 +8,8 @@ const userSchema = new Schema({
         lng: {type: Number, required: true},
         lat: {type: Number, required: true},
     },
-    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ]
+    comments: [ { type: mongoose.Schema.Types.ObjectId, ref: "Comment"} ],
+    hasHome: {type: Boolean, default: false}
 })
 
 const User = mongoose.model("User", userSchema);
