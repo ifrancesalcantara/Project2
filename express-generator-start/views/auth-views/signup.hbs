@@ -1,18 +1,27 @@
 <form action='/auth/signup' method='POST'>
 
-  <label for=''>Username</label>
-  <input type='text' name='username'>
+    <label for=''>Username</label>
+    <input type='text' name='username'>
 
-  <label for=''>Password</label>
-  <input type='text' name='password'>
+    <label for=''>Password</label>
+    <input type='password' name='password' id='passShow'>
 
-  <label for=''>Confirm your password</label>
-  <input type='text' name='passConf'>
+    <label for=''>Confirm your password</label>
+    <input type='password' name='passConf' id='passConfShow'>
+    <input type="checkbox" name="passShow" onclick="showPassword()">
+        <label for="">Show Password</label>
 
-  <input id="location-input" type='hidden' name='defaultLocation'>
+    <input id="location-input" type='hidden' name='defaultLocation'>
 
-<div id="map"></div>
-<pre id='info'></pre>
+    <div id="map"></div>
+    <pre id='info'></pre>
+    <button type='submit'>Sign Up</button>
+</form>
+
+<p>
+    {{this.errorMessage}}
+</p>
+
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 
 <script>
@@ -60,12 +69,20 @@
             lastMarker.push(markerOnClick)
         });
     });
+
+    function showPassword  () {
+                    const passShow = document.getElementById('passShow')
+
+                    if ( passShow.type === 'password' && passConfShow.type === 'password') 
+                    {
+                        passShow.type = 'text';
+                        passConfShow.type = 'text';
+                    }
+                    else 
+                    {
+                        passShow.type = 'password';
+                        passConfShow.type = 'password'
+                    }
+            }
 </script>
 
-
-  <button type='submit'>Sign Up</button>
-</form>
-
-<p>
-    {{this.errorMessage}}
-</p>
