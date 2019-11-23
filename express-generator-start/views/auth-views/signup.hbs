@@ -13,12 +13,14 @@
 
     <div id="signup-map"></div>
     <pre id='info'></pre>
+    <p>Choose your home location</p>
+    <p>
+        {{this.errorMessage}}
+    </p>
+
     <button id="signup-btn" type='submit'>Sign Up</button>
 </form>
 
-<p>
-    {{this.errorMessage}}
-</p>
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 

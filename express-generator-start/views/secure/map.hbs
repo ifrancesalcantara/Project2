@@ -100,7 +100,6 @@
                     .setPopup(commentPopup)
                     .addTo(map);
             } else {
-                console.log("comment:", comment)
                 const commentPopup =new mapboxgl.Popup()
                     .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment" method="GET"><input name="commentId" value=${comment.comment._id}><button type="submit">See details</button></form>`);
                 const previousCommentMarker = new mapboxgl.Marker()

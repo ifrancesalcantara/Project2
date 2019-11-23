@@ -40,8 +40,9 @@ router.post("/login", (req, res)=>{
                     })
                     .catch( (err) => console.log(err));
                 } else if (userData.session=="private") {
+                    console.log("private");
+                    
                     userComments = userData.comments.map(comment=> {return {comment}})
-                    console.log("<<<<<<<<<<<<<", userComments);
                     const data = {
                         homeCoords: userData.defaultLocation,
                         userComments: JSON.stringify(userComments)
