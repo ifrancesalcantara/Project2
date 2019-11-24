@@ -32,8 +32,14 @@ router.post("/login", (req, res)=>{
                             })
                         })
                         userComments = allUserComments.map(comment=> {return {comment}})
+                        
+                        const currentLocation = {
+                            lng: {$numberDecimal: userData.defaultLocation.lng},
+                            lat: {$numberDecimal: userData.defaultLocation.lat},
+                        }
                         const data = {
                             homeCoords: userData.defaultLocation,
+                            currentLocation: JSON.stringify(currentLocation),
                             userComments: JSON.stringify(userComments)
                         }
                         res.render("secure/map", data)
@@ -43,8 +49,13 @@ router.post("/login", (req, res)=>{
                     console.log("private");
                     
                     userComments = userData.comments.map(comment=> {return {comment}})
+                    const currentLocation = {
+                        lng: {$numberDecimal: userData.defaultLocation.lng},
+                        lat: {$numberDecimal: userData.defaultLocation.lat},
+                    }
                     const data = {
                         homeCoords: userData.defaultLocation,
+                        currentLocation: JSON.stringify(currentLocation),
                         userComments: JSON.stringify(userComments)
                     }
                     res.render("secure/map", data)
@@ -107,6 +118,7 @@ router.post('/signup', function(req, res) {
                                 .then( comment => {
                                     const data = {
                                         homeCoords: comment.location,
+                                        currentLocation: JSON.stringify(comment.location),
                                         userComments: JSON.stringify(comment)
                                     }
                                     console.log(data.userComments);

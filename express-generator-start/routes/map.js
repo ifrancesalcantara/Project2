@@ -25,18 +25,27 @@ router.get("/", (req, res)=>{
                         })
                     })
                     userComments = allUserComments.map(comment=> {return {comment}})
+                    const currentLocation = {
+                        lng: {$numberDecimal: userData.defaultLocation.lng},
+                        lat: {$numberDecimal: userData.defaultLocation.lat},
+                    }
                     const data = {
                         homeCoords: userData.defaultLocation,
+                        currentLocation: JSON.stringify(currentLocation),
                         userComments: JSON.stringify(userComments)
                     }
                     res.render("secure/map", data)
                 })
                 .catch( (err) => console.log(err));
             } else {
-                
+                const currentLocation = {
+                    lng: {$numberDecimal: userData.defaultLocation.lng},
+                    lat: {$numberDecimal: userData.defaultLocation.lat},
+                }
                 userComments = userData.comments.map(comment=> {return {comment}})
                 const data = {
                     homeCoords: userData.defaultLocation,
+                    currentLocation: JSON.stringify(currentLocation),
                     userComments: JSON.stringify(userComments)
                 }
                 res.render("secure/map", data)
