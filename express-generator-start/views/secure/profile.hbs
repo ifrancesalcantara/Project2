@@ -4,9 +4,10 @@
 
 <form action='/profile' method='post' id="profile-form">
 
-<h4>Welcome {{actualUser.username}}.</h4>
+<h4>Welcome {{this.username}}.</h4>
+<h3>PICTURE URL {{this.picture}}</h3>
 
-<img src="{{actualUser.profilepicture.0.image_url}}" alt="profilepicture">
+<img src="{{this.picture}}" alt="profilepicture" width="300px">
 
 
 
@@ -22,7 +23,7 @@
 <button type='submit' class="profile-btn">Change</button>
 </form>
 
-<form action="/gif" method="POST" enctype="multipart/form-data">
+<form action="/profile/picture" method="POST" enctype="multipart/form-data">
     <input type="file" name="photo" class="profile-form-input"/>
     <button type="submit" class="profile-btn" >Upload</button>
 </form>
