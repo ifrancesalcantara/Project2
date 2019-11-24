@@ -10,6 +10,9 @@
     <img src="{{this.picture}}" alt="profilepicture" width="300px" id="profile-picture">
 </div>
 
+    <p>
+        {{this.errorMessage}}
+    </p>
     
     <input type='password' name='password' id='passShow' class="profile-form-input" placeholder="Change your password">
 
@@ -42,9 +45,6 @@
     </form>
 </div>
 
-    <p>
-        {{this.errorMessage}}
-    </p>
 
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
