@@ -58,12 +58,14 @@ $nav-color: #ffffff;
 
 $button-height: 5vh;
 $button-width: 20vw;
-$button-radius: 2vh;
+$button-radius: 1.2vh;
+$button-padding: 5vw;
 
+$container-width: 60vw;
 
-$input-width: 40vw;
-$input-height: 5vw;
-$input-radius: 5vw;
+$input-width: 30vw;
+$input-height: 3vh;
+$input-radius: 1vh;
 
 
 
@@ -84,26 +86,54 @@ main {
 
 #signup-form, #profile-form {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     height: 75vh;
     padding: 5vh 0 0 0;
-    position: "relative"  
+    position: "relative";
+    margin: 0 auto;
+}
+
+.signin-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 30vh;
+    padding: 5vh 0 0 0;
+    position: "relative";
+    margin: 0 auto;
+    width: $container-width;
+}
+
+.picture-upload-form {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: $input-width;
+    flex-direction: row;
+    
 }
 
 #welcome-title{
     font-size: 2.4em;
 }
 
-.signup-form-input, .profile-form-input {
+.signup-form-input, .profile-form-input, #signin-form-input {
     width: $input-width;
     height: $input-height;
     border-radius: $input-radius;
     max-height: $input-height;
 }
 
-.signup-form-input:first-of-type, .profile-form-input:first-of-type {
+.picture-upload-form-input {
+    width: $button-width
+}
+
+.signup-form-input:first-of-type, .profile-form-input:first-of-type, #signin-form-input:first-of-type {
     margin-top: 3vh;
 }
 
@@ -111,26 +141,31 @@ main {
     margin-bottom: 3vh;
 }
 
-.profile-form-input:nth-child(2) {
+.profile-form-input:nth-child(4) {
     margin-bottom: 3vh;
 }
 
 #signup-map, #profile-map {
-    width: 70vw !important;
+    width: 40vw !important;
     height: 30vh !important;
     border: 5px solid grey;
     border-radius: 20px;
+    margin: 0 auto;
 }
 
-#signup-btn, .profile-btn {
+#signup-btn, .profile-btn, .signin-btn {
     height: $button-height;
-    width: $button-width;
-    max-width: $button-max-width;
-    min-width: $button-width;
+    padding: 1vh 3vw;
     border-radius: $button-radius;
     font-family: 'Fredoka One', cursive;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-bottom: 3vh;
+}
+
+#signup-btn:hover, .profile-btn:hover, .signin-btn:hover {
+    -webkit-box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
+    -moz-box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
+    box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
 }
 
 .nav-top {
@@ -200,4 +235,40 @@ main {
 #map {
     height: 78vh;
     width: 100vw;
+}
+
+#profile-picture-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: $input-width;
+}
+
+#profile-picture-container h4 {
+    padding: auto 5vw !important;
+    margin-left: 5vw;
+}
+
+#profile-picture {
+    height: 20vh;
+    width: auto;
+}
+
+#show-password-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: $input-width;
+}
+
+#show-password-container div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#show-password-container input, label {
+    font-weight: 100;
+    line-height: 0.8em;
+    font-size: 0.5em;
 }

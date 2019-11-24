@@ -4,43 +4,45 @@
 
 <form action='/profile' method='post' id="profile-form">
 
-<h4>Welcome {{this.username}}.</h4>
 
-
-<img src="{{this.picture}}" alt="profilepicture" width="300px">
-
-
-
-<input type='password' name='password' id='passShow' class="profile-form-input" placeholder="Change your password">
-
-<input type="password" name='passConf' id='passConfShow' class="profile-form-input" placeholder="Cofirm your password change">
-
-<div>
-    <input type="checkbox" name="passShow" onclick="showPassword()" >
-    <label for="">Show Password</label>
+<div id='profile-picture-container'>
+    <h4> {{this.username}}</h4>
+    <img src="{{this.picture}}" alt="profilepicture" width="300px" id="profile-picture">
 </div>
 
-<button type='submit' class="profile-btn">Change</button>
+    
+    <input type='password' name='password' id='passShow' class="profile-form-input" placeholder="Change your password">
+
+    <input type="password" name='passConf' id='passConfShow' class="profile-form-input" placeholder="Cofirm your password change">
+
+    <div id="show-password-container">
+        <div>
+        <input type="checkbox" name="passShow" onclick="showPassword()" >
+        <label for="">Show Password</label>
+    </div>
+
+        <button type='submit' class="profile-btn">Change</button>
+    </div>
+
+
+    <form action="/profile/picture" method="POST" enctype="multipart/form-data" class="picture-upload-form">
+        <input type="file" name="photo" class="picture-upload-form-input"/>
+        <button type="submit" class="profile-btn" >Upload</button>
+    </form>
+
+    <div id="profile-map"></div>
+    <p>Change your home location</p>
+
+    <form action='/profile/session' method='POST' class="profile-form"s>
+        <input id="sessionChangeInput" type='text' name='session'>
+        <button id="sessionChangeBtn" type='submit' class="profile-btn">{{this.session}}</button>
+    </form>
+
+
+    <p>
+        {{this.errorMessage}}
+    </p>
 </form>
-
-<form action="/profile/picture" method="POST" enctype="multipart/form-data">
-    <input type="file" name="photo" class="profile-form-input"/>
-    <button type="submit" class="profile-btn" >Upload</button>
-</form>
-
- <div id="profile-map"></div>
-    <p>Choose your home location</p>
-
-<form action='/profile/session' method='POST'>
-  <input id="sessionChangeInput" type='text' name='session'>
-  <button id="sessionChangeBtn" type='submit' class="profile-btn">{{this.session}}</button>
-</form>
-
-
-<p>
-    {{this.errorMessage}}
-</p>
-
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 
