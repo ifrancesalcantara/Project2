@@ -3,3 +3,40 @@
 <p>{{this.text}}</p>
 
 <p>By: {{this.creatorId.username}}</p>
+
+<form action="/reply/{{this._id}}" method="POST">
+    <input type="text" name="text" placeholder="Reply" id="" required>
+    {{!-- <input type="text" name="image_url" placeholder="Add an image" id=""> IF we have time --}}
+    <input type="text" name="creatorUsername" id="" value={{this.creatorId.username}}>
+    <input type="text" name="date" id="replyDate" hidden>
+    <button type="submit">Reply</button>
+</form>
+
+
+<div id="replies">
+    <div class="reply">
+        {{#each this.replies}}
+            <p class="replyDateDisplayed">{{this.date}}</p>
+            <p>{{this.creatorUsername}}</p>
+            {{this.text}}
+        {{/each}}
+    </div>
+</div>
+
+
+<script>
+    const dateInput = document.querySelector("#replyDate")
+    const dateDisplayed = document.querySelectorAll(".replyDateDisplayed")
+
+    dateInput.value = new Date()
+
+    console.log(dateDisplayed)
+    dateDisplayed.forEach(dateDisplayed=>{
+        console.log("hi")
+        var dateToDisplay = dateDisplayed.innerHTML.split(" ")
+        dateToDisplay.splice(0, 1)
+        dateToDisplay.splice(3)
+        dateDisplayed.innerHTML = dateToDisplay  
+    })
+
+</script>
