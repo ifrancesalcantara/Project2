@@ -13,7 +13,6 @@ var authRouter = require("./routes/auth");
 var commentRouter = require('./routes/comment');
 var profileRouter = require('./routes/profile')
 var mapRouter =require('./routes/map');
-var gifRouter = require('./routes/gif');
 var replyRouter = require('./routes/reply');
 
 var app = express();
@@ -58,7 +57,6 @@ app.use('/auth', authRouter);
 app.use('/comment', commentRouter);
 app.use('/profile', profileRouter);
 app.use('/map', mapRouter);
-app.use('/gif', gifRouter);
 app.use('/reply', replyRouter);
 
 

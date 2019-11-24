@@ -4,7 +4,7 @@ const parser = require('../config/cloudinary');
 
 const Comment = require('./../models/Comment');
 const User = require('./../models/User');
-const Gif = require('./../models/Gif');
+
 
 const zxcvbn = require("zxcvbn");
 const bcrypt = require("bcrypt");
@@ -12,23 +12,15 @@ const saltRounds = 10;
 
 
 router.get("/", (req, res)=>{
-    const currentUser = req.session.currentUser;
-    //console.log('>>>>>>>>>>>>>>>>>>///>>>>>>>>>>>>>', currentUser.username);
+    const user =req.session.currentUser;
     
+    console.log('>>>>>>>>>>>>>>>>>>///>>>>>>>>>>>>> active uzser', user);
+    console.log('>>>>>>>>>>>>>>>>>>///>>>>>>>>>>>>> active uzser', req.session.currentUser.picture);
+    
+    if (req.session.currentUser) {
+        const _id = req.session.currentUser._id;
 
-        if (req.session.currentUser) {
-            const _id = req.session.currentUser._id;
-
-            User.findById({_id })
-            .populate('Gif')
-            .then( () => {
-                req.session.currentUser.profilepicture = Gif;
-                
-                console.log('//>>>>>>>>>>>>>>%///>>>>>>>>>>>>>>>>>>>>>>////', Gif.image_url);
-                    res.render('secure/profile', currentUser)
-
-                })
-                .catch((err) => console.log(err));
+            res.render('secure/profile', req.session.currentUser)
         }
         
         else {
@@ -83,5 +75,20 @@ router.post("/session", (req,res)=>{
             .catch((err) => console.log(err))    
 })
 
+
+router.post('/picture', parser.single('photo'), (req, res) => {
+    const currentUser = req.session.currentUser;
+    const image_url = req.file.secure_url;
+    console.log('//>>>>>>>>>>////////>>>>>> IMAGE URL', image_url);
+    console.log('//<<<<<<<<<<<<//<<<<<<<<<<<<<<<<<<<<<<<<<<///////', req.session.currentUser._id);
+    
+    
+
+    User.findByIdAndUpdate({_id: req.session.currentUser._id}, {picture: image_url}, {new: true})
+            .then( () => {
+                    res.render('secure/profile', req.session.currentUser)
+            })
+            .catch((err) => console.log(err))
+})
 
 module.exports = router;
