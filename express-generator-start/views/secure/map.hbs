@@ -53,6 +53,20 @@
         .setPopup(popup)
         .addTo(map);*/
 
+
+        //Show current map center location
+        var showLocation = setInterval(()=>{
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", `https://api.mapbox.com/geocoding/v5/mapbox.places/${map.getCenter().lng},${map.getCenter().lat}.json?proximity=-122.3995752,37.7881856&access_token=${mapboxgl.accessToken}`, false ); // false for synchronous request
+            xmlHttp.send( null );
+            const response = xmlHttp.responseText;
+            const placeDisplay = document.querySelector(".currentMapCenter")
+            const city = JSON.parse(response).features[0].place_name.split(", ")[1].split(" ")
+            city.shift()
+            placeDisplay.innerHTML = city.join(" ");
+        }, 500)
+
+
         //Add selected location marker, set input values to coords
         map.on('click', function (e) {
             const newCommentLng = e.lngLat.wrap().lng
