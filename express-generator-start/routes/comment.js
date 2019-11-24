@@ -3,7 +3,7 @@ const  router = express.Router();
 
 const Comment = require('./../models/Comment');
 const User = require('./../models/User');
-
+const Reply = require('./../models/Reply');
 
 router.get("/", (req, res)=>{
     if (req.session.currentUser) {
@@ -110,5 +110,27 @@ router.post('/', (req, res) => {
     .catch(err=>console.log(err))
 })
 
+router.post('/delete/:_id', (req, res) => {
+    Comment.findById(req.params._id)
+        .then( (commentToDelete) => {
+            console.log(commentToDelete.replies)
+            commentToDelete.replies.forEach(replyId=>{
+                Reply.findByIdAndDelete(replyId)
+                .then( (deletion) => console.log(deletion))
+                .catch( (err) => console.log(err));
+            })
+            setTimeout(()=>{
+                Comment.findByIdAndDelete(req.params._id)
+                    .then( (deletion) => {
+                        console.log(deletion)
+                            res.redirect("/")
+                    })
+                    .catch( (err) => console.log(err));
+            })
+        })
+        .catch( (err) => console.log(err));
+    
+    
+})
 
 module.exports = router;

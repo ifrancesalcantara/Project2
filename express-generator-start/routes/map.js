@@ -32,7 +32,8 @@ router.get("/", (req, res)=>{
                     const data = {
                         homeCoords: userData.defaultLocation,
                         currentLocation: JSON.stringify(currentLocation),
-                        userComments: JSON.stringify(userComments)
+                        userComments: JSON.stringify(userComments),
+                        currentUser: JSON.stringify(userData._id)
                     }
                     res.render("secure/map", data)
                 })
@@ -46,7 +47,8 @@ router.get("/", (req, res)=>{
                 const data = {
                     homeCoords: userData.defaultLocation,
                     currentLocation: JSON.stringify(currentLocation),
-                    userComments: JSON.stringify(userComments)
+                    userComments: JSON.stringify(userComments),
+                    currentUser: JSON.stringify(userData._id)
                 }
                 res.render("secure/map", data)
             }
