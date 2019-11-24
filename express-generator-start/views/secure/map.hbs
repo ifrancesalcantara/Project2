@@ -6,9 +6,9 @@
 
 <form class="add-comment-form" action='/comment' method='POST'>
 
-  <input type='text' name='title' value="title" required>
+  <input type='text' name='title' placeholder="title" required>
 
-  <input type='text' name='text' value="text">
+  <input type='text' name='text' placeholder="text">
 
   <input id="newCommentLng" type='text' name='lng' required>
 
@@ -16,6 +16,8 @@
 
 
   <button id="add-comment-btn" type='submit'>Submit</button>
+  <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
+  <button id="privatePublicBtn">Public</button>
 </form>
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
@@ -33,6 +35,20 @@
     //Set popup for Home Icon
     const popup = new mapboxgl.Popup()
     .setHTML(`<h3>Home</h3>`);
+
+    const privatePublicBtn = document.querySelector("#privatePublicBtn")
+    const privatePublicInput = document.querySelector("#privatePublicInput")
+    privatePublicBtn.addEventListener("click", (e)=>{
+        e.preventDefault()
+        if(privatePublicBtn.innerHTML == "Public"){
+            privatePublicBtn.innerHTML = "Private"
+            privatePublicInput.value = "Private"
+        } else {
+            privatePublicBtn.innerHTML = "Public"
+            privatePublicInput.value = "Public"
+        }
+    })
+
 
 
     //Draw map
@@ -52,6 +68,20 @@
         .setLngLat([userHomeLong, userHomeLat])
         .setPopup(popup)
         .addTo(map);*/
+
+
+        //Show current map center location
+        var showLocation = setInterval(()=>{
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", `https://api.mapbox.com/geocoding/v5/mapbox.places/${map.getCenter().lng},${map.getCenter().lat}.json?proximity=-122.3995752,37.7881856&access_token=${mapboxgl.accessToken}`, false ); // false for synchronous request
+            xmlHttp.send( null );
+            const response = xmlHttp.responseText;
+            const placeDisplay = document.querySelector(".currentMapCenter")
+            const city = JSON.parse(response).features[0].place_name.split(", ")[1].split(" ")
+            city.shift()
+            placeDisplay.innerHTML = city.join(" ");
+        }, 500)
+
 
         //Add selected location marker, set input values to coords
         map.on('click', function (e) {
@@ -101,7 +131,7 @@
                     .addTo(map);
             } else {
                 const commentPopup =new mapboxgl.Popup()
-                    .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment" method="GET"><input name="commentId" value=${comment.comment._id}><button type="submit">See details</button></form>`);
+                    .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form>`);
                 const previousCommentMarker = new mapboxgl.Marker()
                     .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
                     .setPopup(commentPopup)

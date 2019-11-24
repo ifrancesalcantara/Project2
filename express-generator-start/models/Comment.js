@@ -10,8 +10,9 @@ const commentSchema = new Schema({
         lat: {type: mongoose.Decimal128, required: true},
         lng: {type: mongoose.Decimal128, required: true}
     },
-    creatorId: {type: String, required: true},
-    type: {type: String, default: ""} //Te be changed to required. default for testing 
+    creatorId: {type: String, required: true, ref: "User"},
+    type: {type: String, default: ""}, //Te be changed to required. default for testing 
+    public: {type: Boolean}
 })
 
 const Comment = mongoose.model("Comment", commentSchema)
