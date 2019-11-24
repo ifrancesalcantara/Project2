@@ -24,9 +24,39 @@ router.post('/:_id', function(req, res, next) {
 
                                 Comment.findById(_id)
                                     .populate("replies")
+                                    .populate("creatorId")
                                     .then( (reallyUpdatedComment) => {
-                                            console.log(reallyUpdatedComment)
-                                            res.render('secure/comment', reallyUpdatedComment);
+                                        reallyUpdatedComment["currentUserUsername"] = req.session.currentUser.username 
+                                        res.render('secure/comment', reallyUpdatedComment);
+                                    })
+                                    .catch( (err) => console.log(err));
+                            })
+                            .catch( (err) => console.log(err));
+                    })
+                    .catch( (err) => console.log(err));
+            })
+            .catch( (err) => console.log(err));
+    }
+    else {
+    res.render("index", {errorMessage: "Session ended."})
+    }
+});
+
+router.post('/delete/:replyId/:commentId', (req, res)=>{
+    if (req.session.currentUser) {
+        const {replyId, commentId} = req.params
+        Comment.findById(commentId)
+            .then( () => {
+                Reply.findByIdAndDelete(replyId)
+                    .then( () => {
+                        Comment.findById(commentId)
+                            .then( () => {
+                                Comment.findById(commentId)
+                                    .populate("replies")
+                                    .populate("creatorId")
+                                    .then( (reallyUpdatedComment) => {
+                                        reallyUpdatedComment["currentUserUsername"] = req.session.currentUser.username 
+                                        res.render('secure/comment', reallyUpdatedComment);
                                     })
                                     .catch( (err) => console.log(err));
                             })

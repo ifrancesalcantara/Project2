@@ -80,10 +80,20 @@
             xmlHttp.send( null );
             const response = xmlHttp.responseText;
             const placeDisplay = document.querySelector(".currentMapCenter")
-            const city = JSON.parse(response).features[0].place_name.split(", ")[1].split(" ")
-            city.shift()
-            placeDisplay.innerHTML = city.join(" ");
-        }, 500)
+            
+            //console.log(JSON.parse(response).features[0].context[1].text, " is a number?", parseInt(JSON.parse(response).features[0].context[1].text))
+            const country = JSON.parse(response).features[0].context[3].text
+            const province = JSON.parse(response).features[0].context[2].text
+
+            let neighborhood 
+            if(parseInt(JSON.parse(response).features[0].context[1].text) == NaN) {
+                neighborhood = JSON.parse(response).features[0].context[0].text
+            } else {
+                neighborhood = JSON.parse(response).features[0].context[0].text
+            }
+            
+            placeDisplay.innerHTML = neighborhood;
+        }, 2000)
 
 
         //Add selected location marker, set input values to coords
@@ -128,7 +138,7 @@
             };
 
 
-        
+        //Load all markers, popups and images
         const userComments = JSON.parse(document.querySelector("#userComments").innerHTML)
         userComments.forEach(comment=>{
 
@@ -166,7 +176,6 @@
 
             } else {
                 let commentPopup
-                console.log("aaaaaaaaa" , currentUser)
                 if(JSON.parse(currentUser)==comment.comment.creatorId){
                     commentPopup = new mapboxgl.Popup()
                         .setHTML(`<div class="default-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);

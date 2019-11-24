@@ -18,8 +18,12 @@ router.get("/", (req, res)=>{
 router.get("/:commentId", (req, res)=>{
     Comment.findById(req.params.commentId)
     .populate("creatorId")
+    .populate("replies")
     .then( (data) => {{
-        if (req.session.currentUser) {            
+        if (req.session.currentUser) {   
+            data["currentUserUsername"] = req.session.currentUser.username 
+            console.log(data.currentUserId);
+                  
             res.render('secure/comment', data);
         }
         else {
@@ -34,7 +38,9 @@ router.get("/:commentId", (req, res)=>{
             userComments = userData.comments.map(comment=> {return {comment}})
             const data = {
                 homeCoords: userData.defaultLocation,
-                userComments: JSON.stringify(userComments)
+                userComments: JSON.stringify(userComments),
+                currentLocation: JSON.stringify(currentLocation),
+                userComments: JSON.stringify(userComments),
             }
             res.render("secure/map", data)
         })
