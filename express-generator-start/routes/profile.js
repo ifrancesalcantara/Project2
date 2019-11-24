@@ -17,13 +17,23 @@ router.get("/", (req, res)=>{
     
 
         if (req.session.currentUser) {
-        console.log('//>>>>>>>>>>>>>>%///>>>>>>>>>>>>>>>>>>>>>>////', currentUser.profilepicture[0]);
+            const _id = req.session.currentUser._id;
+
+            User.findById({_id })
+            .populate('Gif')
+            .then( () => {
+                req.session.currentUser.profilepicture = Gif;
+                
+                console.log('//>>>>>>>>>>>>>>%///>>>>>>>>>>>>>>>>>>>>>>////', Gif.image_url);
+                    res.render('secure/profile', currentUser)
+
+                })
+                .catch((err) => console.log(err));
+        }
         
-        res.render('secure/profile', currentUser);
-    } 
-    else {
+        else {
         res.render("index", {errorMessage: "Session ended."})
-    }
+        }
 })
 
 
