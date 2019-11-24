@@ -114,7 +114,7 @@ router.post('/signup', function(req, res) {
                             req.session.currentUser = newUser;
 
                             //CREATE HOME COMMENT
-                            Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home"})
+                            Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home", public: false})
                                 .then( comment => {
                                     const data = {
                                         homeCoords: comment.location,

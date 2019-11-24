@@ -121,22 +121,49 @@
             }
         })
 
+        const geojson = {
+            type: 'FeatureCollection',
+            features: []
+            };
         const userComments = JSON.parse(document.querySelector("#userComments").innerHTML)
         userComments.forEach(comment=>{
 
+                var newMarkerIndex = geojson.features.push({
+                    type: 'Feature',
+                    geometry: {
+                    type: 'Point',
+                    coordinates: [comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal]
+                    },
+                    properties: {
+                    title: `${comment.comment.title}`,
+                    description: `${comment.comment.text}`
+                    }
+                })
+
             //TO DO: Style comments accordingly
             if(comment.comment.type=="home"){
+
                 const commentPopup =new mapboxgl.Popup()
-                    .setHTML(`<h3>Home</h3>`);
-                const previousCommentMarker = new mapboxgl.Marker()
-                    .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
+                    .setHTML(`<div class="home-marker"><h3>Home</h3></div>`);
+
+                var el = document.createElement('div');
+                el.className = 'home-marker'
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
                     .setPopup(commentPopup)
                     .addTo(map);
+
             } else {
+
                 const commentPopup =new mapboxgl.Popup()
-                    .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form>`);
-                const previousCommentMarker = new mapboxgl.Marker()
-                    .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
+                    .setHTML(`<div class="default-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                
+                var el = document.createElement('div');
+                el.className = 'default-marker'
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
                     .setPopup(commentPopup)
                     .addTo(map);
             }
