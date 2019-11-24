@@ -60,35 +60,47 @@ router.post('/', (req, res) => {
         .then( comment => {
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
-                .then( (updatedUser) => {
-                    if(updatedUser.session=="Public") {
-                        const allUserComments = [];                
-                        User.find({})
-                        .populate("comments")
-                        .then( (allUsersArr) => {
-                            allUsersArr.forEach(user=>{
-                                user.comments.forEach(comment=>{
-                                    allUserComments.push(comment)
+                .then( (notYetUpdatedUser) => {
+                    User.findById(req.session.currentUser)
+                    .populate("comments")
+                    .then( (updatedUser) => {
+
+                        if(updatedUser.session=="Public") {
+                            const allUserComments = [];                
+                            User.find({})
+                            .populate("comments")
+                            .then( (allUsersArr) => {
+                                allUsersArr.forEach(user=>{
+                                    user.comments.forEach(comment=>{
+                                        allUserComments.push(comment)
+                                    })
                                 })
+                                userComments = allUserComments.map(comment=> {return {comment}})
+                                const data = {
+                                    homeCoords: updatedUser.defaultLocation,
+                                    currentLocation: JSON.stringify(comment.location),
+                                    userComments: JSON.stringify(userComments)
+                                }
+                                res.render("secure/map", data)
                             })
-                            userComments = allUserComments.map(comment=> {return {comment}})
+                            .catch( (err) => console.log(err));
+
+
+                        } else if (updatedUser.session=="Private") {
+                            userComments = updatedUser.comments.map(comment=> {return {comment}})
                             const data = {
                                 homeCoords: updatedUser.defaultLocation,
+                                currentLocation: JSON.stringify(comment.location),
                                 userComments: JSON.stringify(userComments)
                             }
                             res.render("secure/map", data)
-                        })
-                        .catch( (err) => console.log(err));
-                    } else if (updatedUser.session=="Private") {
-                        userComments = updatedUser.comments.map(comment=> {return {comment}})
-                        const data = {
-                            homeCoords: updatedUser.defaultLocation,
-                            userComments: JSON.stringify(userComments)
+
+
+                        } else {
+                            res.render("secure/map")
                         }
-                        res.render("secure/map", data)
-                    } else {
-                        res.render("secure/map")
-                    }
+                    })
+                    .catch( (err) => console.log(err));
                 })
                 .catch( (err) => console.log(err));  
         })

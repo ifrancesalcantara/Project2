@@ -1,8 +1,9 @@
-<span id="userHomeLng">{{this.homeCoords.lng}}</span>
-<span id="userHomeLat">{{this.homeCoords.lat}}</span>
-<span id="userComments">{{this.userComments}}</span>
+<span id="userHomeLng" hidden>{{this.homeCoords.lng}}</span>
+<span id="userHomeLat" hidden>{{this.homeCoords.lat}}</span>
+<span id="userComments" hidden>{{this.userComments}}</span>
+<span id="currentLocation" hidden>{{this.currentLocation}}</span>
 <div id="map"></div>
-<pre id='info'></pre>
+<pre id='info' hidden></pre>
 
 <form class="add-comment-form" action='/comment' method='POST'>
 
@@ -28,9 +29,11 @@
     const addCommentBtn = document.querySelector("#add-comment-btn");
     const client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
     const map = document.querySelector("#map")
+    const currentLocation = document.querySelector("#currentLocation").innerHTML
     const query=""
     const lastMarker = []
     var isAddCommentDisplayed = false;
+
 
     //Set popup for Home Icon
     const popup = new mapboxgl.Popup()
@@ -59,7 +62,7 @@
         const map = new mapboxgl.Map({
             container: 'map', // HTML container id
             style: 'mapbox://styles/mapbox/streets-v9', // style URL
-            center: [centerLong, centerLat],
+            center: [JSON.parse(currentLocation).lng.$numberDecimal, JSON.parse(currentLocation).lat.$numberDecimal],
             zoom: 13
         });
 
