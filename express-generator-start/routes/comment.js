@@ -4,6 +4,7 @@ const  router = express.Router();
 const Comment = require('./../models/Comment');
 const User = require('./../models/User');
 const Reply = require('./../models/Reply');
+const LocalCommentCol = require('./../models/Reply');
 
 router.get("/", (req, res)=>{
     if (req.session.currentUser) {
@@ -61,8 +62,11 @@ router.post('/', (req, res) => {
             public = false
         }
         
-        const  { title, text, lng, lat} =  req.body;
-        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, public})
+        const  { title, text, lng, lat } =  req.body;
+        //const ubication = JSON.parse(req.body.ubication)
+        console.log(public);
+        
+        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, public })
         .then( comment => {
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
@@ -70,7 +74,9 @@ router.post('/', (req, res) => {
                     User.findById(req.session.currentUser._id)
                     .populate("comments")
                     .then( (updatedUser) => {
-
+                        //LocalCommentCol.create({})    Not time to do load chunks.
+                        //console.log(notYetUpdatedUser.ubication);
+                        
                         if(updatedUser.session=="Public") {
                             const allUserComments = [];                
                             User.find({})
@@ -78,7 +84,13 @@ router.post('/', (req, res) => {
                             .then( (allUsersArr) => {
                                 allUsersArr.forEach(user=>{
                                     user.comments.forEach(comment=>{
-                                        allUserComments.push(comment)
+                                        if(comment.public == false) {
+                                            if(comment.creatorId == req.session.currentUser._id){
+                                                allUserComments.push(comment)
+                                            }
+                                        } else {
+                                            allUserComments.push(comment)
+                                        }
                                     })
                                 })
                                 userComments = allUserComments.map(comment=> {return {comment}})

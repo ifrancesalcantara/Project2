@@ -12,10 +12,10 @@ router.post('/:_id', function(req, res, next) {
         Comment.findById(_id)
             .then( (commentToUpdate) => {
                 // console.log("commentToUpdate", commentToUpdate)
-                const { text, creatorUsername, date } = req.body
+                const { text, date } = req.body
                 // console.log(req.body);
                 
-                Reply.create({ text, creatorUsername, date })
+                Reply.create({ text, creatorUsername: req.session.currentUser.username, date })
                     .then( (newReply) => {
                         // console.log("newReply", newReply)
 

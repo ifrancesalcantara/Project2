@@ -19,6 +19,7 @@
 
   <button id="add-comment-btn" type='submit'>Submit</button>
   <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
+  <input type="text" name="ubication" id="newCommentUbication" hidden>
   <button id="privatePublicBtn">Public</button>
 </form>
 
@@ -35,6 +36,7 @@
     const query=""
     const lastMarker = []
     var isAddCommentDisplayed = false;
+    const newCommentUbication = document.querySelector("#newCommentUbication")
 
 
     //Set popup for Home Icon
@@ -81,18 +83,71 @@
             const response = xmlHttp.responseText;
             const placeDisplay = document.querySelector(".currentMapCenter")
             
-            //console.log(JSON.parse(response).features[0].context[1].text, " is a number?", parseInt(JSON.parse(response).features[0].context[1].text))
-            const country = JSON.parse(response).features[0].context[3].text
-            const province = JSON.parse(response).features[0].context[2].text
+            const currentZoom=map.getZoom();
 
-            let neighborhood 
-            if(parseInt(JSON.parse(response).features[0].context[1].text) == NaN) {
-                neighborhood = JSON.parse(response).features[0].context[0].text
+            let address
+            let country
+            let locality
+            let street 
+            let addressToDisplay
+
+
+            JSON.parse(response).features.forEach((feature, index)=>{
+                
+                if(feature.place_type[0]=="address"){
+                    address = feature.place_name
+                }
+                if(feature.place_type[0]=="country"){
+                    country = feature.place_name
+                } else {
+                    const country = address.split(", ").pop()
+                }
+                if(feature.place_type[0]=="locality"){
+                    locality = feature.place_name
+                } else if (feature.place_type[0]=="city"){
+                    locality = feature.place_name
+                } else {
+                    const country = address.split(", ")
+                    country.pop()
+                    locality=country.pop()
+                    locality = locality.split(" ")
+                    locality.shift()
+                    locality = locality.join(" ")
+                    if(!locality){
+                        const country = address.split(", ")
+                        country.pop()
+                        locality=country.pop()
+                        locality = locality.split(" ")
+                        locality = locality.join(" ")
+                    }
+                }
+                if(feature.place_type[0]=="neighborhood"){
+                    neighborhood = feature.place_name
+                } else {
+                    const country = address.split(", ")
+                    country.pop()
+                    country.pop()
+                    street=country.pop()
+                    street = street.split(" ")
+                    street.shift()
+                    street = street.join(" ")
+                }
+            })
+
+            //console.log(currentZoom, country, ", ", locality,", ", street, "<<<<<<<<<< ", address)
+            
+            if(currentZoom > 14){
+                addressToDisplay = street
+            } else if (currentZoom < 9) {
+                addressToDisplay = country
             } else {
-                neighborhood = JSON.parse(response).features[0].context[0].text
+                addressToDisplay = locality
             }
             
-            placeDisplay.innerHTML = neighborhood;
+            placeDisplay.innerHTML = addressToDisplay;
+
+            newCommentUbication.value = JSON.stringify({country, locality, street})
+
         }, 2000)
 
 

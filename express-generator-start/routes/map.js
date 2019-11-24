@@ -21,7 +21,13 @@ router.get("/", (req, res)=>{
                 .then( (allUsersArr) => {
                     allUsersArr.forEach(user=>{
                         user.comments.forEach(comment=>{
-                            allUserComments.push(comment)
+                            if(comment.public == false) {
+                                if(comment.creatorId == req.session.currentUser._id){
+                                    allUserComments.push(comment)
+                                }
+                            } else {
+                                allUserComments.push(comment)
+                            }
                         })
                     })
                     userComments = allUserComments.map(comment=> {return {comment}})

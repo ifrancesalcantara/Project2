@@ -54,6 +54,7 @@
         dateToDisplay.splice(3)
         dateDisplayed.innerHTML = dateToDisplay    
 
+        console.log(currentUser, "vs ", allReplyUsernames[index].innerHTML)
         if(currentUser === allReplyUsernames[index].innerHTML) {
             const deleteDiv = document.createElement("div")
             deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button type="submit">Delete</button></form>`).trim()

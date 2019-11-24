@@ -28,7 +28,13 @@ router.post("/login", (req, res)=>{
                     .then( (allUsersArr) => {
                         allUsersArr.forEach(user=>{
                             user.comments.forEach(comment=>{
-                                allUserComments.push(comment)
+                                if(comment.public == false) {
+                                    if(comment.creatorId == req.session.currentUser._id){
+                                        allUserComments.push(comment)
+                                    }
+                                } else {
+                                    allUserComments.push(comment)
+                                }
                             })
                         })
                         userComments = allUserComments.map(comment=> {return {comment}})
@@ -117,18 +123,48 @@ router.post('/signup', function(req, res) {
 
                             //CREATE HOME COMMENT
                             Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home", public: false})
-                                .then( comment => {
-                                    const data = {
+                                .then( homeComment => {
+                                    /*const data = {
                                         homeCoords: comment.location,
                                         currentLocation: JSON.stringify(comment.location),
                                         userComments: JSON.stringify(comment)
-                                    }
-                                    console.log(data.userComments);
+                                    }*/
+                                    User.find({})
+                                    .populate("comments")
+                                    .then( (allUsersArr) => {
+                                        const allUserComments=[]
+                                        allUserComments.push(homeComment)
+                                        allUsersArr.forEach(user=>{
+                                            user.comments.forEach(comment=>{
+                                                if(comment.public == false) {
+                                                    if(comment.creatorId == req.session.currentUser._id){
+                                                        allUserComments.push(comment)
+                                                    }
+                                                } else {
+                                                    allUserComments.push(comment)
+                                                }
+                                            })
+                                        })
+                                        userComments = allUserComments.map(comment=> {return {comment}})
+                                        
+                                        const currentLocation = {
+                                            lng: {$numberDecimal: newUser.defaultLocation.lng},
+                                            lat: {$numberDecimal: newUser.defaultLocation.lat},
+                                        }
+                                        const data = {
+                                            homeCoords: newUser.defaultLocation,
+                                            currentLocation: JSON.stringify(homeComment.location),
+                                            userComments: JSON.stringify(userComments),
+                                            currentUser: JSON.stringify(newUser._id)
+                                        }
+                                        res.render("secure/map", data)
+                                    })
+                                    /*console.log(data.userComments);
                                     
-                                    res.render('secure/map', data)
+                                    res.render('secure/map', data)*/
 
                                     //PUSH THAT HOME COMMENT ID TO USER COMMENTS 
-                                    User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
+                                    User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: homeComment._id}})
                                         .then( (data) => {return})
                                         .catch( (err) => console.log(err))
                                 })
