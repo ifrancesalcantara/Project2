@@ -6,8 +6,6 @@ const User = require('./../models/User');
 
 
 router.get("/", (req, res)=>{
-    console.log("in comment get");
-
     if (req.session.currentUser) {
         res.render('secure/comment');
     }
@@ -50,16 +48,20 @@ router.post('/', (req, res) => {
     
     User.findOne({_id: req.session.currentUser._id})
     .then(user=>{
+        let public
+        if(req.body.privateOrPublic == "Public") {
+            public = true
+        } else {
+            public = false
+        }
+        
         const  { title, text, lng, lat} =  req.body;
-        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id})
+        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, public})
         .then( comment => {
-            console.log("hi");
-            
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
                 .then( (updatedUser) => {
                     if(updatedUser.session=="Public") {
-                        console.log("public");
                         const allUserComments = [];                
                         User.find({})
                         .populate("comments")
@@ -78,7 +80,6 @@ router.post('/', (req, res) => {
                         })
                         .catch( (err) => console.log(err));
                     } else if (updatedUser.session=="Private") {
-                        console.log("private");
                         userComments = updatedUser.comments.map(comment=> {return {comment}})
                         const data = {
                             homeCoords: updatedUser.defaultLocation,

@@ -16,6 +16,8 @@
 
 
   <button id="add-comment-btn" type='submit'>Submit</button>
+  <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
+  <button id="privatePublicBtn">Public</button>
 </form>
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
@@ -33,6 +35,20 @@
     //Set popup for Home Icon
     const popup = new mapboxgl.Popup()
     .setHTML(`<h3>Home</h3>`);
+
+    const privatePublicBtn = document.querySelector("#privatePublicBtn")
+    const privatePublicInput = document.querySelector("#privatePublicInput")
+    privatePublicBtn.addEventListener("click", (e)=>{
+        e.preventDefault()
+        if(privatePublicBtn.innerHTML == "Public"){
+            privatePublicBtn.innerHTML = "Private"
+            privatePublicInput.value = "Private"
+        } else {
+            privatePublicBtn.innerHTML = "Public"
+            privatePublicInput.value = "Public"
+        }
+    })
+
 
 
     //Draw map
