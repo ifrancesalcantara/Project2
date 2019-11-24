@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
                 .then( (notYetUpdatedUser) => {
-                    User.findById(req.session.currentUser)
+                    User.findById(req.session.currentUser._id)
                     .populate("comments")
                     .then( (updatedUser) => {
 
@@ -85,7 +85,8 @@ router.post('/', (req, res) => {
                                 const data = {
                                     homeCoords: updatedUser.defaultLocation,
                                     currentLocation: JSON.stringify(comment.location),
-                                    userComments: JSON.stringify(userComments)
+                                    userComments: JSON.stringify(userComments),
+                                    currentUser: JSON.stringify(req.session.currentUser._id)
                                 }
                                 res.render("secure/map", data)
                             })
@@ -97,7 +98,8 @@ router.post('/', (req, res) => {
                             const data = {
                                 homeCoords: updatedUser.defaultLocation,
                                 currentLocation: JSON.stringify(comment.location),
-                                userComments: JSON.stringify(userComments)
+                                userComments: JSON.stringify(userComments),
+                                currentUser: JSON.stringify(req.session.currentUser._id)
                             }
                             res.render("secure/map", data)
 
@@ -119,6 +121,7 @@ router.post('/', (req, res) => {
 router.post('/delete/:_id', (req, res) => {
     Comment.findById(req.params._id)
         .then( (commentToDelete) => {
+            const currentLocation = commentToDelete.location 
             console.log(commentToDelete.replies)
             commentToDelete.replies.forEach(replyId=>{
                 Reply.findByIdAndDelete(replyId)
@@ -129,7 +132,49 @@ router.post('/delete/:_id', (req, res) => {
                 Comment.findByIdAndDelete(req.params._id)
                     .then( (deletion) => {
                         console.log(deletion)
-                            res.redirect("/")
+                        User.findById(req.session.currentUser)
+                        .populate("comments")
+                        .then( (updatedUser) => {
+    
+                            if(updatedUser.session=="Public") {
+                                const allUserComments = [];                
+                                User.find({})
+                                .populate("comments")
+                                .then( (allUsersArr) => {
+                                    allUsersArr.forEach(user=>{
+                                        user.comments.forEach(comment=>{
+                                            allUserComments.push(comment)
+                                        })
+                                    })
+                                    userComments = allUserComments.map(comment=> {return {comment}})
+                                    const data = {
+                                        homeCoords: updatedUser.defaultLocation,
+                                        currentLocation: JSON.stringify(currentLocation),
+                                        userComments: JSON.stringify(userComments),
+                                        currentUser: JSON.stringify(req.session.currentUser._id)
+
+                                    }
+                                    res.render("secure/map", data)
+                                })
+                                .catch( (err) => console.log(err));
+    
+    
+                            } else if (updatedUser.session=="Private") {
+                                userComments = updatedUser.comments.map(comment=> {return {comment}})
+                                const data = {
+                                    homeCoords: updatedUser.defaultLocation,
+                                    currentLocation: JSON.stringify(comment.location),
+                                    userComments: JSON.stringify(userComments),
+                                    currentUser: JSON.stringify(req.session.currentUser._id)
+                                }
+                                res.render("secure/map", data)
+    
+    
+                            } else {
+                                res.render("secure/map")
+                            }
+                        })
+                        .catch( (err) => console.log(err));
                     })
                     .catch( (err) => console.log(err));
             })
