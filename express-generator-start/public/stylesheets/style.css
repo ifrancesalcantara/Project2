@@ -67,7 +67,7 @@ main {
   margin: 10vh auto;
 }
 
-#signup-form, #profile-form {
+#signup-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -87,6 +87,51 @@ main {
   padding: 5vh 0 0 0;
   position: "relative";
   margin: 0 auto;
+  min-width: 330px;
+}
+
+#profile-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 5vh 0 0 0;
+  position: "relative";
+  margin: 0 auto;
+  min-width: 330px;
+}
+
+.profile-form-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 5vh 0 0 0;
+  position: "relative";
+  margin: 0 auto;
+  min-width: 330px;
 }
 
 .signin-form {
@@ -105,11 +150,15 @@ main {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  height: 30vh;
   padding: 5vh 0 0 0;
   position: "relative";
   margin: 0 auto;
   width: 60vw;
+  min-width: 330px;
+}
+
+.signin-form div {
+  margin: 2vh 0;
 }
 
 .picture-upload-form {
@@ -142,6 +191,7 @@ main {
 
 .picture-upload-form-input {
   width: 20vw;
+  padding: 1vh;
 }
 
 .signup-form-input:first-of-type, .profile-form-input:first-of-type, #signin-form-input:first-of-type {
@@ -169,7 +219,7 @@ main {
   padding: 1vh 3vw;
   border-radius: 1.2vh;
   font-family: 'Fredoka One', cursive;
-  font-size: 1em;
+  font-size: 0.9em;
   margin-bottom: 3vh;
 }
 
@@ -268,15 +318,19 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   width: 30vw;
+  min-width: 330px;
 }
 
 #profile-picture-container h4 {
   padding: auto 5vw !important;
   margin-left: 5vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 #profile-picture {
@@ -295,6 +349,8 @@ main {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   width: 30vw;
+  min-width: 330px;
+  margin: 1vh auto;
 }
 
 #show-password-container div {

@@ -23,26 +23,29 @@
 
         <button type='submit' class="profile-btn">Change</button>
     </div>
+</form>
 
-
-    <form action="/profile/picture" method="POST" enctype="multipart/form-data" class="picture-upload-form">
+    <form action="/profile/picture" method="POST" enctype="multipart/form-data" class="profile-form-container">
         <input type="file" name="photo" class="picture-upload-form-input"/>
         <button type="submit" class="profile-btn" >Upload</button>
     </form>
 
+<div class="profile-form-container">
     <div id="profile-map"></div>
     <p>Change your home location</p>
+</div>
 
-    <form action='/profile/session' method='POST' class="profile-form"s>
+<div class="profile-form-container">
+    <form action='/profile/session' method='POST' class="profile-form">
         <input id="sessionChangeInput" type='text' name='session'>
         <button id="sessionChangeBtn" type='submit' class="profile-btn">{{this.session}}</button>
     </form>
-
+</div>
 
     <p>
         {{this.errorMessage}}
     </p>
-</form>
+
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 
