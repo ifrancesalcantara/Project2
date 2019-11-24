@@ -19,16 +19,16 @@ router.get("/", (req, res)=>{
         if (req.session.currentUser) {
             const _id = req.session.currentUser._id;
 
-            User.findById({_id })
-            .populate('Gif')
-            .then( () => {
-                req.session.currentUser.profilepicture = Gif;
+            var profilepicture = User.findById({_id })
+            .populate('profilepicture')
+            .then( (actualUser, currentUser) => {
                 
-                console.log('//>>>>>>>>>>>>>>%///>>>>>>>>>>>>>>>>>>>>>>////', Gif.image_url);
-                    res.render('secure/profile', currentUser)
-
-                })
-                .catch((err) => console.log(err));
+                
+                console.log('////////>>>>>>>>>>>>>>>>>>>>>>>///////// IMAGE UTLS IS', actualUser.profilepicture[0].image_url)
+                res.render('secure/profile', {actualUser}, currentUser)
+                
+            })
+            .catch((err) => console.log(err));
         }
         
         else {

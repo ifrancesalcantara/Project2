@@ -16,7 +16,7 @@ router.post('/', parser.single('photo'), ( req, res) => {
     
     newGif.save({
     })
-    .then( ( newGif) => {
+    .then( ( ) => {
         User.findById({_id: req.session.currentUser._id})
         .populate("profilepicture")
         .then( () => {
