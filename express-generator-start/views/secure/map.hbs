@@ -1,8 +1,10 @@
-<span id="userHomeLng">{{this.homeCoords.lng}}</span>
-<span id="userHomeLat">{{this.homeCoords.lat}}</span>
-<span id="userComments">{{this.userComments}}</span>
+<span id="userHomeLng" hidden>{{this.homeCoords.lng}}</span>
+<span id="userHomeLat" hidden>{{this.homeCoords.lat}}</span>
+<span id="userComments" hidden>{{this.userComments}}</span>
+<span id="currentUser" hidden>{{this.currentUser}}</span>
+<span id="currentLocation" hidden>{{this.currentLocation}}</span>
 <div id="map"></div>
-<pre id='info'></pre>
+<pre id='info' hidden></pre>
 
 <form class="add-comment-form" action='/comment' method='POST'>
 
@@ -23,14 +25,17 @@
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
 
+    const currentUser = document.querySelector("#currentUser").innerHTML
     const centerLong = document.querySelector("#userHomeLng").innerHTML
     const centerLat = document.querySelector("#userHomeLat").innerHTML
     const addCommentBtn = document.querySelector("#add-comment-btn");
     const client = new MapboxClient('pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg');
     const map = document.querySelector("#map")
+    const currentLocation = document.querySelector("#currentLocation").innerHTML
     const query=""
     const lastMarker = []
     var isAddCommentDisplayed = false;
+
 
     //Set popup for Home Icon
     const popup = new mapboxgl.Popup()
@@ -49,8 +54,6 @@
         }
     })
 
-
-
     //Draw map
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
@@ -59,7 +62,7 @@
         const map = new mapboxgl.Map({
             container: 'map', // HTML container id
             style: 'mapbox://styles/mapbox/streets-v9', // style URL
-            center: [centerLong, centerLat],
+            center: [JSON.parse(currentLocation).lng.$numberDecimal, JSON.parse(currentLocation).lat.$numberDecimal],
             zoom: 13
         });
 
@@ -118,22 +121,65 @@
             }
         })
 
+        //Declare Geojson to add markers through it in .forEach
+        const geojson = {
+            type: 'FeatureCollection',
+            features: []
+            };
+
+
+        
         const userComments = JSON.parse(document.querySelector("#userComments").innerHTML)
         userComments.forEach(comment=>{
 
-            //TO DO: Style comments accordingly
-            if(comment.comment.type=="home"){
-                const commentPopup =new mapboxgl.Popup()
-                    .setHTML(`<h3>Home</h3>`);
-                const previousCommentMarker = new mapboxgl.Marker()
-                    .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
+            //Add location to Geojson
+            var newMarkerIndex = geojson.features.push({
+                type: 'Feature',
+                geometry: {
+                type: 'Point',
+                coordinates: [comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal]
+                },
+                properties: {
+                title: `${comment.comment.title}`,
+                description: `${comment.comment.text}`
+                }
+            })
+
+            //Style comments accordingly in Geojson and create Markers
+            if(comment.comment.type=="home") {
+                let commentPopup
+                if(JSON.parse(currentUser)==comment.comment.creatorId){
+                    commentPopup = new mapboxgl.Popup()
+                        .setHTML(`<div class="home-marker"><h3>Home</h3><button>Move</button></div>`);
+                } else {
+                    commentPopup = new mapboxgl.Popup()
+                        .setHTML(`<div class="home-marker"><h3>Home</h3></div>`);
+                }
+
+                var el = document.createElement('div');
+                el.className = 'home-marker'
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
                     .setPopup(commentPopup)
                     .addTo(map);
+
             } else {
-                const commentPopup =new mapboxgl.Popup()
-                    .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form>`);
-                const previousCommentMarker = new mapboxgl.Marker()
-                    .setLngLat([comment.comment.location.lng.$numberDecimal, comment.comment.location.lat.$numberDecimal])
+                let commentPopup
+                console.log("aaaaaaaaa" , currentUser)
+                if(JSON.parse(currentUser)==comment.comment.creatorId){
+                    commentPopup = new mapboxgl.Popup()
+                        .setHTML(`<div class="default-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                } else {
+                    commentPopup = new mapboxgl.Popup()
+                        .setHTML(`<div class="default-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                }
+                
+                var el = document.createElement('div');
+                el.className = 'default-marker'
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
                     .setPopup(commentPopup)
                     .addTo(map);
             }

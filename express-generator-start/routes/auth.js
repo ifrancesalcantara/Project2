@@ -32,9 +32,16 @@ router.post("/login", (req, res)=>{
                             })
                         })
                         userComments = allUserComments.map(comment=> {return {comment}})
+                        
+                        const currentLocation = {
+                            lng: {$numberDecimal: userData.defaultLocation.lng},
+                            lat: {$numberDecimal: userData.defaultLocation.lat},
+                        }
                         const data = {
                             homeCoords: userData.defaultLocation,
-                            userComments: JSON.stringify(userComments)
+                            currentLocation: JSON.stringify(currentLocation),
+                            userComments: JSON.stringify(userComments),
+                            currentUser: JSON.stringify(userData._id)
                         }
                         res.render("secure/map", data)
                     })
@@ -43,9 +50,15 @@ router.post("/login", (req, res)=>{
                     console.log("private");
                     
                     userComments = userData.comments.map(comment=> {return {comment}})
+                    const currentLocation = {
+                        lng: {$numberDecimal: userData.defaultLocation.lng},
+                        lat: {$numberDecimal: userData.defaultLocation.lat},
+                    }
                     const data = {
                         homeCoords: userData.defaultLocation,
-                        userComments: JSON.stringify(userComments)
+                        currentLocation: JSON.stringify(currentLocation),
+                        userComments: JSON.stringify(userComments),
+                        currentUser: JSON.stringify(userData._id)
                     }
                     res.render("secure/map", data)
                 }
@@ -103,10 +116,11 @@ router.post('/signup', function(req, res) {
                             req.session.currentUser = newUser;
 
                             //CREATE HOME COMMENT
-                            Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home"})
+                            Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home", public: false})
                                 .then( comment => {
                                     const data = {
                                         homeCoords: comment.location,
+                                        currentLocation: JSON.stringify(comment.location),
                                         userComments: JSON.stringify(comment)
                                     }
                                     console.log(data.userComments);
