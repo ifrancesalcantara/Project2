@@ -53,12 +53,11 @@ router.get('/security', (req, res ) => {
 })
 
 router.get('/picture', (req, res) => {
-    console.log('>//>//>////>/>/>//>/>/>//>/>/>//>/>/>//>/>//>/>/>', req.session.currentUser)
 
     User.findById({_id: req.session.currentUser._id})
         .then( () => {
             if (req.session.currentUser) {
-                res.render('secure/profile/picutre', req.session.currentUser)
+                res.render('secure/profile/picture', req.session.currentUser)
             }
             else {
                 res.render('index', {errorMessage: "session ended"})
@@ -68,10 +67,11 @@ router.get('/picture', (req, res) => {
 })
 
 
-router.post('/', (req, res) => {
+router.post('/security', (req, res) => {
     const _id = req.session.currentUser._id;
     const   {password, passConf}  =  req.body;
     const currentUser = req.session.currentUser;
+    
     
     const salt = bcrypt.genSaltSync(saltRounds);
     const hashedPassword = bcrypt.hashSync(req.body.password, salt);
