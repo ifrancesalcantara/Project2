@@ -6,6 +6,7 @@
 
 <p id="currentUser" hidden>{{this.currentUserUsername}}</p>
 <p id="commentId" hidden>{{this._id}}</p>
+<p id="current-likes"hidden>{{this.currentLikes}}</p>
 
 <div class="like"></div>
 
@@ -28,7 +29,6 @@
     </div>
 </div>
 
-<script src="./../javascripts/comment.js"></script>
 <script>
     const dateInput = document.querySelector("#replyDate")
     const dateDisplayed = document.querySelectorAll(".replyDateDisplayed")
@@ -62,4 +62,34 @@
             dateDisplayed.appendChild(deleteDiv)
         }
     })
+
+
+
+const replies = document.querySelector("#replies")
+const like = document.querySelector(".like")
+const currentUser2 = document.querySelector("#currentUser").innerHTML
+const commentId2 = document.querySelector("#commentId").innerHTML
+const currentLikes = document.querySelector("#current-likes").innerHTML
+
+const totalLikes = document.createElement("span")
+const likeBtn = document.createElement("button")
+const likeForm = document.createElement("form")
+const likeImg = document.createElement("img")
+
+var alreadyLiked = false
+
+likeBtn.classList.add("like-btn")
+likeImg.classList.add("like-img")
+
+likeImg.setAttribute("src", "./../../../images/like.png")
+likeForm.setAttribute("action", `/comment/like/${commentId2}/${currentUser2}`)
+likeForm.setAttribute("method", `POST`)
+
+//provisional
+totalLikes.innerHTML = currentLikes
+
+like.appendChild(totalLikes)
+likeBtn.appendChild(likeImg)
+likeForm.appendChild(likeBtn)
+like.appendChild(likeForm)
 </script>

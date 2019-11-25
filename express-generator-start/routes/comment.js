@@ -17,14 +17,15 @@ router.get("/", (req, res)=>{
 
 
 router.get("/:commentId", (req, res)=>{
+
     Comment.findById(req.params.commentId)
     .populate("creatorId")
     .populate("replies")
     .then( (data) => {{
         if (req.session.currentUser) {   
-            data["currentUserUsername"] = req.session.currentUser.username 
-            console.log(data.currentUserId);
-                  
+            data["currentUserUsername"] = req.session.currentUser.username;
+            data["currentLikes"] = data.likes.length
+                        
             res.render('secure/comment', data);
         }
         else {
@@ -32,6 +33,8 @@ router.get("/:commentId", (req, res)=>{
         }
     }})
     .catch( (err) => {
+        console.log("idn't find comment");
+        
         console.log(err)
         User.findById(req.session.currentUser._id)
         .populate("comments")
@@ -39,10 +42,11 @@ router.get("/:commentId", (req, res)=>{
             userComments = userData.comments.map(comment=> {return {comment}})
             const data = {
                 homeCoords: userData.defaultLocation,
-                userComments: JSON.stringify(userComments),
-                currentLocation: JSON.stringify(currentLocation),
+                userComments: JSON.stringify(userData.userComments),
+                currentLocation: JSON.stringify(userData.currentLocation),
                 userComments: JSON.stringify(userComments),
             }
+            
             res.render("secure/map", data)
         })
     });
@@ -198,8 +202,60 @@ router.post('/delete/:_id', (req, res) => {
 })
 
 
-router.get("/like/:commentId/username", (req, res)=>{
+router.post("/like/:commentId/:username", (req, res)=>{
+    const {commentId, username} = req.params
+    Comment.findById(commentId)
+    .then( (comment) => {
+        if (comment.likes.indexOf(username)>-1) {
+            console.log("already liked, see: ", comment.likes);
+            Comment.findByIdAndUpdate(commentId, {$pull: {likes: username}})
+                .then( (notYetUpdatedComment) => {
+                    Comment.findById(commentId)
+                        .populate("creatorId")
+                        .populate("replies")
+                        .then( (data) => {{
+                            if (req.session.currentUser) {   
+                                data["currentUserUsername"] = req.session.currentUser.username 
+                                data["currentLikes"] = data.likes.length
+                                    
+                                res.render('secure/comment', data);
+                            }
+                            else {
+                            res.render("index", {errorMessage: "Session ended."})
+                            }
+                        }})       
+                    })
+                    .catch( (err) => {console.log(err)});
+        } else {
+            console.log("not yet liked, see: ", comment.likes);
+            User.find({username})
+            .then( (user) => {
+                Comment.findByIdAndUpdate(commentId, {$push: {likes: username}})
+                .then( (notYetUpdatedComment) => {
+                    Comment.findById(commentId)
+                        .populate("creatorId")
+                        .populate("replies")
+                        .then( (data) => {{
+                        console.log("already liked, see: ", data.likes);
 
+                        console.log("already liked, see: ", notYetUpdatedComment.likes);
+                            if (req.session.currentUser) {   
+                                data["currentUserUsername"] = req.session.currentUser.username 
+                                data["currentLikes"] = data.likes.length
+                                    
+                                res.render('secure/comment', data);
+                            }
+                            else {
+                            res.render("index", {errorMessage: "Session ended."})
+                            }
+                        }})                  
+                })
+                .catch( (err) => {console.log(err)});
+            })
+            .catch( (err) => console.log(err));
+        }
+    })
+    .catch( (err) => console.log(err));
 })
 
 module.exports = router;
