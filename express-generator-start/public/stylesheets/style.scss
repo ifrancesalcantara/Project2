@@ -1,0 +1,328 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+  v2.0 | 20110126
+  License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* END CSS RESET>>>>>>>>>>>>>>>>>>>>> */
+
+
+
+/* GLOBAL VARIABLES >>>>>>>>>>>>>>>>>>>>> */
+$main-font: 'Fredoka One', cursive;
+$main-color: black;
+$nav-color: #ffffff;
+
+$button-height: 5vh;
+$button-width: 20vw;
+$button-radius: 1.2vh;
+$button-padding: 5vw;
+$button-font-size: .9em;
+
+$container-width: 60vw;
+$container-min-width: 330px;
+
+$input-width: 30vw;
+$input-height: 3vh;
+$input-radius: 1vh;
+
+
+
+
+
+/* START STYLING >>>>>>>>>>>>>>>>>>>>>> */
+body {
+    font-family: $main-font;
+}
+
+a {
+    color: #00B7FF;
+}
+
+main {
+    margin: 10vh auto;
+}
+
+#signup-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 75vh;
+    padding: 5vh 0 0 0;
+    position: "relative";
+    margin: 0 auto;
+    min-width: $container-min-width;
+}
+
+#profile-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5vh 0 0 0;
+    position: "relative";
+    margin: 0 auto;
+    min-width: $container-min-width;
+}
+
+.profile-form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5vh 0 0 0;
+    position: "relative";
+    margin: 0 auto;
+    min-width: $container-min-width;
+}
+
+.signin-form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5vh 0 0 0;
+    position: "relative";
+    margin: 0 auto;
+    width: $container-width;
+    min-width: $container-min-width;
+}
+
+.signin-form div {
+    margin: 2vh 0;
+}
+
+.picture-upload-form {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: $input-width;
+    flex-direction: row;
+    
+}
+
+#welcome-title{
+    font-size: 2.4em;
+}
+
+.signup-form-input, .profile-form-input, #signin-form-input {
+    width: $input-width;
+    height: $input-height;
+    border-radius: $input-radius;
+    max-height: $input-height;
+}
+
+.picture-upload-form-input {
+    width: $button-width;
+    padding: 1vh;
+}
+
+.signup-form-input:first-of-type, .profile-form-input:first-of-type, #signin-form-input:first-of-type {
+    margin-top: 3vh;
+}
+
+.signup-form-input:nth-child(4) {
+    margin-bottom: 3vh;
+}
+
+.profile-form-input:nth-child(4) {
+    margin-bottom: 3vh;
+}
+
+#signup-map, #profile-map {
+    width: 40vw !important;
+    height: 30vh !important;
+    border: 5px solid grey;
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+#signup-btn, .profile-btn, .signin-btn {
+    height: $button-height;
+    padding: 1vh 3vw;
+    border-radius: $button-radius;
+    font-family: 'Fredoka One', cursive;
+    font-size: $button-font-size;
+    margin-bottom: 3vh;
+}
+
+#signup-btn:hover, .profile-btn:hover, .signin-btn:hover {
+    -webkit-box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
+    -moz-box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
+    box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
+}
+
+.nav-top {
+    top: 0;
+}
+
+.nav-bot {
+    bottom: 0;
+}
+
+.nav-top, .nav-bot {
+    background-color: #00b7ff;
+    height: 10vh;
+    width: 100vw;
+    position: fixed;
+}
+
+.nav-top ul, .nav-bot ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%
+}
+
+.nav-bot li, .nav-top li {
+    list-style-type: none;
+    color: $nav-color;
+    font-weight: bold;
+    padding: 0 7vw;
+}
+
+
+.nav-bot a, .nav-top a {
+    color: $nav-color;
+    list-style-type: none;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat, #userComments, #info {
+    visibility: hidden;
+    position: absolute;
+    z-index: -1;
+    height: 0;
+    width: 0;
+    text-overflow: hidden;
+    white-space: nowrap;
+}
+
+.add-comment-form{
+    position: absolute;
+    top: 10vh;
+    transition: height 2.5s;
+    display: flex;
+    flex-direction: column;
+}
+
+.add-img-plus{
+    height: 5vh;
+}
+
+.add-img-plus:active {
+    content: url("./../images/plus\ inverted2.png")
+}
+
+#map {
+    height: 80vh;
+    width: 100vw;
+}
+
+#profile-picture-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: $input-width;
+    min-width: $container-min-width;
+}
+
+#profile-picture-container h4 {
+    padding: auto 5vw !important;
+    margin-left: 5vw;
+    display: flex;
+}
+
+#profile-picture {
+    height: 20vh;
+    width: auto;
+}
+
+#show-password-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    width: $input-width;
+    min-width: $container-min-width;
+    margin: 1vh auto;
+}
+
+#show-password-container div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#show-password-container input, label {
+    font-weight: 100;
+    line-height: 0.8em;
+    font-size: 0.5em;
+}
+
+.home-marker{
+    background-image: url("./../images/home-marker-img.png");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.default-marker{
+    background-image: url('./../images/private-marker-img.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
