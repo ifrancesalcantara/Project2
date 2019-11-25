@@ -609,4 +609,8 @@ label {
 .hidden {
   display: none !important;
 }
+
+.add-comment-form-img-social, .add-comment-form-img-sight, .add-comment-form-img-claim {
+  width: 10vw;
+}
 /*# sourceMappingURL=style.css.map */
