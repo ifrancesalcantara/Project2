@@ -67,13 +67,10 @@ main {
   margin: 10vh auto;
 }
 
-#signup-form {
+#signup-form, #profile-form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -86,146 +83,43 @@ main {
   height: 75vh;
   padding: 5vh 0 0 0;
   position: "relative";
-  margin: 0 auto;
-  min-width: 330px;
-}
-
-#profile-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding: 5vh 0 0 0;
-  position: "relative";
-  margin: 0 auto;
-  min-width: 330px;
-}
-
-.profile-form-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding: 5vh 0 0 0;
-  position: "relative";
-  margin: 0 auto;
-  min-width: 330px;
-}
-
-.signin-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding: 5vh 0 0 0;
-  position: "relative";
-  margin: 0 auto;
-  width: 60vw;
-  min-width: 330px;
-}
-
-.signin-form div {
-  margin: 2vh 0;
-}
-
-.picture-upload-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: 30vw;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
 }
 
 #welcome-title {
   font-size: 2.4em;
 }
 
-.signup-form-input, .profile-form-input, #signin-form-input {
-  width: 30vw;
-  height: 3vh;
-  border-radius: 1vh;
-  max-height: 3vh;
+.signup-form-input, .profile-form-input {
+  width: 40vw;
+  max-width: 40vw;
+  height: 5vw;
+  border-radius: 2vh;
 }
 
-.picture-upload-form-input {
-  width: 20vw;
-  padding: 1vh;
-}
-
-.signup-form-input:first-of-type, .profile-form-input:first-of-type, #signin-form-input:first-of-type {
+.signup-form-input:first-of-type, .profile-form-input:first-of-type {
   margin-top: 3vh;
 }
 
-.signup-form-input:nth-child(4) {
-  margin-bottom: 3vh;
-}
-
-.profile-form-input:nth-child(4) {
+.signup-form-input:nth-child(4), .profile-form-input:nth-child(4) {
   margin-bottom: 3vh;
 }
 
 #signup-map, #profile-map {
-  width: 40vw !important;
+  width: 70vw !important;
   height: 30vh !important;
   border: 5px solid grey;
   border-radius: 20px;
-  margin: 0 auto;
 }
 
-#signup-btn, .profile-btn, .signin-btn {
+#signup-btn, .profile-btn {
   height: 5vh;
-  padding: 1vh 3vw;
-  border-radius: 1.2vh;
+  width: 20vw;
+  max-width: 20vw;
+  min-width: 20vw;
+  border-radius: 2vh;
   font-family: 'Fredoka One', cursive;
-  font-size: 0.9em;
+  font-size: 1.2em;
   margin-bottom: 3vh;
-}
-
-#signup-btn:hover, .profile-btn:hover, .signin-btn:hover {
-  -webkit-box-shadow: 8px 8px 5px 0px #807b72;
-  box-shadow: 8px 8px 5px 0px #807b72;
 }
 
 .nav-top {
@@ -310,64 +204,23 @@ main {
   height: 78vh;
   width: 100vw;
 }
-
-#profile-picture-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  width: 30vw;
-  min-width: 330px;
-}
-
-#profile-picture-container h4 {
-  padding: auto 5vw !important;
-  margin-left: 5vw;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-#profile-picture {
-  height: 20vh;
-  width: auto;
-}
-
-#show-password-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  width: 30vw;
-  min-width: 330px;
-  margin: 1vh auto;
-}
-
-#show-password-container div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#show-password-container input, label {
-  font-weight: 100;
-  line-height: 0.8em;
-  font-size: 0.5em;
-}
 /*# sourceMappingURL=style.css.map */
+
+.home-marker{
+  background-image: url("./../images/home-marker-img.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+
+}
+
+.default-marker{
+  background-image: url('./../images/private-marker-img.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
