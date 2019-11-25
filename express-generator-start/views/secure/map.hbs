@@ -21,6 +21,7 @@
   <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
   <input type="text" name="ubication" id="newCommentUbication" hidden>
   <button id="privatePublicBtn">Public</button>
+  <input type="text" name="type" placeholder="Type of comment">
 </form>
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
@@ -216,9 +217,6 @@
                 if(JSON.parse(currentUser)==comment.comment.creatorId){
                     commentPopup = new mapboxgl.Popup()
                         .setHTML(`<div class="home-marker"><h3>Home</h3><button>Move</button></div>`);
-                } else {
-                    commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="home-marker"><h3>Home</h3></div>`);
                 }
 
                 var el = document.createElement('div');
@@ -229,18 +227,35 @@
                     .setPopup(commentPopup)
                     .addTo(map);
 
+            } else if(comment.comment.public==true) {
+                let commentPopup
+                if(JSON.parse(currentUser)==comment.comment.creatorId){
+                    commentPopup = new mapboxgl.Popup()
+                        .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                } else {
+                    commentPopup = new mapboxgl.Popup()
+                        .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                }
+                
+                var el = document.createElement('div');
+                el.className = 'public-marker'
+
+                new mapboxgl.Marker(el)
+                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                    .setPopup(commentPopup)
+                    .addTo(map);
             } else {
                 let commentPopup
                 if(JSON.parse(currentUser)==comment.comment.creatorId){
                     commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="default-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                        .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
                 } else {
                     commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="default-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                        .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
                 }
                 
                 var el = document.createElement('div');
-                el.className = 'default-marker'
+                el.className = 'private-marker'
 
                 new mapboxgl.Marker(el)
                     .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)

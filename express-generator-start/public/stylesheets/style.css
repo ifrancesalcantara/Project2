@@ -2,19 +2,87 @@
   v2.0 | 20110126
   License: none (public domain)
 */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -24,8 +92,17 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -33,17 +110,21 @@ body {
   line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
   list-style: none;
 }
 
-blockquote, q {
+blockquote,
+q {
   quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
   content: none;
 }
 
@@ -60,11 +141,12 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 }
 
 main {
   margin: 10vh auto;
+  position: relative;
 }
 
 #signup-form {
@@ -182,7 +264,9 @@ main {
   font-size: 2.4em;
 }
 
-.signup-form-input, .profile-form-input, #signin-form-input {
+.signup-form-input,
+.profile-form-input,
+#signin-form-input {
   width: 30vw;
   height: 3vh;
   border-radius: 1vh;
@@ -194,7 +278,9 @@ main {
   padding: 1vh;
 }
 
-.signup-form-input:first-of-type, .profile-form-input:first-of-type, #signin-form-input:first-of-type {
+.signup-form-input:first-of-type,
+.profile-form-input:first-of-type,
+#signin-form-input:first-of-type {
   margin-top: 3vh;
 }
 
@@ -206,7 +292,8 @@ main {
   margin-bottom: 3vh;
 }
 
-#signup-map, #profile-map {
+#signup-map,
+#profile-map {
   width: 40vw !important;
   height: 30vh !important;
   border: 5px solid grey;
@@ -214,36 +301,48 @@ main {
   margin: 0 auto;
 }
 
-#signup-btn, .profile-btn, .signin-btn, .profile-nav-btn {
+#signup-btn,
+.profile-btn,
+.signin-btn,
+.profile-nav-btn {
   height: 5vh;
   padding: 1vh 3vw;
   border-radius: 1.2vh;
-  font-family: 'Fredoka One', cursive;
+  font-family: "Fredoka One", cursive;
   font-size: 0.9em;
   margin-bottom: 3vh;
 }
 
-#signup-btn:hover, .profile-btn:hover, .signin-btn:hover, .profile-nav-btn:hover {
+#signup-btn:hover,
+.profile-btn:hover,
+.signin-btn:hover,
+.profile-nav-btn:hover {
   -webkit-box-shadow: 8px 8px 5px 0px #807b72;
   box-shadow: 8px 8px 5px 0px #807b72;
 }
 
 .nav-top {
   top: 0;
+  position: absolute;
+  z-index: 1;
 }
 
 .nav-bot {
   bottom: 0;
+  position: absolute;
+  z-index: 1;
 }
 
-.nav-top, .nav-bot {
+.nav-top,
+.nav-bot {
   background-color: #00b7ff;
   height: 10vh;
   width: 100vw;
   position: fixed;
 }
 
-.nav-top ul, .nav-bot ul {
+.nav-top ul,
+.nav-bot ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -260,21 +359,28 @@ main {
   height: 100%;
 }
 
-.nav-bot li, .nav-top li {
+.nav-bot li,
+.nav-top li {
   list-style-type: none;
   color: #ffffff;
   font-weight: bold;
   padding: 0 7vw;
 }
 
-.nav-bot a, .nav-top a {
+.nav-bot a,
+.nav-top a {
   color: #ffffff;
   list-style-type: none;
   text-decoration: none;
   font-weight: bold;
 }
 
-#userHomeLng, #userHomeLat, #newCommentLng, #newCommentLat, #userComments, #info {
+#userHomeLng,
+#userHomeLat,
+#newCommentLng,
+#newCommentLat,
+#userComments,
+#info {
   visibility: hidden;
   position: absolute;
   z-index: -1;
@@ -365,7 +471,8 @@ main {
           align-items: center;
 }
 
-#show-password-container input, label {
+#show-password-container input,
+label {
   font-weight: 100;
   line-height: 0.8em;
   font-size: 0.5em;
@@ -380,7 +487,16 @@ main {
   cursor: pointer;
 }
 
-.default-marker {
+.public-marker {
+  background-image: url("./../images/marker_template_2.jpg");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.private-marker {
   background-image: url("./../images/private-marker-img.png");
   background-size: cover;
   width: 50px;
@@ -410,5 +526,77 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+#discover-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+#discover-nav h1 {
+  padding: 2vh;
+  text-align: center;
+  width: 48vw;
+  border: 1vw solid black;
+}
+
+#allDiscoverComments, #allMyComments {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  z-index: -2;
+  height: 80vh;
+}
+
+.displayedComment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 3vh 0;
+  width: 48vw;
+}
+
+.displayedComment div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.displayed-comment-title {
+  text-align: center;
+  margin-bottom: 3vh;
+}
+
+.displayed-comment-creator-username {
+  text-align: right;
+  margin-top: 3vh;
+}
+
+.displayedComment img {
+  width: 12vw;
+}
+
+.hidden {
+  display: none !important;
 }
 /*# sourceMappingURL=style.css.map */
