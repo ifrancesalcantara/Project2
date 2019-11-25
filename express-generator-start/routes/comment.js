@@ -52,6 +52,7 @@ router.get("/:commentId", (req, res)=>{
 
 
 router.post('/', (req, res) => {
+    console.log(req.body);
     
     User.findOne({_id: req.session.currentUser._id})
     .then(user=>{
@@ -64,7 +65,7 @@ router.post('/', (req, res) => {
         
         const  { title, text, lng, lat, type } =  req.body;
         //const ubication = JSON.parse(req.body.ubication)
-        console.log(public);
+        console.log(req.body);
         
         Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public, type })
         .then( comment => {
