@@ -1,1 +1,13 @@
-<h1>PICTURE</h1>
+<div id='profile-picture-container'>
+    <h4> {{this.username}}</h4>
+    <img src="{{this.picture}}" alt="profilepicture" width="300px" id="profile-picture">
+</div>
+
+    <p>
+        {{this.errorMessage}}
+    </p>
+
+    <form action="/profile/picture" method="POST" enctype="multipart/form-data" class="profile-form-container">
+        <input type="file" name="photo" class="picture-upload-form-input"/>
+        <button type="submit" class="profile-btn" >Upload</button>
+    </form>
