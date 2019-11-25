@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
         //const ubication = JSON.parse(req.body.ubication)
         console.log(public);
         
-        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, public })
+        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public })
         .then( comment => {
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
@@ -175,7 +175,7 @@ router.post('/delete/:_id', (req, res) => {
                                 userComments = updatedUser.comments.map(comment=> {return {comment}})
                                 const data = {
                                     homeCoords: updatedUser.defaultLocation,
-                                    currentLocation: JSON.stringify(comment.location),
+                                    currentLocation: JSON.stringify(commentToDelete.location),
                                     userComments: JSON.stringify(userComments),
                                     currentUser: JSON.stringify(req.session.currentUser._id)
                                 }

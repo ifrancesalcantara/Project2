@@ -1,21 +1,24 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require("mongoose")
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require("mongoose")
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var authRouter = require("./routes/auth");
-var commentRouter = require('./routes/comment');
-var profileRouter = require('./routes/profile')
-var mapRouter =require('./routes/map');
-var replyRouter = require('./routes/reply');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const authRouter = require("./routes/auth");
+const commentRouter = require('./routes/comment');
+const profileRouter = require('./routes/profile')
+const mapRouter =require('./routes/map');
+const replyRouter = require('./routes/reply');
+const discoverRouter = require('./routes/discover');
 
-var app = express();
+
+
+const app = express();
 
 mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 .then(x => {
@@ -58,6 +61,8 @@ app.use('/comment', commentRouter);
 app.use('/profile', profileRouter);
 app.use('/map', mapRouter);
 app.use('/reply', replyRouter);
+app.use('/discover', discoverRouter);
+
 
 
 

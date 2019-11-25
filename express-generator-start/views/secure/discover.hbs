@@ -1,0 +1,49 @@
+<h1>DISCOVER</h1>
+<p id="allCommentData" hidden>{{this.allCommentData}}</p>
+<p id="currentUserId" hidden>{{this.currentUserId}}</p>
+<div id="allDisplayedComments"></div>
+
+<script>
+    const allCommentData = document.querySelector("#allCommentData")
+    const allDisplayedComments = document.querySelector("#allDisplayedComments")
+    const currentUserId = document.querySelector("#currentUserId")
+
+    console.log(currentUserId.innerHTML)
+
+
+    let publicComments = 0
+    let privateComments = 0
+    let myComments = 0
+    let othersComments = 0
+
+
+    JSON.parse(allCommentData.innerHTML).forEach(comment=>{
+        const commentDiv = document.createElement("div")
+        commentDiv.setAttribute("class", "displayedComment")
+
+        //Set image
+        let imageSrc
+        if(comment.public == true) {
+            imageSrc = "./images/private-marker-img.png"
+        }
+
+        if(comment.public == true) {
+            publicComments ++
+            if(comment.creatorId == currentUserId.innerHTML) {
+                myComments++            
+            } else {
+                othersComments++;
+                if(comment.text) {
+                    commentDiv.innerHTML= (`<img class ="displayedComment" src=${imageSrc}><p>${comment.title}</p><p>${comment.text}</p><p>${comment.creatorUsername}</p>`).trim()
+                    allDisplayedComments.appendChild(commentDiv)
+                } else {
+                    commentDiv.innerHTML= (`<img class="displayedComment" src=${imageSrc}><p>${comment.title}</p><p>${comment.creatorUsername}</p>`).trim()
+                    allDisplayedComments.appendChild(commentDiv)
+                }
+            }
+        } else {
+            privateComments++
+        }
+    })
+    console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)
+</script>
