@@ -100,13 +100,17 @@ router.get('/map', (req, res ) => {
         .then(() => {
             if (req.session.currentUser) {
 
-                MapStyle.find()
-                    .then( (mapData) => {
+                // MapStyle.find()
+                //     .then( (mapData) => {
 
-                        res.render('secure/profile/map', mapData)
-                    })
-                    .catch((err) => console.log(err)
-                    )
+                //         res.render('secure/profile/map', mapData)
+                //     })
+                //     .catch((err) => console.log(err)
+                //     )
+                res.render('secure/profile/map', req.session.currentUser)
+            }
+            else {
+                res.render('index', {errorMessage: "Session ended."})
             }
         })
         .catch((err) => console.log(err))
