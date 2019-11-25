@@ -11,7 +11,7 @@ const saltRounds = 10;
 
 router.post("/login", (req, res)=>{
     const {username, password} = req.body;
-   
+    
     User.findOne({username})
     .populate("comments")
     .then(userData=>{
@@ -44,7 +44,7 @@ router.post("/login", (req, res)=>{
                             lat: {$numberDecimal: userData.defaultLocation.lat},
                         }
                         const data = {
-                            homeCoords: userData.defaultLocation,
+                            homeCoords: JSON.stringify(userData.defaultLocation),
                             currentLocation: JSON.stringify(currentLocation),
                             userComments: JSON.stringify(userComments),
                             currentUser: JSON.stringify(userData._id)

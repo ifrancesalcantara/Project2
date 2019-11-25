@@ -1,35 +1,4 @@
-<h3 id="commentTitle">{{this.title}}</h3>
-
-<p>{{this.text}}</p>
-
-<p>By: {{this.creatorId.username}}</p>
-
-<p id="currentUser" hidden>{{this.currentUserUsername}}</p>
-<p id="commentId" hidden>{{this._id}}</p>
-
-<form action="/reply/{{this._id}}" method="POST">
-    <input type="text" name="text" placeholder="Reply" id="" required>
-    {{!-- <input type="text" name="image_url" placeholder="Add an image" id=""> IF we have time --}}
-    <input type="text" name="creatorUsername" id="commentCreatorUsername" value={{this.creatorId.username}} hidden>
-    <input type="text" name="date" id="replyDate" hidden>
-    <button type="submit">Reply</button>
-</form>
-
-
-<div id="replies">
-    <div class="reply">
-        {{#each this.replies}}
-            <p class="replyDateDisplayed">{{this.date}}</p>
-            <p class="creatorUsername">{{this.creatorUsername}}</p>
-            <p class="replyId" hidden>{{this._id}}</p>
-            <p class="replyText"> {{this.text}}</p>
-        {{/each}}
-    </div>
-</div>
-
-
-<script>
-        const dateInput = document.querySelector("#replyDate")
+    const dateInput = document.querySelector("#replyDate")
     const dateDisplayed = document.querySelectorAll(".replyDateDisplayed")
     const currentUser = document.querySelector("#currentUser").innerHTML
     const allReplyUsernames = document.querySelectorAll(".creatorUsername")
@@ -61,4 +30,3 @@
             dateDisplayed.appendChild(deleteDiv)
         }
     })
-</script>

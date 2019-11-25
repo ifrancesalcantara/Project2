@@ -1,14 +1,4 @@
-<div id="discover-nav">
-    <h1 id="discoverLabel">DISCOVER</h1>
-    <h1 id="myCommentsLabel">My Comments</h1>
-</div>
-<p id="allCommentData" hidden>{{this.allCommentData}}</p>
-<p id="currentUserId" hidden>{{this.currentUserId}}</p>
-<div id="allDiscoverComments"></div>
-<div id="allMyComments"></div>
-
-<script>
-    const allCommentData = document.querySelector("#allCommentData")
+const allCommentData = document.querySelector("#allCommentData")
     const allDiscoverComments = document.querySelector("#allDiscoverComments")
     const currentUserId = document.querySelector("#currentUserId");
     const discoverLabel = document.querySelector("#discoverLabel");
@@ -43,19 +33,19 @@
             if(comment.creatorId == currentUserId.innerHTML) {
                 myComments++            
                 if(comment.text) {
-                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    commentDiv.innerHTML= (`<div><img class = "displayedComment" src=${imageSrc}></div><p class="displayed-comment-title">${comment.title}</p><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
                     allMyComments.appendChild(commentDiv)
                 } else {
-                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    commentDiv.innerHTML= (`<div><img class= "displayedComment" src=${imageSrc}></div><p class="displayed-comment-title">${comment.title}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
                     allMyComments.appendChild(commentDiv)
                 }
             } else {
                 othersComments++;
                 if(comment.text) {
-                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a><a href="/comment/${comment._id}"></div><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    commentDiv.innerHTML= (`<div><img class = "displayedComment" src=${imageSrc}></div><p class="displayed-comment-title">${comment.title}</p><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
                     allDiscoverComments.appendChild(commentDiv)
                 } else {
-                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a><a href="/comment/${comment._id}"></div><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    commentDiv.innerHTML= (`<div><img class= "displayedComment" src=${imageSrc}></div><p class="displayed-comment-title">${comment.title}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
                     allDiscoverComments.appendChild(commentDiv)
                 }
             }
@@ -96,4 +86,3 @@
 
 
     console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)
-</script>
