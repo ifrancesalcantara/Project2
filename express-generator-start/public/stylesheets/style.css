@@ -214,7 +214,7 @@ main {
   margin: 0 auto;
 }
 
-#signup-btn, .profile-btn, .signin-btn {
+#signup-btn, .profile-btn, .signin-btn, .profile-nav-btn {
   height: 5vh;
   padding: 1vh 3vw;
   border-radius: 1.2vh;
@@ -223,7 +223,7 @@ main {
   margin-bottom: 3vh;
 }
 
-#signup-btn:hover, .profile-btn:hover, .signin-btn:hover {
+#signup-btn:hover, .profile-btn:hover, .signin-btn:hover, .profile-nav-btn:hover {
   -webkit-box-shadow: 8px 8px 5px 0px #807b72;
   box-shadow: 8px 8px 5px 0px #807b72;
 }
@@ -387,5 +387,28 @@ main {
   height: 50px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.profile-nav-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin: 2vh 2vw;
+}
+
+.profile-nav-container form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=style.css.map */

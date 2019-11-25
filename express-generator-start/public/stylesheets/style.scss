@@ -185,7 +185,7 @@ main {
     margin: 0 auto;
 }
 
-#signup-btn, .profile-btn, .signin-btn {
+#signup-btn, .profile-btn, .signin-btn, .profile-nav-btn {
     height: $button-height;
     padding: 1vh 3vw;
     border-radius: $button-radius;
@@ -194,7 +194,7 @@ main {
     margin-bottom: 3vh;
 }
 
-#signup-btn:hover, .profile-btn:hover, .signin-btn:hover {
+#signup-btn:hover, .profile-btn:hover, .signin-btn:hover, .profile-nav-btn:hover {
     -webkit-box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
     -moz-box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
     box-shadow: 8px 8px 5px 0px rgba(128,123,114,1);
@@ -325,4 +325,16 @@ main {
     height: 50px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.profile-nav-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 2vh 2vw;
+}
+
+.profile-nav-container form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }

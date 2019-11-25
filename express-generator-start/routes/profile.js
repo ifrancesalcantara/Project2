@@ -24,6 +24,49 @@ router.get("/", (req, res)=>{
         .catch((err) => console.log(err) ) 
 })
 
+router.get('/location', (req, res) => {
+    
+    User.findById({_id: req.session.currentUser._id})
+        .then( () => {
+            if (req.session.currentUser) {
+                res.render('secure/profile/location', req.session.currentUser)
+            }
+            else {
+                res.render('index', {errorMessage: "Session ended."})
+            }
+        })
+        .catch( (err) => console.log(err))
+})
+
+router.get('/security', (req, res ) => {
+
+    User.findById({_id: req.session.currentUser._id})
+        .then( () => {
+            if (req.session.currentUser) {
+                res.render('secure/profile/security', req.session.currentUser)
+            }
+            else{
+                res.render('index', {errorMessage: "session ended."})
+            }
+        })
+        .catch((err) => console.log(err))
+})
+
+router.get('/picture', (req, res) => {
+    console.log('>//>//>////>/>/>//>/>/>//>/>/>//>/>/>//>/>//>/>/>', req.session.currentUser)
+
+    User.findById({_id: req.session.currentUser._id})
+        .then( () => {
+            if (req.session.currentUser) {
+                res.render('secure/profile/picutre', req.session.currentUser)
+            }
+            else {
+                res.render('index', {errorMessage: "session ended"})
+            }
+        })
+        .catch((err) => console.log(err))
+})
+
 
 router.post('/', (req, res) => {
     const _id = req.session.currentUser._id;

@@ -2,6 +2,19 @@
 <p id="lat" hidden>{{this.lat}}</p>
 <pre id='info' hidden></pre>
 
+
+<div class="profile-nav-container">
+    <form action='/profile/location' method='GET' >
+        <button type='submit' class="profile-nav-btn">Location</button>
+    </form>
+    <form action='/profile/security' method='GET'>
+        <button type='submit' class="profile-nav-btn">Security</button>
+    </form>
+    <form action="/profile/picture" method="GET">
+        <button  type='submit' class="profile-nav-btn">Picture</button>
+    </form>
+</div>
+
 <form action='/profile' method='post' id="profile-form">
 
 
