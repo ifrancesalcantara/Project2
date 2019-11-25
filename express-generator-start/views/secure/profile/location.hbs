@@ -7,6 +7,18 @@
 <div class="profile-form-container">
     <div id="profile-map"></div>
     <p>Change your home location</p>
+    <p>
+        {{this.errorMessage}}
+    </p>
+    <form action="/profile/location" method="POST">
+        <button id="profile-location-change-btn" type='submit'>Change Home</button>
+
+        <input id="location-input" name='defaultLocation' hidden>
+    </form>
+</div>
+
+<div class="profile-change-map-style">
+
 </div>
 
 
