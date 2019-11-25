@@ -1,4 +1,5 @@
-const addCommentForm = document.querySelector(".add-comment-form")
+const addCommentForm = document.querySelector(".add-comment-form");
+const newCommentType2 = document.querySelector("#new-comment-type");
 
 
 
@@ -22,11 +23,9 @@ imagesDiv.appendChild(claimComment)
 addCommentForm.appendChild(imagesDiv);
 
 socialComment.addEventListener("click", ()=>{
-    console.log("social");
-    
+    newCommentType2.value = "social"
 })
 
 sightComment.addEventListener("click", ()=>{
-    console.log("social");
-    
+    newCommentType2.value = "sight"
 })

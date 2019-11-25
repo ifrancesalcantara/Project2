@@ -21,7 +21,7 @@
   <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
   <input type="text" name="ubication" id="newCommentUbication" hidden>
   <button id="privatePublicBtn">Public</button>
-  <input id="new-comment-type" type="text" name="type" placeholder="Type of comment">
+  <input id="new-comment-type" type="text" name="type" placeholder="Type of comment" hidden>
 </form>
 
 <script src="./javascripts/map.js"></script>
@@ -215,7 +215,7 @@
             //Style comments accordingly in Geojson and create Markers
             if(comment.comment.type=="home") {
                 let commentPopup
-                if(JSON.parse(currentUser)==comment.comment.creatorId){
+                if (JSON.parse(currentUser)==comment.comment.creatorId) {
                     commentPopup = new mapboxgl.Popup()
                         .setHTML(`<div class="home-marker"><h3>Home</h3><button>Move</button></div>`);
                 }
@@ -228,40 +228,126 @@
                     .setPopup(commentPopup)
                     .addTo(map);
 
-            } else if(comment.comment.public==true) {
-                let commentPopup
-                if(JSON.parse(currentUser)==comment.comment.creatorId){
-                    commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
-                } else {
-                    commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
-                }
-                
-                var el = document.createElement('div');
-                el.className = 'public-marker'
 
-                new mapboxgl.Marker(el)
-                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
-                    .setPopup(commentPopup)
-                    .addTo(map);
-            } else {
-                let commentPopup
-                if(JSON.parse(currentUser)==comment.comment.creatorId){
-                    commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
-                } else {
-                    commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
-                }
-                
-                var el = document.createElement('div');
-                el.className = 'private-marker'
 
-                new mapboxgl.Marker(el)
-                    .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
-                    .setPopup(commentPopup)
-                    .addTo(map);
+            } else if (comment.comment.public==true) {
+
+                if(comment.comment.type=="") {
+                    let commentPopup
+                    if (JSON.parse(currentUser)==comment.comment.creatorId) {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    } else {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    }
+                    
+                    var el = document.createElement('div');
+                    el.className = 'public-marker'
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                        .setPopup(commentPopup)
+                        .addTo(map);
+
+                } else if (comment.comment.type=="social") {
+                    let commentPopup
+                    if(JSON.parse(currentUser)==comment.comment.creatorId){
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="social-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    } else {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="social-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    }
+                    
+                    var el = document.createElement('div');
+                    el.className = 'social-public-marker'
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                        .setPopup(commentPopup)
+                        .addTo(map);
+
+                } else if (comment.comment.type=="sight") {
+                    let commentPopup
+                    if(JSON.parse(currentUser)==comment.comment.creatorId){
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="sight-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    } else {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="sight-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    }
+                    
+                    var el = document.createElement('div');
+                    el.className = 'sight-public-marker'
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                        .setPopup(commentPopup)
+                        .addTo(map);
+                }
+
+
+
+
+
+            } else if (comment.comment.public==false) {
+
+
+                if(comment.comment.type=="") {
+                    let commentPopup
+                    if (JSON.parse(currentUser)==comment.comment.creatorId) {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    } else {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    }
+                    
+                    var el = document.createElement('div');
+                    el.className = 'private-marker'
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                        .setPopup(commentPopup)
+                        .addTo(map);
+
+
+                } else if (comment.comment.type=="social") {
+                    let commentPopup
+                    if(JSON.parse(currentUser)==comment.comment.creatorId){
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="social-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    } else {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="social-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    }
+                    
+                    var el = document.createElement('div');
+                    el.className = 'social-private-marker'
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                        .setPopup(commentPopup)
+                        .addTo(map);
+                } else if (comment.comment.type=="sight") {
+                    let commentPopup
+                    if(JSON.parse(currentUser)==comment.comment.creatorId){
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="sight-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    } else {
+                        commentPopup = new mapboxgl.Popup()
+                            .setHTML(`<div class="sight-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                    }
+                    
+                    var el = document.createElement('div');
+                    el.className = 'sight-private-marker'
+
+                    new mapboxgl.Marker(el)
+                        .setLngLat(geojson.features[newMarkerIndex-1].geometry.coordinates)
+                        .setPopup(commentPopup)
+                        .addTo(map);
+                }
             }
         })
     });
