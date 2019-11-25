@@ -308,3 +308,21 @@ main {
     line-height: 0.8em;
     font-size: 0.5em;
 }
+
+.home-marker{
+    background-image: url("./../images/home-marker-img.png");
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.default-marker{
+    background-image: url('./../images/private-marker-img.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
