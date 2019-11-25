@@ -95,10 +95,26 @@ router.post('/location', (req, res) => {
         .catch((err)=> console.log(err))
 })
         
+router.get('/map', (req, res ) => {
+    User.findById(req.session.currentUser)
+        .then(() => {
+            if (req.session.currentUser) {
+
+                MapStyle.find()
+                    .then( (mapData) => {
+
+                        res.render('secure/profile/map', mapData)
+                    })
+                    .catch((err) => console.log(err)
+                    )
+            }
+        })
+        .catch((err) => console.log(err))
+})
 
 router.get('/location', (req, res) => {
     
-    User.findById({_id: req.session.currentUser._id})
+    User.findById(req.session.currentUser._id)
     .then( () => {
         if (req.session.currentUser) {
             res.render('secure/profile/location', req.session.currentUser)
@@ -112,7 +128,7 @@ router.get('/location', (req, res) => {
 
 router.get('/security', (req, res ) => {
     
-    User.findById({_id: req.session.currentUser._id})
+    User.findById(req.session.currentUser._id)
     .then( () => {
         if (req.session.currentUser) {
             res.render('secure/profile/security', req.session.currentUser)
@@ -126,7 +142,7 @@ router.get('/security', (req, res ) => {
 
 router.get('/picture', (req, res) => {
     
-    User.findById({_id: req.session.currentUser._id})
+    User.findById(req.session.currentUser._id)
     .then( () => {
         if (req.session.currentUser) {
             res.render('secure/profile/picture', req.session.currentUser)
@@ -139,7 +155,7 @@ router.get('/picture', (req, res) => {
 })
 
 router.get("/", (req, res)=>{
-    User.findById({_id: req.session.currentUser._id})
+    User.findById(req.session.currentUser._id)
         .then(() =>{
             if (req.session.currentUser) {
                 res.render('secure/profile', req.session.currentUser)
