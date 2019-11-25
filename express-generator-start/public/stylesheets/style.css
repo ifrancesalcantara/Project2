@@ -596,6 +596,16 @@ label {
   width: 12vw;
 }
 
+.displayedComment a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.displayedComment a:active, .displayedComment a:hover {
+  color: orange;
+}
+
 .hidden {
   display: none !important;
 }

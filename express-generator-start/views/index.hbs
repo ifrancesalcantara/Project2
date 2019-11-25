@@ -24,4 +24,24 @@
   <button id="signup-index-btn" type="submit" class="signin-btn">SIGN UP</button>
 </form>
 
-<script src="./javascripts/index"></script>
+<script>
+  function showPassword  () {
+    const passShow = document.getElementById('passShow')
+
+    if ( passShow.type === 'password')
+    {
+        passShow.type = 'text';
+    }
+    else 
+    {
+        passShow.type = 'password';
+    }
+}
+
+//GET current position by GPS for the form in signup
+navigator.geolocation.getCurrentPosition(function(position) {
+document.querySelector("#signup-lng").value = position.coords.longitude
+document.querySelector("#signup-lat").value = position.coords.latitude
+});
+
+</script>
