@@ -67,7 +67,7 @@ router.post('/', (req, res) => {
         //const ubication = JSON.parse(req.body.ubication)
         console.log(req.body);
         
-        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public, type })
+        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public, type, likes: [] })
         .then( comment => {
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
@@ -195,6 +195,11 @@ router.post('/delete/:_id', (req, res) => {
         .catch( (err) => console.log(err));
     
     
+})
+
+
+router.get("/like/:commentId/username", (req, res)=>{
+
 })
 
 module.exports = router;

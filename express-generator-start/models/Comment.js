@@ -14,6 +14,7 @@ const commentSchema = new Schema({
     type: {type: String, default: ""}, //Te be changed to required. default for testing 
     public: {type: Boolean},
     replies: [{type: mongoose.Schema.Types.ObjectId, ref: "Reply"}],
+    likes: Array
 })
 
 const Comment = mongoose.model("Comment", commentSchema)

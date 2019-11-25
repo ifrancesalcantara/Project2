@@ -7,6 +7,8 @@
 <p id="currentUser" hidden>{{this.currentUserUsername}}</p>
 <p id="commentId" hidden>{{this._id}}</p>
 
+<div class="like"></div>
+
 <form action="/reply/{{this._id}}" method="POST">
     <input type="text" name="text" placeholder="Reply" id="" required>
     {{!-- <input type="text" name="image_url" placeholder="Add an image" id=""> IF we have time --}}
@@ -14,7 +16,6 @@
     <input type="text" name="date" id="replyDate" hidden>
     <button type="submit">Reply</button>
 </form>
-
 
 <div id="replies">
     <div class="reply">
@@ -27,9 +28,9 @@
     </div>
 </div>
 
-
+<script src="./../javascripts/comment.js"></script>
 <script>
-        const dateInput = document.querySelector("#replyDate")
+    const dateInput = document.querySelector("#replyDate")
     const dateDisplayed = document.querySelectorAll(".replyDateDisplayed")
     const currentUser = document.querySelector("#currentUser").innerHTML
     const allReplyUsernames = document.querySelectorAll(".creatorUsername")

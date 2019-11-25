@@ -15,6 +15,7 @@ claimComment.classList.add("add-comment-form-img-claim");
 
 socialComment.setAttribute("src", "./images/social.jpg");
 sightComment.setAttribute("src", "./images/sight.png");
+claimComment.setAttribute("src", "./images/claim.png");
 // claimComment.addAttribute("src", );
 
 imagesDiv.appendChild(socialComment)
@@ -25,7 +26,9 @@ addCommentForm.appendChild(imagesDiv);
 socialComment.addEventListener("click", ()=>{
     newCommentType2.value = "social"
 })
-
 sightComment.addEventListener("click", ()=>{
     newCommentType2.value = "sight"
+})
+claimComment.addEventListener("click", ()=>{
+    newCommentType2.value = "claim"
 })
