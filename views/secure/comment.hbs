@@ -1,33 +1,41 @@
-<h3 id="commentTitle">{{this.title}}</h3>
+<a class="close-img-link" href="/map"><img src="./../../../../images/close.png" alt=""></a>
 
-<p>{{this.text}}</p>
+<div class="comment-in-comment-view">
+    <h3 id="commentTitle">{{this.title}}</h3>
 
-<p>By: {{this.creatorId.username}}</p>
+    <p>{{this.text}}</p>
+</div>
+
+<div class="comment-view-author-and-like">
+    <div class="comment-view-like-div"></div>
+    <p class="author-in-comment-view">By: {{this.creatorId.username}}</p>
+</div>
 
 <p id="currentUser" hidden>{{this.currentUserUsername}}</p>
 <p id="commentId" hidden>{{this._id}}</p>
 <p id="current-likes"hidden>{{this.currentLikes}}</p>
 
-<div class="like"></div>
+<div id="replies">
+        {{#each this.replies}}
+    <div class="reply">
+            <p class="replyDateDisplayed">{{this.date}}</p>
+            <p class="replyText">"{{this.text}}"</p>
+            <p class="creatorUsername">{{this.creatorUsername}}</p>
+            <p class="replyId" hidden>{{this._id}}</p>
+    </div>
+        {{/each}}
+</div>
 
-<form action="/reply/{{this._id}}" method="POST">
-    <input type="text" name="text" placeholder="Reply" id="" required>
+<form class="comment-view-reply-form" action="/reply/{{this._id}}" method="POST">
+    <input type="text" name="text" id="" required>
     {{!-- <input type="text" name="image_url" placeholder="Add an image" id=""> IF we have time --}}
     <input type="text" name="creatorUsername" id="commentCreatorUsername" value={{this.creatorId.username}} hidden>
     <input type="text" name="date" id="replyDate" hidden>
+    <input type="text" name="currentLikes" id="keepTheLikesWhenReplying" hidden>
     <button type="submit">Reply</button>
 </form>
 
-<div id="replies">
-    <div class="reply">
-        {{#each this.replies}}
-            <p class="replyDateDisplayed">{{this.date}}</p>
-            <p class="creatorUsername">{{this.creatorUsername}}</p>
-            <p class="replyId" hidden>{{this._id}}</p>
-            <p class="replyText"> {{this.text}}</p>
-        {{/each}}
-    </div>
-</div>
+
 
 <script>
     const dateInput = document.querySelector("#replyDate")
@@ -38,14 +46,13 @@
     const replyIds = document.querySelectorAll(".replyId")
     const commentId = document.querySelector("#commentId").innerHTML
     
-    
     dateInput.value = new Date()
 
     //Create Delete comment button if user is the creator
     if(currentUser === commentCreatorUsername) {
         const deleteCommentDiv = document.createElement("div")
-            deleteCommentDiv.innerHTML= (`<form method="POST" action="/comment/delete/${commentId}"><button class="comment-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
-            document.querySelector("main").insertBefore(deleteCommentDiv, document.querySelector("#commentTitle"))
+            deleteCommentDiv.innerHTML= (`<form method="POST" action="/comment/delete/${commentId}"><button class="comment-view-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
+            document.querySelector(".comment-view-author-and-like").insertBefore(deleteCommentDiv, document.querySelector(".author-in-comment-view"))
     }
     
     //Modify reply date appearance and add reply deletion button  
@@ -53,12 +60,12 @@
         var dateToDisplay = dateDisplayed.innerHTML.split(" ")
         dateToDisplay.splice(0, 1)
         dateToDisplay.splice(3)
-        dateDisplayed.innerHTML = dateToDisplay    
+        dateDisplayed.innerHTML = dateToDisplay.join(" ")    
 
         console.log(currentUser, "vs ", allReplyUsernames[index].innerHTML)
         if(currentUser === allReplyUsernames[index].innerHTML) {
             const deleteDiv = document.createElement("div")
-            deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button class="comment-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
+            deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button class="comment-view-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
             dateDisplayed.appendChild(deleteDiv)
         }
     })
@@ -66,10 +73,12 @@
 
 
 const replies = document.querySelector("#replies")
-const like = document.querySelector(".like")
+const like = document.querySelector(".comment-view-like-div")
 const currentUser2 = document.querySelector("#currentUser").innerHTML
 const commentId2 = document.querySelector("#commentId").innerHTML
 const currentLikes = document.querySelector("#current-likes").innerHTML
+const likesAndAuth = document.querySelector(".comment-view-author-and-like")
+const keepTheLikesWhenReplying = document.querySelector("#keepTheLikesWhenReplying")
 
 const totalLikes = document.createElement("span")
 const likeBtn = document.createElement("button")
@@ -78,6 +87,7 @@ const likeImg = document.createElement("img")
 
 var alreadyLiked = false
 
+totalLikes.classList.add("comment-view-total-likes")
 likeBtn.classList.add("like-btn")
 likeImg.classList.add("like-img")
 
@@ -92,4 +102,6 @@ like.appendChild(totalLikes)
 likeBtn.appendChild(likeImg)
 likeForm.appendChild(likeBtn)
 like.appendChild(likeForm)
+
+keepTheLikesWhenReplying.value = currentLikes;
 </script>

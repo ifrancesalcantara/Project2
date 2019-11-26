@@ -12,8 +12,8 @@ router.post('/:_id', function(req, res, next) {
         Comment.findById(_id)
             .then( (commentToUpdate) => {
                 // console.log("commentToUpdate", commentToUpdate)
-                const { text, date } = req.body
-                // console.log(req.body);
+                const { text, date, currentLikes } = req.body
+                console.log(req.body);
                 
                 Reply.create({ text, creatorUsername: req.session.currentUser.username, date })
                     .then( (newReply) => {
@@ -27,6 +27,7 @@ router.post('/:_id', function(req, res, next) {
                                     .populate("creatorId")
                                     .then( (reallyUpdatedComment) => {
                                         reallyUpdatedComment["currentUserUsername"] = req.session.currentUser.username 
+                                        reallyUpdatedComment["currentLikes"] = currentLikes
                                         res.render('secure/comment', reallyUpdatedComment);
                                     })
                                     .catch( (err) => console.log(err));

@@ -304,7 +304,8 @@ main {
 #signup-btn,
 .profile-btn,
 .signin-btn,
-.profile-nav-btn {
+.profile-nav-btn,
+.comment-view-reply-form button {
   height: 5vh;
   padding: 1vh 3vw;
   border-radius: 1.2vh;
@@ -317,7 +318,8 @@ main {
 #signup-btn:hover,
 .profile-btn:hover,
 .signin-btn:hover,
-.profile-nav-btn:hover {
+.profile-nav-btn:hover,
+.comment-view-reply-form button:hover {
   -webkit-box-shadow: 8px 8px 5px 0px #807b72;
   box-shadow: 8px 8px 5px 0px #807b72;
 }
@@ -528,9 +530,17 @@ label {
   height: 2vh;
 }
 
-.comment-comment-trash {
-  position: relative;
-  top: 5%;
+.comment-view-comment-trash {
+  position: absolute;
+  top: 2vh;
+  left: 2vh;
+  background-color: red;
+  height: 15vw;
+  width: 15vw;
+}
+
+.comment-view-comment-trash img {
+  width: 10vw;
 }
 
 .comment-reply-trash {
@@ -547,7 +557,7 @@ label {
 }
 
 .public-marker {
-  background-image: url("./../images/marker_template_2.jpg");
+  background-image: url("./../images/public-marker-generic-img.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -556,7 +566,7 @@ label {
 }
 
 .private-marker {
-  background-image: url("./../images/private-marker-img.png");
+  background-image: url("./../images/private-marker-generic-img.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -564,8 +574,8 @@ label {
   cursor: pointer;
 }
 
-.social-private-marker, .social-public-marker {
-  background-image: url("./../images/social.jpg");
+.social-public-marker {
+  background-image: url("./../images/public-marker-social-img.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -573,8 +583,8 @@ label {
   cursor: pointer;
 }
 
-.sight-private-marker, .sight-public-marker {
-  background-image: url("./../images/sight.png");
+.social-private-marker {
+  background-image: url("./../images/private-marker-social-img.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -582,8 +592,35 @@ label {
   cursor: pointer;
 }
 
-.claim-private-marker, .claim-public-marker {
-  background-image: url("./../images/claim.png");
+.sight-public-marker {
+  background-image: url("./../images/public-marker-sight-img.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.sight-private-marker {
+  background-image: url("./../images/private-marker-sight-img.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.claim-public-marker {
+  background-image: url("./../images/public-marker-claim-img.png");
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.claim-private-marker {
+  background-image: url("./../images/private-marker-danger-img.png");
   background-size: cover;
   width: 50px;
   height: 50px;
@@ -801,5 +838,104 @@ label {
   font-size: 1.4em;
   text-align: center;
   margin-bottom: 2.5vh;
+}
+
+.close-img-link {
+  position: absolute;
+  left: 77vw;
+  top: 1vh;
+}
+
+.close-img-link img {
+  width: 20vw;
+}
+
+.comment-in-comment-view {
+  padding-top: 15vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.comment-in-comment-view h3 {
+  font-weight: bold;
+  font-size: 3em;
+  word-wrap: break-word;
+  width: 80%;
+  text-align: center;
+}
+
+.comment-in-comment-view p:first-of-type {
+  left: 10vw;
+  width: 80%;
+  margin-top: 4vh;
+  font-size: 1.5em;
+  word-wrap: break-word;
+  margin-bottom: 6vh;
+}
+
+.author-in-comment-view {
+  text-align: right;
+  margin-right: 5vw;
+}
+
+.comment-view-like-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 25vw;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.comment-view-author-and-like {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.comment-view-reply-form {
+  text-align: right;
+  margin-right: 5vw;
+  margin-top: 5vh;
+}
+
+.comment-view-reply-form input {
+  margin-right: 4vw;
+  height: 5vh;
+  width: 50vw;
+}
+
+.reply {
+  margin: 4vh 4vw;
+}
+
+.replyDateDisplayed {
+  color: grey;
+}
+
+.creatorUsername {
+  text-align: right;
+}
+
+.replyText {
+  margin: 4vh 0 1vh 24vw;
+  width: 60vw;
+  word-wrap: break-word;
 }
 /*# sourceMappingURL=style.css.map */
