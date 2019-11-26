@@ -82,4 +82,4 @@ const allCommentData = document.querySelector("#allCommentData")
 
 
 
-    // console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)
+    console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)

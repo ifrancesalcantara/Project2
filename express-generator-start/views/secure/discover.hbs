@@ -87,9 +87,16 @@
         }
     })
 
-    const freshAllComments = allComments.sort((a, b)=>{
-        a.date > b.date
+    var freshAllComments = allComments
+    .filter(comment=>{return comment.type!="home"&&comment.date})
+    freshAllComments = freshAllComments.sort((a, b)=> {
+        if (a.date > b.date) {
+            return 1;
+        } else {
+            return -1
+        }
     })
+    freshAllComments.forEach(comment=>{console.log(comment.title)})
     console.log(freshAllComments) //HERE I WAS
 
     
@@ -107,7 +114,7 @@
         allMyComments.classList.add("hidden")
     })
 
-
+    
 
     //console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)
 </script>
