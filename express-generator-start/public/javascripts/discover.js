@@ -69,10 +69,8 @@ const allCommentData = document.querySelector("#allCommentData")
     allMyComments.classList.add("hidden")
 
     myCommentsLabel.addEventListener("click", (e)=>{
-        console.log("HIIIIIII")
         allMyComments.classList.remove("hidden")
         allDiscoverComments.classList.add("hidden");
-        console.log("allDiscoverComments.hidden: ", allDiscoverComments.classList)
     })
 
 
@@ -80,9 +78,8 @@ const allCommentData = document.querySelector("#allCommentData")
     discoverLabel.addEventListener("click",(e)=>{
         allDiscoverComments.classList.remove("hidden")
         allMyComments.classList.add("hidden")
-        console.log("allDiscoverComments.hidden: ", allDiscoverComments.classList)
     })
 
 
 
-    console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)
+    // console.log("public", publicComments, "private: ", privateComments, "mine: ", myComments, "other ppl's: ", othersComments)

@@ -68,11 +68,11 @@ router.post('/', (req, res) => {
         }
         
         const  { title, text, lng, lat, type } =  req.body;
-        //const ubication = JSON.parse(req.body.ubication)
-        console.log(req.body);
         
-        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public, type, likes: [] })
+        Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public, type, likes: [], date: new Date() })
         .then( comment => {
+            console.log(comment);
+            
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
                 .then( (notYetUpdatedUser) => {
