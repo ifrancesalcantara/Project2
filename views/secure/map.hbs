@@ -6,7 +6,8 @@
 <div id="map"></div>
 <pre id='info' hidden></pre>
 
-<form class="add-comment-form" action='/comment' method='POST'>
+
+<form class="add-comment-form" action='/comment' method='POST' id="comment-popup">
 
   <input type='text' name='title' placeholder="title" required>
 
@@ -16,13 +17,15 @@
 
   <input id="newCommentLat" type='text' name='lat' required>
 
-
-  <button id="add-comment-btn" type='submit'>Submit</button>
-  <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
-  <input type="text" name="ubication" id="newCommentUbication" hidden>
-  <button id="privatePublicBtn">Public</button>
-  <input id="new-comment-type" type="text" name="type" placeholder="Type of comment" hidden>
+    <div class="comment-popup">
+        <button id="add-comment-btn" type='submit'>Submit</button>
+        <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
+        <input type="text" name="ubication" id="newCommentUbication" hidden>
+        <button id="privatePublicBtn">Public</button>
+        <input id="new-comment-type" type="text" name="type" placeholder="Type of comment" hidden>
+    </div>
 </form>
+
 
 <script src="./javascripts/map.js"></script>
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
@@ -385,6 +388,24 @@
             }
         })
     });
+
+document.getElementById('comment-popup-button').addEventListener('click', () => {
+
+    const commentMenu = document.getElementById('comment-popup');
+    console.log('////>/>>////>/ STYLE before if' , commentMenu.style.display);
+    
+        if ( commentMenu.style.display === 'none') {
+            console.log('////>/>>////>/ STYLE after if' , commentMenu.style.display);
+         return commentMenu.style.display === 'block';
+        }
+        else {
+            return commentMenu.style.display === 'none';
+        }
+        
+
+});
+    
+
 </script>
 
 

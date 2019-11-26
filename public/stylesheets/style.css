@@ -393,7 +393,7 @@ main {
 
 .add-comment-form {
   position: absolute;
-  top: 1vh;
+  top: 1.5vh;
   -webkit-transition: height 2.5s;
   transition: height 2.5s;
   display: -webkit-box;
@@ -403,25 +403,36 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  margin-left: 1.8vw;
+  background-color: rgba(74, 177, 211, 0.8);
+  padding: 1.5vh 1.5vw;
+  border-radius: 1.5vh 1.5vw;
 }
 
 .add-comment-form input {
-  width: 35vw;
-  height: 1.5vh;
+  width: 40vw;
+  height: 2.4vh;
   border-radius: 0.5vh;
   max-height: 3vh;
+  margin-bottom: 0.8vh;
 }
 
-.add-comment-form input:nth-child(2) {
-  height: 8vh;
+.add-comment-form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-top: 0.8vh;
 }
 
 .add-comment-form button {
-  height: 2.5vh;
-  border-radius: 1.2vh;
+  height: 3vh;
+  border-radius: 0.6vh;
   font-family: "Fredoka One", cursive;
   font-size: 0.72em;
-  width: 12.5vw;
+  width: 17.5vw;
 }
 
 .add-comment-form button:hover {
@@ -614,7 +625,6 @@ label {
           align-items: center;
 }
 
-<<<<<<< HEAD
 #profile-nav-container button {
   border-color: black;
   border-top: none;
@@ -677,8 +687,6 @@ label {
   color: #ffffff;
 }
 
-=======
->>>>>>> develop
 #allDiscoverComments, #allMyComments {
   display: -webkit-box;
   display: -ms-flexbox;
