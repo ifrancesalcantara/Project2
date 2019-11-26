@@ -1,0 +1,47 @@
+<form action='/auth/login' method='POST' class="signin-form">
+  <div>
+    <input type='text' name='username' placeholder="Username">
+    <input type='password' name='password' id="passShow" placeholder="Password">
+  </div>
+
+  <div id="show-password-container">
+    <div>
+    <input type="checkbox" name="passShow" onclick="showPassword()">
+    <label for="">Show Password</label>
+
+    </div>
+    <button type='submit' class="signin-btn">Log In</button>
+
+  </div>
+
+
+
+</form>
+
+<form id="signup-index-form" action="/auth/signupDisplay/" method="POST" class="signin-form">
+  <input id="signup-lng" type="text" name="lng" hidden>
+  <input id="signup-lat" type="text" name="lat" hidden>
+  <button id="signup-index-btn" type="submit" class="signin-btn">SIGN UP</button>
+</form>
+
+<script>
+  function showPassword  () {
+    const passShow = document.getElementById('passShow')
+
+    if ( passShow.type === 'password')
+    {
+        passShow.type = 'text';
+    }
+    else 
+    {
+        passShow.type = 'password';
+    }
+}
+
+//GET current position by GPS for the form in signup
+navigator.geolocation.getCurrentPosition(function(position) {
+document.querySelector("#signup-lng").value = position.coords.longitude
+document.querySelector("#signup-lat").value = position.coords.latitude
+});
+
+</script>
