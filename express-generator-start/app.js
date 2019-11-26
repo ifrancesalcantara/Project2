@@ -16,11 +16,18 @@ const mapRouter =require('./routes/map');
 const replyRouter = require('./routes/reply');
 const discoverRouter = require('./routes/discover');
 
-
+// require("dotenv").config();
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+// mongoose.connect('mongodb://localhost/hoody', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+// .then(x => {
+//   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+// })
+// .catch(err => {
+//   console.error('Error connecting to mongo', err)
+// });
+mongoose.connect("mongodb://localhost/hoody", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
 })

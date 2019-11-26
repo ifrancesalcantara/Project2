@@ -16,6 +16,8 @@
     const discoverLabel = document.querySelector("#discoverLabel");
     const allMyComments = document.querySelector("#allMyComments");
     const myCommentsLabel = document.querySelector("#myCommentsLabel");
+    const myCommentsFresh = document.querySelector("#myCommentsFresh");
+    const allDiscoverComments = document.querySelector("#allDiscoverComments");
 
     let publicComments = 0
     let privateComments = 0
@@ -96,8 +98,67 @@
             return -1
         }
     })
-    freshAllComments.forEach(comment=>{console.log(comment.title)})
-    console.log(freshAllComments) //HERE I WAS
+
+
+    freshAllComments.forEach(comment=>{
+        const commentDiv = document.createElement("div")
+        commentDiv.setAttribute("class", "displayedComment")
+
+        //Set image
+        let imageSrc
+        if(comment.public == true) {
+            if(comment.type == "social"){
+                imageSrc = "./images/social.jpg"
+            } else if (comment.type == "sight") {
+                imageSrc = "./images/sight.png"
+            } else {
+                imageSrc = "./images/marker_template.png"
+            }
+        } else if(comment.public == false) {
+            if (comment.type == "social") {
+                imageSrc = "./images/social.jpg"
+            } else if (comment.type == "sight") {
+                imageSrc = "./images/sight.png"
+            } else {
+                imageSrc = "./images/private-marker-img.png"
+            }
+        }
+
+        if(comment.public == true) {
+            publicComments ++
+            if(comment.creatorId == currentUserId.innerHTML) {
+                myComments++            
+                if(comment.text) {
+                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    allMyComments.appendChild(commentDiv)
+                } else {
+                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    allMyComments.appendChild(commentDiv)
+                }
+            } else {
+                othersComments++;
+                if(comment.text) {
+                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a><a href="/comment/${comment._id}"></div><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    allDiscoverComments.appendChild(commentDiv)
+                } else {
+                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a><a href="/comment/${comment._id}"></div><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    allDiscoverComments.appendChild(commentDiv)
+                }
+            }
+        } else {
+            privateComments++;
+            if(comment.type == "home") {
+            } else if(comment.creatorId == currentUserId.innerHTML) {       
+                if(comment.text) {
+                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    allMyComments.appendChild(commentDiv)
+                } else {
+                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    allMyComments.appendChild(commentDiv)
+                }
+            }
+        }
+    })
 
     
     allMyComments.classList.add("hidden")
