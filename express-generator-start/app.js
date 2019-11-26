@@ -16,7 +16,7 @@ const mapRouter =require('./routes/map');
 const replyRouter = require('./routes/reply');
 const discoverRouter = require('./routes/discover');
 
-// require("dotenv").config();
+require("dotenv").config();
 
 const app = express();
 
@@ -27,7 +27,7 @@ const app = express();
 // .catch(err => {
 //   console.error('Error connecting to mongo', err)
 // });
-mongoose.connect("mongodb://localhost/hoody", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 .then(x => {
   console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
 })
