@@ -614,7 +614,6 @@ label {
           align-items: center;
 }
 
-<<<<<<< HEAD
 #profile-nav-container button {
   border-color: black;
   border-top: none;
@@ -677,8 +676,6 @@ label {
   color: #ffffff;
 }
 
-=======
->>>>>>> develop
 #allDiscoverComments, #allMyComments {
   display: -webkit-box;
   display: -ms-flexbox;
