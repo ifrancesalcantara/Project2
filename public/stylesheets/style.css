@@ -499,8 +499,10 @@ main {
 }
 
 #profile-picture {
-  height: 20vh;
-  width: auto;
+  height: 30vh;
+  width: 30vw;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 
 #show-password-container {

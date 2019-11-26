@@ -70,8 +70,9 @@ router.post('/picture', parser.single('photo'), (req, res) => {
     const image_url = req.file.secure_url;
     
     User.findByIdAndUpdate({_id: req.session.currentUser._id}, {picture: image_url}, {new: true})
-    .then( () => {
-                res.render('secure/profile', req.session.currentUser)
+    .then( ( data ) => {
+        
+                res.render('secure/profile', data)
             })
             .catch((err) => console.log(err))
         })
@@ -146,9 +147,11 @@ router.get('/security', (req, res ) => {
 
 router.get('/picture', (req, res) => {
     
-    User.findById(req.session.currentUser._id)
+    User.findOne({_id: req.session.currentUser._id} )
     .then( () => {
+        console.log('secure/profile/picture', req.session.currentUser.picture);
         if (req.session.currentUser) {
+            
             res.render('secure/profile/picture', req.session.currentUser)
         }
         else {

@@ -519,8 +519,9 @@ main {
 }
 
 #profile-picture {
-  height: 20vh;
-  width: auto;
+  height: 30vh;
+  width: 30vw;
+  object-fit: scale-down;
 }
 
 #show-password-container {
@@ -744,9 +745,10 @@ label {
   margin-left: 2vh;
 }
 
-#allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
-  // margin-top: 3vw
-}
+// #allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
+//   // margin-top: 3vw
+  
+// }
 
 // #allDiscoverComments > *:last-of-type, #allMyComments > *:last-of-type {
 //   margin-bottom: 10vh;
