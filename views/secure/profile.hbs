@@ -1,19 +1,4 @@
-
-
-
-
-{{!-- <form action='/profile' method='post' id="profile-form"> --}}
-
-
-<div id='profile-picture-container'>
-    <h4> {{this.username}}</h4>
-    <img src="{{this.picture}}" alt="profilepicture" width="300px" id="profile-picture">
-</div>
-
-    <p>
-        {{this.errorMessage}}
-    </p>
-<div class="profile-nav-container">
+<div id="profile-nav-container">
     <form action='/profile/location' method='GET' >
         <button type='submit' class="profile-nav-btn">Location</button>
     </form>
@@ -27,27 +12,18 @@
         <button  type='submit' class="profile-nav-btn">Map Style</button>
     </form>
 </div>
-    
-    {{!-- <input type='password' name='password' id='passShow' class="profile-form-input" placeholder="Change your password">
 
-    <input type="password" name='passConf' id='passConfShow' class="profile-form-input" placeholder="Cofirm your password change">
+    <p>
+        {{this.errorMessage}}
+    </p>
 
-    <div id="show-password-container">
-        <div>
-        <input type="checkbox" name="passShow" onclick="showPassword()" >
-        <label for="">Show Password</label>
-    </div>
-
-        <button type='submit' class="profile-btn">Change</button>
-    </div>
-</form> --}}
+<div id='profile-picture-container'>
+    <h4> {{this.username}}</h4>
+    <img src="{{this.picture}}" alt="profilepicture" width="300px" id="profile-picture">
+</div>
 
     
-
-{{!-- <div class="profile-form-container">
-    <div id="profile-map"></div>
-    <p>Change your home location</p>
-</div> --}}
+    
 
 <div class="profile-form-container">
     <form action='/profile/session' method='POST' class="profile-form">

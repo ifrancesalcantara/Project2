@@ -133,20 +133,35 @@ table {
 /* GLOBAL VARIABLES >>>>>>>>>>>>>>>>>>>>> */
 $main-font: "Fredoka One", cursive;
 $main-color: black;
-$nav-color: #ffffff;
+$nav-font-color: #ffffff;
 
+
+//FONTSIZE
+$h1-size: 2em;
+$h2-size: 1.7em;
+$h3-size: 1.4em;
+$p-size: 1em;
+
+//BUTTON
 $button-height: 5vh;
-$button-width: 20vw;
+$button-width: 25vw;
 $button-radius: 1.2vh;
 $button-padding: 5vw;
 $button-font-size: 0.9em;
+$button-border-color: rgba(74, 177, 211, 0.8);
 
+//CONTAINER
 $container-width: 60vw;
 $container-min-width: 330px;
 
-$input-width: 30vw;
+//INPUT
+$input-width: 50vw;
 $input-height: 3vh;
 $input-radius: 1vh;
+$check-box-width: 4vw;
+
+//COLORS
+$nav-color: #00b7ff;
 
 
 
@@ -214,7 +229,7 @@ body {
 }
 
 a {
-  color: #00b7ff;
+  color: $nav-font-color;
 }
 
 main {
@@ -290,7 +305,7 @@ main {
 
 .signup-form-input,
 .profile-form-input,
-#signin-form-input {
+.signin-form input {
   width: $input-width;
   height: $input-height;
   border-radius: $input-radius;
@@ -304,7 +319,7 @@ main {
 
 .signup-form-input:first-of-type,
 .profile-form-input:first-of-type,
-#signin-form-input:first-of-type {
+.signin-form-input:first-of-type {
   margin-top: 3vh;
 }
 
@@ -335,6 +350,7 @@ main {
   font-family: "Fredoka One", cursive;
   font-size: $button-font-size;
   margin-bottom: 3vh;
+  width: $button-width
 }
 
 #signup-btn:hover,
@@ -360,7 +376,7 @@ main {
 
 .nav-top,
 .nav-bot {
-  background-color: #00b7ff;
+  background-color: $nav-color;
   height: 10vh;
   width: 100vw;
   position: fixed;
@@ -378,14 +394,14 @@ main {
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
-  color: $nav-color;
+  color: $nav-font-color;
   font-weight: bold;
   padding: 0 7vw;
 }
 
 .nav-bot a,
 .nav-top a {
-  color: $nav-color;
+  color: $nav-font-color;
   list-style-type: none;
   text-decoration: none;
   font-weight: bold;
@@ -455,17 +471,21 @@ main {
   margin: 1vh auto;
 }
 
-#show-password-container div {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
 
 #show-password-container input,
 label {
   font-weight: 100;
-  line-height: 0.8em;
-  font-size: 0.5em;
+  font-size: 0.6em;
+  display: flex;
+  justify-content: center;
+}
+
+#show-pass-checkbox {
+  width: $check-box-width;
+  height: 3vh;
+  width: 3vw;
+  padding: 0;
+  margin: 0;
 }
 
 .home-marker {
@@ -522,16 +542,30 @@ label {
   cursor: pointer;
 }
 
-.profile-nav-container {
+#profile-nav-container {
   display: flex;
   justify-content: space-evenly;
   margin: 2vh 2vw;
 }
 
-.profile-nav-container form {
+#profile-nav-container form {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
+}
+
+#profile-nav-container button {
+  border-color: black;
+  border-top: none;
+  border-bottom: solid;
+  border-left: solid;
+  border-right: solid;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: $button-radius ;
+  border-bottom-left-radius: $button-radius;
+  background-color: $nav-color;
+  color: $nav-font-color;
 }
 
 #discover-nav {
@@ -543,7 +577,16 @@ label {
   padding: 2vh;
   text-align: center;
   width: 48vw;
-  border: 1vw solid black;
+  border-top: none;
+  border-bottom: solid;
+  border-left: solid;
+  border-right: solid;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: $button-radius ;
+  border-bottom-left-radius: $button-radius;
+  background-color: $nav-color;
+  color: $nav-font-color;
 }
 
 #allDiscoverComments, #allMyComments {
@@ -604,3 +647,23 @@ label {
 .like-img{
   width: 5vw;
 }
+
+#welcome-index {
+  margin: 5vh auto 5vh auto;
+  padding: 2vh 0;
+  font-size: $h1-size; 
+}
+
+#signup-index-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 4vh;
+}
+
+#signup-index-form h2 {
+  font-size: $h3-size;
+  text-align: center;
+  margin-bottom: 2.5vh;
+}
+

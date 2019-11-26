@@ -1,28 +1,30 @@
 <form action='/auth/login' method='POST' class="signin-form">
-  <div>
+
+<h1 id="welcome-index">Welcome to Hoodie</h1>
+  
     <input type='text' name='username' placeholder="Username">
     <input type='password' name='password' id="passShow" placeholder="Password">
-  </div>
+  
 
   <div id="show-password-container">
-    <div>
-    <input type="checkbox" name="passShow" onclick="showPassword()">
-    <label for="">Show Password</label>
-
-    </div>
     <button type='submit' class="signin-btn">Log In</button>
-
+    
+    <div>
+    <input type="checkbox" name="passShow" onclick="showPassword()" id="show-pass-checkbox">
+    <label for="">Show Password</label>
   </div>
-
+    </div>
 
 
 </form>
-
 <form id="signup-index-form" action="/auth/signupDisplay/" method="POST" class="signin-form">
+<h2>Signup for free</h2>
   <input id="signup-lng" type="text" name="lng" hidden>
   <input id="signup-lat" type="text" name="lat" hidden>
   <button id="signup-index-btn" type="submit" class="signin-btn">SIGN UP</button>
 </form>
+
+
 
 <script>
   function showPassword  () {
