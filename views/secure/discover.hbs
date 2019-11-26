@@ -9,6 +9,21 @@
 <div id="allDiscoverCommentsFresh"></div>
 <div id="allMyCommentsFresh"></div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
     const allCommentData = document.querySelector("#allCommentData")
     const allDiscoverComments = document.querySelector("#allDiscoverComments")
@@ -17,7 +32,7 @@
     const allMyComments = document.querySelector("#allMyComments");
     const myCommentsLabel = document.querySelector("#myCommentsLabel");
     const myCommentsFresh = document.querySelector("#myCommentsFresh");
-    const allDiscoverComments = document.querySelector("#allDiscoverComments");
+    const myDiscoverCommentsFresh = document.querySelector("#myDiscoverCommentsFresh");
 
     let publicComments = 0
     let privateComments = 0
@@ -130,19 +145,19 @@
                 myComments++            
                 if(comment.text) {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
-                    allMyComments.appendChild(commentDiv)
+                    allMyCommentsFresh.appendChild(commentDiv)
                 } else {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
-                    allMyComments.appendChild(commentDiv)
+                    allMyCommentsFresh.appendChild(commentDiv)
                 }
             } else {
                 othersComments++;
                 if(comment.text) {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a><a href="/comment/${comment._id}"></div><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
-                    allDiscoverComments.appendChild(commentDiv)
+                    allDiscoverCommentsFresh.appendChild(commentDiv)
                 } else {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a><a href="/comment/${comment._id}"></div><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
-                    allDiscoverComments.appendChild(commentDiv)
+                    allDiscoverCommentsFresh.appendChild(commentDiv)
                 }
             }
         } else {
@@ -151,10 +166,10 @@
             } else if(comment.creatorId == currentUserId.innerHTML) {       
                 if(comment.text) {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
-                    allMyComments.appendChild(commentDiv)
+                    allMyCommentsFresh.appendChild(commentDiv)
                 } else {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
-                    allMyComments.appendChild(commentDiv)
+                    allMyCommentsFresh.appendChild(commentDiv)
                 }
             }
         }
@@ -162,6 +177,8 @@
 
     
     allMyComments.classList.add("hidden")
+    allMyCommentsFresh.classList.add("hidden")
+    allDiscoverCommentsFresh.classList.add("hidden")
 
     myCommentsLabel.addEventListener("click", (e)=>{
         allMyComments.classList.remove("hidden")

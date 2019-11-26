@@ -478,6 +478,39 @@ label {
   font-size: 0.5em;
 }
 
+.home-marker h3, .private-marker h3, .public-marker h3 {
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 120%;
+  display: block;
+  overflow: hidden;
+}
+
+.private-marker form, .public-marker form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: blue;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 200px;
+}
+
+.delete-popup, .popup-details {
+  height: 2vh;
+}
+
+.comment-comment-trash {
+  position: relative;
+  top: 5%;
+}
+
+.comment-reply-trash {
+  height: 20vh;
+}
+
 .home-marker {
   background-image: url("./../images/home-marker-img.png");
   background-size: cover;
@@ -555,21 +588,6 @@ label {
           align-items: center;
 }
 
-#discover-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-#discover-nav h1 {
-  padding: 2vh;
-  text-align: center;
-  width: 48vw;
-  border: 1vw solid black;
-}
-
 #allDiscoverComments, #allMyComments {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -583,6 +601,23 @@ label {
   position: absolute;
   z-index: -2;
   height: 80vh;
+  padding-top: 5vh;
+}
+
+#allDiscoverComments > *, #allMyComments > * {
+  border-top: 1vw solid black;
+  border-right: 1vw solid black;
+  border-radius: 10vw;
+  margin: 4vw 0;
+}
+
+#allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
+  margin-left: 2vh;
+  position: relative;
+}
+
+#allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
+  margin-left: 2vh;
 }
 
 .displayedComment {
@@ -594,7 +629,7 @@ label {
       -ms-flex-direction: column;
           flex-direction: column;
   padding: 3vh 0;
-  width: 48vw;
+  width: 45vw;
 }
 
 .displayedComment div {
@@ -614,9 +649,18 @@ label {
   margin-bottom: 3vh;
 }
 
+.displayed-comment-text {
+  margin-left: 3vh;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 80%;
+  display: block;
+  overflow: hidden;
+}
+
 .displayed-comment-creator-username {
   text-align: right;
-  margin-top: 3vh;
+  margin: 3vh 3vw 0 0;
 }
 
 .displayedComment img {

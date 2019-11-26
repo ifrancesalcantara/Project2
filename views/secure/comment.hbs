@@ -44,7 +44,7 @@
     //Create Delete comment button if user is the creator
     if(currentUser === commentCreatorUsername) {
         const deleteCommentDiv = document.createElement("div")
-            deleteCommentDiv.innerHTML= (`<form method="POST" action="/comment/delete/${commentId}"><button type="submit">Delete comment</button></form>`).trim()
+            deleteCommentDiv.innerHTML= (`<form method="POST" action="/comment/delete/${commentId}"><button class="comment-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
             document.querySelector("main").insertBefore(deleteCommentDiv, document.querySelector("#commentTitle"))
     }
     
@@ -58,7 +58,7 @@
         console.log(currentUser, "vs ", allReplyUsernames[index].innerHTML)
         if(currentUser === allReplyUsernames[index].innerHTML) {
             const deleteDiv = document.createElement("div")
-            deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button type="submit">Delete</button></form>`).trim()
+            deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button class="comment-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
             dateDisplayed.appendChild(deleteDiv)
         }
     })
