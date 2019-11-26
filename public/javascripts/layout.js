@@ -16,8 +16,8 @@
 // });
 
 
-function popupProfile () {
-    var popup = document.getElementById("nav-bot");
-    popup.classList.toggle("show")
-}
+// function popupProfile () {
+//     var popup = document.getElementById("nav-bot");
+//     popup.classList.toggle("show")
+// }
 

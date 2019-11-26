@@ -179,52 +179,6 @@ $nav-color: #00b7ff;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* START STYLING >>>>>>>>>>>>>>>>>>>>>> */
 body {
   font-family: $main-font;
@@ -482,6 +436,7 @@ main {
   font-family: "Fredoka One", cursive;
   font-size: $button-font-size*0.8;
   width: $button-width*0.7;
+  margin-bottom: 6vh;
 }
 
 .add-comment-form button:hover {
@@ -533,6 +488,10 @@ main {
   margin: 1vh auto;
 }
 
+#show-pass label{
+  display: inline;
+}
+
 
 #show-password-container input,
 label {
@@ -543,7 +502,6 @@ label {
 }
 
 #show-pass-checkbox {
-  width: $check-box-width;
   height: 3vh;
   width: 3vw;
   padding: 0;
