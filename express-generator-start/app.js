@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // EXPRESS SESSION MIDDLEWARE    -  req.session.currentUser
 app.use(
   session({
-    secret: "secretword",
+    secret: process.env.SESSION_SECRET,
     // cookie: { maxAge: 3600000 } // 1 hour
     resave: true,
     saveUninitialized: false,
