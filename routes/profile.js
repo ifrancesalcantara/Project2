@@ -165,6 +165,8 @@ router.get("/", (req, res)=>{
                 res.render('secure/profile', req.session.currentUser)
                 }
                 else {
+                    console.log('////>>>>>>>>>>>>>>>>>>>>>>////////');
+                    
                 res.render("index", {errorMessage: "Session ended."})
                 }
         })

@@ -424,11 +424,37 @@ main {
 
 .add-comment-form {
   position: absolute;
-  top: 10vh;
+  top: 1vh;
   transition: height 2.5s;
   display: flex;
   flex-direction: column;
 }
+
+.add-comment-form  input{
+  width: $input-width *0.7;
+  height: $input-height /2;
+  border-radius: $input-radius/2;
+  max-height: $input-height;
+}
+
+.add-comment-form input:nth-child(2) {
+    height: 8vh;
+}
+
+.add-comment-form button {
+  height: $button-height/2;
+  border-radius: $button-radius;
+  font-family: "Fredoka One", cursive;
+  font-size: $button-font-size*0.8;
+  width: $button-width/2;
+}
+
+.add-comment-form button:hover {
+  -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+  -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+  box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+}
+
 
 .add-img-plus {
   height: 5vh;
@@ -566,6 +592,32 @@ label {
   border-bottom-left-radius: $button-radius;
   background-color: $nav-color;
   color: $nav-font-color;
+}
+
+#profile-nav-container button:hover {
+  -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+  -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+  box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+}
+
+#logout-btn {
+  border-color: black;
+  border-top: solid;
+  border-bottom: none;
+  border-left: solid;
+  border-right: solid;
+  border-top-left-radius: $button-radius;
+  border-top-right-radius: $button-radius;
+  border-bottom-right-radius: 0 ;
+  border-bottom-left-radius: 0;
+  background-color: $nav-color;
+  color: $nav-font-color;
+}
+
+#logout-btn:hover {
+  -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+  -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
+  box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
 }
 
 #discover-nav {
