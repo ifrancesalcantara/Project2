@@ -155,59 +155,15 @@ $container-width: 60vw;
 $container-min-width: 330px;
 
 //INPUT
-$input-width: 50vw;
+$input-width: 55vw;
 $input-height: 3vh;
 $input-radius: 1vh;
 $check-box-width: 4vw;
 
+
+
 //COLORS
 $nav-color: #00b7ff;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -255,11 +211,15 @@ main {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   padding: 5vh 0 0 0;
   position: "relative";
   margin: 0 auto;
   min-width: $container-min-width;
+}
+
+#profile-form h2 {
+  margin-bottom: 5vh;
 }
 
 .profile-form-container {
@@ -308,8 +268,12 @@ main {
 .signin-form input {
   width: $input-width;
   height: $input-height;
-  border-radius: $input-radius;
   max-height: $input-height;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 3vh auto;
+
 }
 
 .picture-upload-form-input {
@@ -337,7 +301,7 @@ main {
   height: 30vh !important;
   border: 5px solid grey;
   border-radius: 20px;
-  margin: 0 auto;
+  margin: 5vh auto;
 }
 
 #signup-btn,
@@ -351,14 +315,28 @@ main {
   font-family: "Fredoka One", cursive;
   font-size: $button-font-size;
   margin-bottom: 3vh;
-  width: $button-width
+  width: $button-width;
+}
+
+.change-pw-btn, #profile-location-change-btn {
+  height: $button-height;
+  padding: 1vh 3vw;
+  border-radius: $button-radius;
+  font-family: "Fredoka One", cursive;
+  font-size: $button-font-size;
+  margin-top: 3vh 3vw 3vh 3vw;
+  width: $button-width*1.5;
 }
 
 #signup-btn:hover,
 .profile-btn:hover,
 .signin-btn:hover,
+<<<<<<< HEAD
 .profile-nav-btn:hover,
 .comment-view-reply-form button:hover {
+=======
+.profile-nav-btn:hover, .change-pw-btn:hover, #profile-location-change-btn:hover {
+>>>>>>> feat
   -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
   -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
   box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
@@ -374,6 +352,13 @@ main {
   bottom: 0;
   position: absolute;
   z-index: 1;
+  visibility: visible;
+}
+
+.nav-bot .show {
+  visibility: hidden;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
 }
 
 .nav-top,
@@ -426,29 +411,38 @@ main {
 
 .add-comment-form {
   position: absolute;
-  top: 1vh;
+  top: 1.5vh;
   transition: height 2.5s;
   display: flex;
   flex-direction: column;
+  margin-left: 1.8vw;
+  background-color:rgba(74, 177, 211, 0.8);
+  padding: 1.5vh 1.5vw;
+  border-radius: 1.5vh 1.5vw;
+  
 }
 
 .add-comment-form  input{
-  width: $input-width *0.7;
-  height: $input-height /2;
+  width: $input-width *0.8;
+  height: $input-height *0.8;
   border-radius: $input-radius/2;
   max-height: $input-height;
+  margin-bottom: 0.8vh;
 }
 
-.add-comment-form input:nth-child(2) {
-    height: 8vh;
+.add-comment-form div {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 0.8vh;
 }
 
 .add-comment-form button {
-  height: $button-height/2;
-  border-radius: $button-radius;
+  height: $button-height*0.6;
+  border-radius: $button-radius/2;
   font-family: "Fredoka One", cursive;
   font-size: $button-font-size*0.8;
-  width: $button-width/2;
+  width: $button-width*0.7;
+  margin-bottom: 6vh;
 }
 
 .add-comment-form button:hover {
@@ -486,8 +480,9 @@ main {
 }
 
 #profile-picture {
-  height: 20vh;
-  width: auto;
+  height: 30vh;
+  width: 30vw;
+  object-fit: scale-down;
 }
 
 #show-password-container {
@@ -497,6 +492,10 @@ main {
   width: $input-width;
   min-width: $container-min-width;
   margin: 1vh auto;
+}
+
+#show-pass label{
+  display: inline;
 }
 
 
@@ -509,7 +508,6 @@ label {
 }
 
 #show-pass-checkbox {
-  width: $check-box-width;
   height: 3vh;
   width: 3vw;
   padding: 0;
@@ -747,9 +745,10 @@ label {
   margin-left: 2vh;
 }
 
-#allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
-  // margin-top: 3vw
-}
+// #allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
+//   // margin-top: 3vw
+  
+// }
 
 // #allDiscoverComments > *:last-of-type, #allMyComments > *:last-of-type {
 //   margin-bottom: 10vh;

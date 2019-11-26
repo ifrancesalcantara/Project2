@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+  <script src="./../javascripts/layout.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
+  
+  <title>Document</title>
+</head>
+
+<body>
+    <header>
+    </header>
+
+
+
 <form action='/auth/login' method='POST' class="signin-form">
 
 <h1 id="welcome-index">Welcome to Hoodie</h1>
@@ -9,9 +30,9 @@
   <div id="show-password-container">
     <button type='submit' class="signin-btn">Log In</button>
     
-    <div>
+    <div id="show-pass">
+    <label for="passShow" >Show Password</label>
     <input type="checkbox" name="passShow" onclick="showPassword()" id="show-pass-checkbox">
-    <label for="">Show Password</label>
   </div>
     </div>
 
@@ -24,7 +45,13 @@
   <button id="signup-index-btn" type="submit" class="signin-btn">SIGN UP</button>
 </form>
 
+<footer>
+</footer>
 
+</body>
+
+
+</html>
 
 <script>
   function showPassword  () {

@@ -1,10 +1,12 @@
+
+
 <p id="lng" hidden>{{this.lng}}</p>
 <p id="lat" hidden>{{this.lat}}</p>
 <pre id='info' hidden></pre>
 
 <form id="signup-form" action='/auth/signup' method='POST'>
 
-    <p id="welcome-title">Welcome to Hoodie</p>
+    {{!-- <p id="welcome-title">Welcome to Hoodie</p> --}}
     <input class="signup-form-input" type='text' name='username' placeholder="Username">
     <input class="signup-form-input" type='password' name='password' id='passShow' placeholder="Password">
     <input class="signup-form-input" type='password' name='passConf' id='passConfShow' placeholder="Confirm your password">
@@ -22,6 +24,7 @@
 
     <input id="location-input" name='defaultLocation' hidden>
 </form>
+
 
 
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
