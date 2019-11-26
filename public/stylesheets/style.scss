@@ -513,6 +513,45 @@ label {
   padding: 0;
   margin: 0;
 }
+.home-marker h3, .private-marker h3, .public-marker h3 {
+  font-weight: bold;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 120%;
+  display: block;
+  overflow: hidden
+}
+
+.private-marker form, .public-marker form {
+  display: flex;
+  // flex-direction: column;
+  background-color: blue;
+  align-items: center;
+  width: 200px
+}
+
+// .private-marker form:first-child {
+//   background-color: brown;
+// }
+
+
+.delete-popup, .popup-details {
+  // width: 2vw;
+  height: 2vh;
+}
+
+.comment-comment-trash {
+  position: relative;
+  top: 5%;
+}
+
+.comment-reply-trash {
+  height: 20vh
+}
+
+// .home-marker form, .private-marker form, .public-marker form {
+//   display: flex;
+// }
 
 .home-marker {
   background-image: url("./../images/home-marker-img.png");
@@ -580,6 +619,7 @@ label {
   align-items: center;
 }
 
+<<<<<<< HEAD
 #profile-nav-container button {
   border-color: black;
   border-top: none;
@@ -641,6 +681,8 @@ label {
   color: $nav-font-color;
 }
 
+=======
+>>>>>>> develop
 #allDiscoverComments, #allMyComments {
   display: flex;
   flex-direction: row;
@@ -648,13 +690,43 @@ label {
   position: absolute;
   z-index: -2;
   height: 80vh;
+  padding-top: 5vh;
+  // margin-bottom: 10vh
+  // margin: 10vh 0;
 }
+
+#allDiscoverComments > *, #allMyComments > * {
+  border-top:1vw solid black;
+  border-right:1vw solid black;
+  border-radius: 10vw;
+  margin: 4vw 0;
+
+}
+
+#allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
+  margin-left: 2vh;
+  position: relative;
+}
+
+#allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
+  margin-left: 2vh;
+}
+
+#allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
+  // margin-top: 3vw
+}
+
+// #allDiscoverComments > *:last-of-type, #allMyComments > *:last-of-type {
+//   margin-bottom: 10vh;
+// }
+
+
 
 .displayedComment {
   display: flex;
   flex-direction: column;
   padding: 3vh 0;
-  width: 48vw;
+  width: 45vw;
 }
 
 .displayedComment div {
@@ -668,9 +740,18 @@ label {
   margin-bottom: 3vh;
 }
 
+.displayed-comment-text {
+  margin-left: 3vh;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 80%;
+  display: block;
+  overflow: hidden
+}
+
 .displayed-comment-creator-username {
   text-align: right;
-  margin-top: 3vh;
+  margin: 3vh 3vw 0 0;
 }
 
 .displayedComment img {

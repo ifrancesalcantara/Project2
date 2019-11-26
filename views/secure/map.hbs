@@ -236,10 +236,10 @@
                     let commentPopup
                     if (JSON.parse(currentUser)==comment.comment.creatorId) {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -254,10 +254,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="social-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="social-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="social-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="social-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -272,10 +272,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="sight-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="sight-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="sight-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="sight-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -289,10 +289,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="claim-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="claim-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="claim-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="claim-public-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -315,10 +315,10 @@
                     let commentPopup
                     if (JSON.parse(currentUser)==comment.comment.creatorId) {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -334,10 +334,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="social-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="social-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="social-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="social-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -351,10 +351,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="sight-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="sight-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="sight-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="sight-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -368,10 +368,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="claim-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/delete/${comment.comment._id}" method="POST"><button>Delete</button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="claim-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<div class="claim-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><form action="/comment/${comment.comment._id}" method="GET"><button type="submit">See details</button></form></div>`);
+                            .setHTML(`<div class="claim-private-marker"><h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div></div>`);
                     }
                     
                     var el = document.createElement('div');
