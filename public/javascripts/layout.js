@@ -1,15 +1,23 @@
-// document.getElementById('comment-popup-button').addEventListener('click', () => {
 
+// document.getElementsByClassName('comment-popup-button').addEventListener('click', (test) => {
+
+//     console.log('////>/>>////>/ STYLE before if',test );
 //     const commentMenu = document.getElementById('comment-popup');
-//     console.log('////>/>>////>/ STYLE before if' , commentMenu.style.display);
     
-//         if ( commentMenu.style.display === 'none') {
-//             console.log('////>/>>////>/ STYLE after if' , commentMenu.style.display);
-//          return commentMenu.style.display === 'block';
+//         if ( commentMenu.style.visibility === 'hidden') {
+//                 document.getElementById('comment-popup').remove('hidden')
+
 //         }
 //         else {
-//             return commentMenu.style.display === 'none';
+//             document.getElementById('comment-popup').add('hidden')
 //         }
         
 
 // });
+
+
+function popupProfile () {
+    var popup = document.getElementById("nav-bot");
+    popup.classList.toggle("show")
+}
+

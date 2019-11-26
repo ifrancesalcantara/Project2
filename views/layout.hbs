@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
   <script src='https://api.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
-  <script src="./../public/javascripts/layout.js"></script>
+  <script src="./../javascripts/layout.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link href="https://fonts.googleapis.com/css?family=Fredoka+One&display=swap" rel="stylesheet">
   
@@ -18,7 +18,7 @@
     <header>
     <nav class="nav-top">
       <ul>
-        <li><img class="add-img-plus" src="https://img.icons8.com/cotton/128/000000/plus--v1.png" id="comment-popup-button"></li>
+        <li><img class="add-img-plus" src="https://img.icons8.com/cotton/128/000000/plus--v1.png" class="comment-popup-button" onclick="hide()"></li>
         <li class="currentMapCenter"></li>
         <li><a href="/auth/logout">LOGOUT</a></li>
       </ul>
@@ -29,11 +29,11 @@
   {{{body}}}
   </main>
   <footer>
-  <nav class="nav-bot">
+  <nav class="nav-bot" >
     <ul>
       <li><a href="/discover">Discover</a></li>
       <li><a href="/map">Map</a></li>
-      <li><a href="/profile">Profile</a></li>
+      <li><a href="/profile" onclick="closeForm()">Profile</a></li>
     </ul>
   </nav>
 </footer>

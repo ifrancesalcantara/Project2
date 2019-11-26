@@ -186,12 +186,15 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  justify-content: center;
   padding: 5vh 0 0 0;
   position: "relative";
   margin: 0 auto;
   min-width: 330px;
+}
+
+#profile-form h2 {
+  margin-bottom: 5vh;
 }
 
 .profile-form-container {
@@ -253,7 +256,7 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 50vw;
+  width: 55vw;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
@@ -267,10 +270,13 @@ main {
 .signup-form-input,
 .profile-form-input,
 .signin-form input {
-  width: 50vw;
+  width: 55vw;
   height: 3vh;
-  border-radius: 1vh;
   max-height: 3vh;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 3vh auto;
 }
 
 .picture-upload-form-input {
@@ -298,7 +304,7 @@ main {
   height: 30vh !important;
   border: 5px solid grey;
   border-radius: 20px;
-  margin: 0 auto;
+  margin: 5vh auto;
 }
 
 #signup-btn,
@@ -314,10 +320,20 @@ main {
   width: 25vw;
 }
 
+.change-pw-btn, #profile-location-change-btn {
+  height: 5vh;
+  padding: 1vh 3vw;
+  border-radius: 1.2vh;
+  font-family: "Fredoka One", cursive;
+  font-size: 0.9em;
+  margin-top: 3vh 3vw 3vh 3vw;
+  width: 37.5vw;
+}
+
 #signup-btn:hover,
 .profile-btn:hover,
 .signin-btn:hover,
-.profile-nav-btn:hover {
+.profile-nav-btn:hover, .change-pw-btn:hover, #profile-location-change-btn:hover {
   -webkit-box-shadow: 8px 8px 5px 0px #807b72;
   box-shadow: 8px 8px 5px 0px #807b72;
 }
@@ -332,6 +348,13 @@ main {
   bottom: 0;
   position: absolute;
   z-index: 1;
+  visibility: visible;
+}
+
+.nav-bot .show {
+  visibility: hidden;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 
 .nav-top,
@@ -410,7 +433,7 @@ main {
 }
 
 .add-comment-form input {
-  width: 40vw;
+  width: 44vw;
   height: 2.4vh;
   border-radius: 0.5vh;
   max-height: 3vh;
@@ -463,7 +486,7 @@ main {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  width: 50vw;
+  width: 55vw;
   min-width: 330px;
   margin: 5vh auto;
 }
@@ -490,7 +513,7 @@ main {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  width: 50vw;
+  width: 55vw;
   min-width: 330px;
   margin: 1vh auto;
 }
