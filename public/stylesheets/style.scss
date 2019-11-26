@@ -333,7 +333,7 @@ main {
 
 #signup-map,
 #profile-map {
-  width: 40vw !important;
+  width: 80vw !important;
   height: 30vh !important;
   border: 5px solid grey;
   border-radius: 20px;
@@ -449,11 +449,11 @@ main {
   justify-content: space-evenly;
   width: $input-width;
   min-width: $container-min-width;
+  margin: 5vh auto;
 }
 
-#profile-picture-container h4 {
-  padding: auto 5vw !important;
-  margin-left: 5vw;
+#profile-picture-container h2 {
+  margin: 2vh auto 2vh auto;
   display: flex;
 }
 
