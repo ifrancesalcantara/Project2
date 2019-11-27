@@ -419,6 +419,10 @@ main {
   padding: 0 7vw;
 }
 
+.nav-top li {
+  font-size: 1.8em;
+}
+
 .nav-bot a,
 .nav-top a {
   color: $button-font-color;
@@ -1074,14 +1078,14 @@ label {
   width: 25vw;
   height: 18vh;
   padding: 0.5vh;
-}
-
-.mabboxgl-popup-content>div {
   display: flex;
-  justify-content: flex-end;
-  flex-direction: row;
+  flex-direction: column;
+  justify-items: flex-end;
+  align-items: baseline;
 }
 
-.mabboxgl-popup-content form {
-  display: inline;
+.mapboxgl-popup-content>div {
+  display: flex;
+
 }
+
