@@ -45,6 +45,8 @@ router.get("/:commentId", (req, res)=>{
                 userComments: JSON.stringify(userData.userComments),
                 currentLocation: JSON.stringify(userData.currentLocation),
                 userComments: JSON.stringify(userComments),
+                mapStyle: req.session.currentUser.mapStyle
+
             }
             
             res.render("secure/map", data)
@@ -103,7 +105,8 @@ router.post('/', (req, res) => {
                                     homeCoords: updatedUser.defaultLocation,
                                     currentLocation: JSON.stringify(comment.location),
                                     userComments: JSON.stringify(userComments),
-                                    currentUser: JSON.stringify(req.session.currentUser._id)
+                                    currentUser: JSON.stringify(req.session.currentUser._id),
+                                    mapStyle: req.session.currentUser.mapStyle
                                 }
                                 res.render("secure/map", data)
                             })
@@ -116,7 +119,8 @@ router.post('/', (req, res) => {
                                 homeCoords: updatedUser.defaultLocation,
                                 currentLocation: JSON.stringify(comment.location),
                                 userComments: JSON.stringify(userComments),
-                                currentUser: JSON.stringify(req.session.currentUser._id)
+                                currentUser: JSON.stringify(req.session.currentUser._id),
+                                mapStyle: req.session.currentUser.mapStyle
                             }
                             res.render("secure/map", data)
 
@@ -168,7 +172,8 @@ router.post('/delete/:_id', (req, res) => {
                                         homeCoords: updatedUser.defaultLocation,
                                         currentLocation: JSON.stringify(currentLocation),
                                         userComments: JSON.stringify(userComments),
-                                        currentUser: JSON.stringify(req.session.currentUser._id)
+                                        currentUser: JSON.stringify(req.session.currentUser._id),
+                                        mapStyle: req.session.currentUser.mapStyle
 
                                     }
                                     res.render("secure/map", data)
@@ -182,7 +187,9 @@ router.post('/delete/:_id', (req, res) => {
                                     homeCoords: updatedUser.defaultLocation,
                                     currentLocation: JSON.stringify(commentToDelete.location),
                                     userComments: JSON.stringify(userComments),
-                                    currentUser: JSON.stringify(req.session.currentUser._id)
+                                    currentUser: JSON.stringify(req.session.currentUser._id),
+                                    mapStyle: req.session.currentUser.mapStyle
+                                    
                                 }
                                 res.render("secure/map", data)
     

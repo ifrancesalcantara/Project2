@@ -49,7 +49,7 @@ router.post('/security', (req, res) => {
 
 router.post("/session", (req,res)=>{
     const actualSession = req.body.session
-    console.log("actual session",actualSession);
+    console.log("actual session", actualSession);
     let nextSession
     if(actualSession=="Public"){        
         nextSession="Private"
@@ -57,9 +57,12 @@ router.post("/session", (req,res)=>{
     console.log("changing to ", nextSession);
     
     User.findByIdAndUpdate({_id: req.session.currentUser._id}, {session: nextSession})
-    .then( (updatedUser) => {
-        console.log("updated session", updatedUser.session);
-        res.render('secure/profile', updatedUser)
+    .then( (notUpdatedUser) => {
+        User.findById(req.session.currentUser._id)
+            .then( (realluUpdatedUser) => {
+                res.render('secure/profile', realluUpdatedUser)
+            })
+            .catch( (err) => console.log(err));
         
     })
     .catch((err) => console.log(err))    
@@ -115,7 +118,86 @@ router.get('/map', (req, res ) => {
             }
         })
         .catch((err) => console.log(err))
+    })
+    
+    router.get('/map/change', (req, res ) => {
+        User.findByIdAndUpdate(req.session.currentUser, {mapStyle: req.query.newMap})
+        .then((userData) => {
+            User.findById(req.session.currentUser)
+            .then( (updatedUser) => {
+                    
+                        // if (req.session.currentUser) {
+                        
+                        //     // MapStyle.find()
+                        //     //     .then( (mapData) => {
+                        
+                        //     //         res.render('secure/profile/map', mapData)
+                        //     //     })
+                        //     //     .catch((err) => console.log(err)
+                        //     //     )
+                        //     const currentLocation = {
+                        //         lng: {$numberDecimal: updatedUser.defaultLocation.lng},
+                        //         lat: {$numberDecimal: updatedUser.defaultLocation.lat},
+                        //     }
+                        //     userComments = updatedUser.comments.map(comment=> {return {comment}})
+                        //     const data = {
+                        //         homeCoords: updatedUser.defaultLocation,
+                        //         currentLocation: JSON.stringify(currentLocation),
+                        //         userComments: JSON.stringify(userComments),
+                        //         currentUser: JSON.stringify(updatedUser._id),
+                        //         mapStyle: updatedUser.mapStyle
+                        //     }
+                        
+                        //     res.render('secure/map', data)
+                        // }
+                        User.findOne({_id: req.session.currentUser._id}) //CHANGE WHEN TIME TO MATCHING
+                            .populate("comments")
+                            .then( (userData)=> {
+                                let userComments
+                                    
+                                if(userData.session=="Public") {
+                                    const allUserComments = [];                
+                                    User.find({})
+                                    .populate("comments")
+                                    .then( (allUsersArr) => {
+                                        allUsersArr.forEach(user=>{
+                                            user.comments.forEach(comment=>{
+                                                if(comment.public == false) {
+                                                    if(comment.creatorId == req.session.currentUser._id){
+                                                        allUserComments.push(comment)
+                                                    }
+                                                } else {
+                                                    allUserComments.push(comment)
+                                                }
+                                            })
+                                        })
+                                        userComments = allUserComments.map(comment=> {return {comment}})
+                                        const currentLocation = {
+                                            lng: {$numberDecimal: userData.defaultLocation.lng},
+                                            lat: {$numberDecimal: userData.defaultLocation.lat},
+                                        }
+                                        const data = {
+                                            homeCoords: userData.defaultLocation,
+                                            currentLocation: JSON.stringify(currentLocation),
+                                            userComments: JSON.stringify(userComments),
+                                            currentUser: JSON.stringify(userData._id),
+                                            mapStyle: userData.mapStyle
+                                        }
+                                        res.render("secure/map", data)
+                                    })
+                                    .catch( (err) => console.log(err));
+                                }
+                                else {
+                                    res.render('index', {errorMessage: "Session ended."})
+                                }
+                            })
+                            .catch((err) => console.log(err))
+                })
+            })
+                .catch( (err) => console.log(err));
+            
 })
+    
 
 router.get('/location', (req, res) => {
     
