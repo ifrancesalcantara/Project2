@@ -39,7 +39,8 @@ router.get("/", (req, res)=>{
                         homeCoords: userData.defaultLocation,
                         currentLocation: JSON.stringify(currentLocation),
                         userComments: JSON.stringify(userComments),
-                        currentUser: JSON.stringify(userData._id)
+                        currentUser: JSON.stringify(userData._id),
+                        mapStyle: userData.mapStyle
                     }
                     res.render("secure/map", data)
                 })
@@ -54,7 +55,8 @@ router.get("/", (req, res)=>{
                     homeCoords: userData.defaultLocation,
                     currentLocation: JSON.stringify(currentLocation),
                     userComments: JSON.stringify(userComments),
-                    currentUser: JSON.stringify(userData._id)
+                    currentUser: JSON.stringify(userData._id),
+                    mapStyle: userData.mapStyle
                 }
                 res.render("secure/map", data)
             }

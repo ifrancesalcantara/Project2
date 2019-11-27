@@ -47,7 +47,8 @@ router.post("/login", (req, res)=>{
                             homeCoords: JSON.stringify(userData.defaultLocation),
                             currentLocation: JSON.stringify(currentLocation),
                             userComments: JSON.stringify(userComments),
-                            currentUser: JSON.stringify(userData._id)
+                            currentUser: JSON.stringify(userData._id),
+                            mapStyle: userData.mapStyle
                         }
                         res.render("secure/map", data)
                     })
@@ -64,7 +65,8 @@ router.post("/login", (req, res)=>{
                         homeCoords: userData.defaultLocation,
                         currentLocation: JSON.stringify(currentLocation),
                         userComments: JSON.stringify(userComments),
-                        currentUser: JSON.stringify(userData._id)
+                        currentUser: JSON.stringify(userData._id),
+                        mapStyle: userData.mapStyle
                     }
                     res.render("secure/map", data)
                 }
@@ -90,7 +92,7 @@ router.post('/signupDisplay', function(req, res) {
 });
 
 router.post('/signup', function(req, res) {   
-    const { username, password, passConf, defaultLocation } = req.body;
+    const { username, password, passConf, defaultLocation, mapStyle } = req.body;
     
     if (username==="") {
         res.render("auth-views/signup", {errorMessage: "Please provide a username."})
@@ -117,10 +119,10 @@ router.post('/signup', function(req, res) {
                     const hashedPassword = bcrypt.hashSync( req.body.password, salt);
                     
                     //CREATE NEW USER
-                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [], session: "Public"})
+                    User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [], session: "Public", mapStyle: 'mapbox://styles/mapbox/streets-v9'})
                         .then(newUser=>{
                             req.session.currentUser = newUser;
-
+                            console.log("mapstyle in creation: ", newUser.mapStyle)
                             //CREATE HOME COMMENT
                             Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home", public: false})
                                 .then( homeComment => {
@@ -155,7 +157,9 @@ router.post('/signup', function(req, res) {
                                             homeCoords: newUser.defaultLocation,
                                             currentLocation: JSON.stringify(homeComment.location),
                                             userComments: JSON.stringify(userComments),
-                                            currentUser: JSON.stringify(newUser._id)
+                                            currentUser: JSON.stringify(newUser._id),
+                                            mapStyle: newUser.mapStyle
+
                                         }
                                         res.render("secure/map", data)
                                     })

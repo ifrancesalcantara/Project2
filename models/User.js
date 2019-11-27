@@ -13,7 +13,7 @@ const userSchema = new Schema({
     profilepicture: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gif"}],
     session: {type: String, default: "Public"},
     picture: {type: String, default: './images/hoodie_icon.png'},
-    mapStyle: {type: String, default: 'mapbox://styles/mapbox/streets-v9'}
+    mapStyle: {type: String, default: 'streets-v9'}
 })
 
 const User = mongoose.model("User", userSchema);

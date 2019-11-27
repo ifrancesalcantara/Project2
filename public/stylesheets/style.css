@@ -978,4 +978,49 @@ label {
   width: 60vw;
   word-wrap: break-word;
 }
+
+.change-map-btn, .change-map-btn img {
+  height: 20vw;
+}
+
+.map-change-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 5vh;
+  position: relative;
+}
+
+.map-change-container form {
+  padding: 4vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.map-change-container img {
+  position: relative;
+  left: -1vw;
+}
+
+.map-change-container button {
+  border: none;
+  background-color: white;
+}
+
+.map-change-container h4 {
+  margin-bottom: 2vh;
+}
 /*# sourceMappingURL=style.css.map */
