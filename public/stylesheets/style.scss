@@ -313,7 +313,8 @@ main {
 .profile-btn,
 .signin-btn,
 .profile-nav-btn,
-.comment-view-reply-form button {
+.comment-view-reply-form button, 
+#logout-btn {
   height: $button-height;
   padding: 1vh 3vw;
   border-radius: $button-radius;
@@ -339,7 +340,8 @@ main {
 .profile-nav-btn:hover, 
 .change-pw-btn:hover, 
 #profile-location-change-btn:hover, 
-#signup-btn:hover {
+#signup-btn:hover,
+#logout-btn:hover  {
   -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
   -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
   box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
@@ -665,6 +667,22 @@ label {
   display: flex;
   justify-content: space-evenly;
   margin: 2vh 2vw;
+  position: absolute;
+  bottom: 1.5vh;
+  transition: height 2.5s;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.8vw;
+  margin-top: 1.8vh;
+  background-color:rgba(74, 177, 211, 0.8);
+  padding: 0 1.5vw;
+  border-radius: 1.5vh 1.5vw;
+  overflow: hidden;
+}
+
+.hola {
+  
+	        animation: rotate-scale-up 0.65s linear both;
 }
 
 #profile-nav-container form {
@@ -688,26 +706,6 @@ label {
 }
 
 #profile-nav-container button:hover {
-  -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
-  -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
-  box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
-}
-
-#logout-btn {
-  border-color: black;
-  border-top: solid;
-  border-bottom: none;
-  border-left: solid;
-  border-right: solid;
-  border-top-left-radius: $button-radius;
-  border-top-right-radius: $button-radius;
-  border-bottom-right-radius: 0 ;
-  border-bottom-left-radius: 0;
-  background-color: $nav-color;
-  color: $nav-font-color;
-}
-
-#logout-btn:hover {
   -webkit-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
   -moz-box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);
   box-shadow: 8px 8px 5px 0px rgba(128, 123, 114, 1);

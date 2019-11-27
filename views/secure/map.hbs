@@ -61,6 +61,9 @@
         }
     })
 
+
+    document.querySelector('#comment-popup').classList.add('hidden')
+    
     //Draw map
     client.geocodeForward(query, function(err, data, res) {
     mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg" //!!! .env
@@ -390,7 +393,6 @@
             }
         })
     });
-
 
     
 
