@@ -807,23 +807,21 @@ label {
   position: absolute;
   z-index: -2;
   height: 80vh;
-  padding-top: 5vh;
+}
+
+#allDiscoverComments img, #allMyComments img {
+  margin: 0;
+  padding: 0;
 }
 
 #allDiscoverComments > *, #allMyComments > * {
-  border-top: 1vw solid black;
-  border-right: 1vw solid black;
-  border-radius: 10vw;
-  margin: 4vw 0;
+  border: solid;
+  border-radius: 1.5vw;
+  margin: 2vh auto;
 }
 
-#allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
-  margin-left: 2vh;
-  position: relative;
-}
-
-#allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
-  margin-left: 2vh;
+#allDiscoverComments p, #allMyComments p {
+  font-size: 0.7em;
 }
 
 .displayedComment {
@@ -834,7 +832,7 @@ label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 3vh 0;
+  padding: .5vh 0;
   width: 45vw;
 }
 
@@ -862,6 +860,7 @@ label {
   width: 80%;
   display: block;
   overflow: hidden;
+  max-height: 5vh;
 }
 
 .displayed-comment-creator-username {
