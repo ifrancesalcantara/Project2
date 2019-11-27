@@ -763,7 +763,7 @@ label {
 #allDiscoverComments > *, #allMyComments > * {
   border: solid;
   border-radius: 1.5vw;
-  margin: 2vh auto;
+  margin: 0.5vh auto;
 }
 
 #allDiscoverComments p, #allMyComments p {
@@ -797,12 +797,18 @@ label {
   flex-direction: column;
   padding: .5vh 0;
   width: 45vw;
+  min-height: 7vh;
+}
+
+.displayedComment:hover {
+  transform: scale(0.95);
 }
 
 .displayedComment div {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 15vw;
 }
 
 .displayed-comment-title {
@@ -822,7 +828,7 @@ label {
 
 .displayed-comment-creator-username {
   text-align: right;
-  margin: 3vh 3vw 0 0;
+  margin: .9vh 2vw 0 2vw;
 }
 
 .displayedComment img {
