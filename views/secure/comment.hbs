@@ -58,9 +58,10 @@
     //Modify reply date appearance and add reply deletion button  
     dateDisplayed.forEach((dateDisplayed, index)=>{
         var dateToDisplay = dateDisplayed.innerHTML.split(" ")
+        console.log(dateDisplayed.innerHTML)
         dateToDisplay.splice(0, 1)
         dateToDisplay.splice(3)
-        dateDisplayed.innerHTML = dateToDisplay.join(" ")    
+        dateDisplayed.innerHTML = dateToDisplay.join(" ") + " " + dateDisplayed.innerHTML.split(" ")[4]    
 
         //console.log(currentUser, "vs ", allReplyUsernames[index].innerHTML)
         if(currentUser === allReplyUsernames[index].innerHTML) {

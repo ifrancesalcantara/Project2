@@ -2,7 +2,7 @@
 <p id="lat" hidden>{{this.lat}}</p>
 <pre id='info' hidden></pre>
 
-<div id="profile-nav-container">
+{{!-- <div id="profile-nav-container">
     <form action='/profile/location' method='GET' >
         <button type='submit' class="profile-nav-btn">Location</button>
     </form>
@@ -15,17 +15,17 @@
     <form action="/profile/map" method="GET">
         <button  type='submit' class="profile-nav-btn">Map Style</button>
     </form>
-</div>
+</div> --}}
 
 
 <div class="profile-form-container">
-    <h2>Change your home location</h2>
+    <h2>Change your current location</h2>
     <div id="profile-map" class="profile-map"></div>
     <p>
         {{this.errorMessage}}
     </p>
     <form action="/profile/location" method="POST">
-        <button id="profile-location-change-btn" type='submit'>Change Home</button>
+        <button id="profile-location-change-btn" type='submit'>Select Location</button>
 
         <input id="location-input" name='defaultLocation' hidden>
     </form>

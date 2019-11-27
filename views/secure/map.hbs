@@ -28,7 +28,7 @@
 </form>
 
 
-<script src="./javascripts/map.js"></script>
+<script src="/javascripts/map.js"></script>
 <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
 <script>
     const currentUser = document.querySelector("#currentUser").innerHTML
@@ -226,7 +226,7 @@
                 let commentPopup
                 if (JSON.parse(currentUser)==comment.comment.creatorId) {
                     commentPopup = new mapboxgl.Popup()
-                        .setHTML(`<h3>Home</h3><button>Move</button>`);
+                        .setHTML(`<h3>Home</h3>`);
                 }
 
                 var el = document.createElement('div');
@@ -245,10 +245,10 @@
                     let commentPopup
                     if (JSON.parse(currentUser)==comment.comment.creatorId) {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -263,10 +263,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -281,10 +281,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -298,10 +298,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -324,10 +324,10 @@
                     let commentPopup
                     if (JSON.parse(currentUser)==comment.comment.creatorId) {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form>`);
                     }
                     
                     var el = document.createElement('div');
@@ -343,10 +343,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -360,10 +360,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -377,10 +377,10 @@
                     let commentPopup
                     if(JSON.parse(currentUser)==comment.comment.creatorId){
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="./images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/delete/${comment.comment._id}" method="POST"><button><img class="delete-popup" src="/images/trash.png"></button></form><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     } else {
                         commentPopup = new mapboxgl.Popup()
-                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="./images/details.png"></button></form></div>`);
+                            .setHTML(`<h3>${comment.comment.title}</h3><p>${comment.comment.text}</p><div><form action="/comment/${comment.comment._id}" method="GET"><button type="submit"><img class="popup-details" src="/images/details.png"></button></form></div>`);
                     }
                     
                     var el = document.createElement('div');
@@ -395,25 +395,12 @@
         })
     });    
 
-
-  document.querySelector('#profile-nav-container').classList.add('hidden')
-  let isAddProfileMenu = false;
-  const addProfileMenu = document.querySelector("#profile-menu");
+    {{!-- let isAddProfileMenu = false;
+    const addProfileMenu = document.querySelector("#profile-menu");
         addProfileMenu.addEventListener("click",()=>{
-            {{!-- if(isAddProfileMenu){ --}}
                 const profileMenu = document.querySelector("#profile-nav-container");
-                {{!-- profileMenu.style.height = "0vh"; --}}
-                {{!-- isAddProfileMenu = false; --}}
                 document.querySelector('#profile-nav-container').classList.toggle('hidden')
-            {{!-- } --}}
-            {{!-- else {
-                const profileMenu = document.querySelector("#profile-nav-container");
-                profileMenu.style.height = "auto";
-                isAddProfileMenu = true;
-                document.querySelector('#profile-nav-container').classList.remove('hidden')
-            } --}}
-    });
-    
+    }); --}}
 </script>
 
 
