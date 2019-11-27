@@ -12,7 +12,7 @@ const userSchema = new Schema({
     hasHome: {type: Boolean, default: false},
     profilepicture: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gif"}],
     session: {type: String, default: "Public"},
-    picture: {type: String, default: './images/hoodie_icon.png'},
+    picture: {type: String, default: '/images/hoodie_icon.png'},
     mapStyle: {type: String, default: 'streets-v9'}
 })
 

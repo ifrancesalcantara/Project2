@@ -168,6 +168,9 @@ $button-color: rgb(4, 102, 140);
 $button-border-color: rgb(189, 195, 199);
 $nav-color: rgb(4, 102, 140);
 $button-font-color: #ffffff;
+$input-backgound-color: rgba(189, 195, 199, 0.6);
+$background-color:rgba(4, 102, 140, 0.8);
+
 
 
 
@@ -210,6 +213,10 @@ main {
   min-width: $container-min-width;
 }
 
+#signup-form p {
+  margin-bottom: .8vh;
+}
+
 #profile-form {
   display: flex;
   justify-content: center;
@@ -236,6 +243,10 @@ main {
   position: "relative";
   margin: 0 auto;
   min-width: $container-min-width;
+}
+
+.profile-form-container button {
+  margin-top: 2vh;
 }
 
 .signin-form {
@@ -277,11 +288,14 @@ main {
   border-left: none;
   border-right: none;
   margin: 3vh auto;
+  background-color: $input-backgound-color;
 }
 
 .picture-upload-form-input {
-  width: $button-width;
+  width: $button-width*.8;
   padding: 1vh;
+  background-color: $input-backgound-color;
+  border-radius: 1vh;
 }
 
 .signup-form-input:first-of-type,
@@ -310,7 +324,7 @@ main {
   height: 30vh !important;
   border: 5px solid grey;
   border-radius: 20px;
-  margin: 5vh auto;
+  margin: 2vh auto;
 }
 
 #signup-btn,
@@ -400,14 +414,14 @@ main {
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
-  color: $nav-font-color;
+  color: $button-font-color;
   font-weight: bold;
   padding: 0 7vw;
 }
 
 .nav-bot a,
 .nav-top a {
-  color: $nav-font-color;
+  color: $button-font-color;
   list-style-type: none;
   text-decoration: none;
   font-weight: bold;
@@ -436,7 +450,7 @@ main {
   flex-direction: column;
   margin-left: 1.8vw;
   margin-top: 1.8vh;
-  background-color:rgba(74, 177, 211, 0.8);
+  background-color: $background-color;
   padding: 0 1.5vw;
   border-radius: 1.5vh 1.5vw;
   overflow: hidden;
@@ -448,6 +462,7 @@ main {
   border-radius: $input-radius/2;
   max-height: $input-height;
   margin-bottom: 0.8vh;
+  background-color: $input-backgound-color;
 }
 
 .add-comment-form input:first-of-type {
@@ -474,7 +489,7 @@ main {
   color: $button-font-color;
   background-color: $button-color;
   border-color: $button-border-color;
-  color: $nav-font-color;
+  color: $button-font-color;
 }
 
 .add-comment-form button:hover {
@@ -681,7 +696,7 @@ label {
 #profile-nav-container {
   display: flex;
   justify-content: space-evenly;
-  margin: 2vh 2vw;
+  margin: 2vh 0.5vw;
   position: absolute;
   top: 46vh;
   right: 0;
@@ -690,7 +705,7 @@ label {
   flex-direction: column;
   margin-left: 1.8vw;
   margin-top: 1.8vh;
-  background-color:rgba(74, 177, 211, 0.8);
+  background-color:$background-color;
   padding: 0 1.5vw;
   border-radius: 1.5vh 1.5vw;
   overflow: hidden;
@@ -708,7 +723,7 @@ label {
 }
 
 #profile-nav-container button {
-  border-color: black;
+  border-color: $button-border-color;
   border-top: none;
   border-bottom: solid;
   border-left: none;
@@ -718,7 +733,7 @@ label {
   border-bottom-right-radius: 0 ;
   border-bottom-left-radius: 0;
   background-color: $nav-color;
-  color: $nav-font-color;
+  color: $button-font-color;
   padding: 0 0;
   margin-bottom: 0;
 }
@@ -756,19 +771,9 @@ label {
   border-bottom-right-radius: $button-radius ;
   border-bottom-left-radius: $button-radius;
   background-color: $nav-color;
-  color: $nav-font-color;
+  color:$button-font-color;
 }
 
-<<<<<<< HEAD
-// #allDiscoverComments, #allMyComments {
-//   display: flex;
-//   flex-direction: row;
-//   flex-wrap: wrap;
-//   position: absolute;
-//   z-index: -2;
-//   height: 80vh;
-// }
-=======
 #allDiscoverComments, #allMyComments {
   display: flex;
   flex-direction: row;
@@ -786,12 +791,12 @@ label {
   margin: 0;
   padding: 0;
 }
->>>>>>> feat
 
 #allDiscoverComments > *, #allMyComments > * {
   border: solid;
   border-radius: 1.5vw;
   margin: 0.5vh auto;
+  border-color: $button-border-color;
 }
 
 #allDiscoverComments p, #allMyComments p {
@@ -950,6 +955,7 @@ label {
   border-left: none;
   border-right: none;
   margin: 3vh auto;
+  background-color: $input-backgound-color;
 }
 
 .reply {
@@ -990,10 +996,11 @@ label {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid;
   margin: 1.5vw 2vw 2vw 2vw;
   border-radius: 1vw;
-  background-color: rgb(213, 245, 255)
+  background-color: $background-color;
+  border-color: $button-border-color;
 }
 
 .map-change-container form:hover, .map-change-container form:active {
@@ -1014,6 +1021,7 @@ label {
   padding: 2vh 0;
   width: 100%;
   text-align: center;
+  color: $button-font-color;
 }
 
 .map-change-view-title h1 {
@@ -1059,5 +1067,5 @@ label {
 }
 
 .currentMapCenter {
-  color: $nav-font-color;
+  color: $button-font-color;
 }

@@ -172,6 +172,10 @@ main {
   min-width: 330px;
 }
 
+#signup-form p {
+  margin-bottom: .8vh;
+}
+
 #profile-form {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -217,6 +221,10 @@ main {
   position: "relative";
   margin: 0 auto;
   min-width: 330px;
+}
+
+.profile-form-container button {
+  margin-top: 2vh;
 }
 
 .signin-form {
@@ -277,11 +285,14 @@ main {
   border-left: none;
   border-right: none;
   margin: 3vh auto;
+  background-color: rgba(189, 195, 199, 0.6);
 }
 
 .picture-upload-form-input {
-  width: 25vw;
+  width: 20vw;
   padding: 1vh;
+  background-color: rgba(189, 195, 199, 0.6);
+  border-radius: 1vh;
 }
 
 .signup-form-input:first-of-type,
@@ -310,7 +321,7 @@ main {
   height: 30vh !important;
   border: 5px solid grey;
   border-radius: 20px;
-  margin: 5vh auto;
+  margin: 2vh auto;
 }
 
 #signup-btn,
@@ -406,14 +417,14 @@ main {
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
-  color: #bdc3c7;
+  color: #ffffff;
   font-weight: bold;
   padding: 0 7vw;
 }
 
 .nav-bot a,
 .nav-top a {
-  color: #bdc3c7;
+  color: #ffffff;
   list-style-type: none;
   text-decoration: none;
   font-weight: bold;
@@ -448,7 +459,7 @@ main {
           flex-direction: column;
   margin-left: 1.8vw;
   margin-top: 1.8vh;
-  background-color: rgba(74, 177, 211, 0.8);
+  background-color: rgba(4, 102, 140, 0.8);
   padding: 0 1.5vw;
   border-radius: 1.5vh 1.5vw;
   overflow: hidden;
@@ -460,6 +471,7 @@ main {
   border-radius: 0.5vh;
   max-height: 3vh;
   margin-bottom: 0.8vh;
+  background-color: rgba(189, 195, 199, 0.6);
 }
 
 .add-comment-form input:first-of-type {
@@ -490,7 +502,7 @@ main {
   color: #ffffff;
   background-color: #04668c;
   border-color: #bdc3c7;
-  color: #bdc3c7;
+  color: #ffffff;
 }
 
 .add-comment-form button:hover {
@@ -715,7 +727,7 @@ label {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  margin: 2vh 2vw;
+  margin: 2vh 0.5vw;
   position: absolute;
   top: 46vh;
   right: 0;
@@ -728,7 +740,7 @@ label {
           flex-direction: column;
   margin-left: 1.8vw;
   margin-top: 1.8vh;
-  background-color: rgba(74, 177, 211, 0.8);
+  background-color: rgba(4, 102, 140, 0.8);
   padding: 0 1.5vw;
   border-radius: 1.5vh 1.5vw;
   overflow: hidden;
@@ -753,7 +765,7 @@ label {
 }
 
 #profile-nav-container button {
-  border-color: black;
+  border-color: #bdc3c7;
   border-top: none;
   border-bottom: solid;
   border-left: none;
@@ -763,7 +775,7 @@ label {
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   background-color: #04668c;
-  color: #bdc3c7;
+  color: #ffffff;
   padding: 0 0;
   margin-bottom: 0;
 }
@@ -802,11 +814,9 @@ label {
   border-bottom-right-radius: 1.2vh;
   border-bottom-left-radius: 1.2vh;
   background-color: #04668c;
-  color: #bdc3c7;
+  color: #ffffff;
 }
 
-<<<<<<< HEAD
-=======
 #allDiscoverComments, #allMyComments {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -828,11 +838,11 @@ label {
   padding: 0;
 }
 
->>>>>>> feat
 #allDiscoverComments > *, #allMyComments > * {
   border: solid;
   border-radius: 1.5vw;
   margin: 0.5vh auto;
+  border-color: #bdc3c7;
 }
 
 #allDiscoverComments p, #allMyComments p {
@@ -1026,6 +1036,7 @@ label {
   border-left: none;
   border-right: none;
   margin: 3vh auto;
+  background-color: rgba(189, 195, 199, 0.6);
 }
 
 .reply {
@@ -1082,10 +1093,11 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 1px solid black;
+  border: 1px solid;
   margin: 1.5vw 2vw 2vw 2vw;
   border-radius: 1vw;
-  background-color: #d5f5ff;
+  background-color: rgba(4, 102, 140, 0.8);
+  border-color: #bdc3c7;
 }
 
 .map-change-container form:hover, .map-change-container form:active {
@@ -1107,6 +1119,7 @@ label {
   padding: 2vh 0;
   width: 100%;
   text-align: center;
+  color: #ffffff;
 }
 
 .map-change-view-title h1 {
@@ -1162,6 +1175,6 @@ label {
 }
 
 .currentMapCenter {
-  color: #bdc3c7;
+  color: #ffffff;
 }
 /*# sourceMappingURL=style.css.map */
