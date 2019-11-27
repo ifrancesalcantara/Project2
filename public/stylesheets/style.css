@@ -298,6 +298,12 @@ main {
   margin-bottom: 3vh;
 }
 
+.signup-form-input-last,
+.profile-form-input-last,
+#signin-form-input-last {
+  margin-bottom: 0.8vh;
+}
+
 #signup-map,
 #profile-map {
   width: 80vw !important;
@@ -335,7 +341,8 @@ main {
 .signin-btn:hover,
 .profile-nav-btn:hover,
 .change-pw-btn:hover,
-#profile-location-change-btn:hover, #signup-btn:hover {
+#profile-location-change-btn:hover,
+#signup-btn:hover {
   -webkit-box-shadow: 8px 8px 5px 0px #807b72;
   box-shadow: 8px 8px 5px 0px #807b72;
 }
@@ -429,9 +436,11 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
   margin-left: 1.8vw;
+  margin-top: 1.8vh;
   background-color: rgba(74, 177, 211, 0.8);
-  padding: 1.5vh 1.5vw;
+  padding: 0 1.5vw;
   border-radius: 1.5vh 1.5vw;
+  overflow: hidden;
 }
 
 .add-comment-form input {
@@ -442,6 +451,10 @@ main {
   margin-bottom: 0.8vh;
 }
 
+.add-comment-form input:first-of-type {
+  margin-top: 1.5vh;
+}
+
 .add-comment-form div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -450,6 +463,10 @@ main {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   margin-top: 0.8vh;
+}
+
+.add-comment-form-img-div {
+  margin-bottom: 1.5vh;
 }
 
 .add-comment-form button {
@@ -523,8 +540,18 @@ main {
   margin: 1vh auto;
 }
 
+#show-pass {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0;
+}
+
 #show-pass label {
-  display: inline;
+  margin-right: 0.8vw;
 }
 
 #show-password-container input,

@@ -17,7 +17,7 @@
 
   <input id="newCommentLat" type='text' name='lat' required>
 
-    <div class="comment-popup">
+    <div>
         <button id="add-comment-btn" type='submit'>Submit</button>
         <input id="privatePublicInput" type="text" name="privateOrPublic" value="Public" hidden>
         <input type="text" name="ubication" id="newCommentUbication" hidden>
@@ -153,7 +153,7 @@
 
             newCommentUbication.value = JSON.stringify({country, locality, street})
 
-        }, 2000)
+        }, 500)
 
 
         //Add selected location marker, set input values to coords
@@ -183,13 +183,15 @@
                 const commentForm = document.querySelector(".add-comment-form");
                 commentForm.style.height = "0vh";
                 isAddCommentDisplayed = false;
+                document.querySelector('#comment-popup').classList.add('hidden')
             }
             else {
                 const commentForm = document.querySelector(".add-comment-form");
-                commentForm.style.height = "10vh";
+                commentForm.style.height = "auto";
                 isAddCommentDisplayed = true;
+                document.querySelector('#comment-popup').classList.remove('hidden')
             }
-        })
+    });
 
         //Declare Geojson to add markers through it in .forEach
         const geojson = {
@@ -389,22 +391,7 @@
         })
     });
 
-function hide () {
-    document.getElementById('comment-popup-button').addEventListener('click', () => {
 
-        const commentMenu = document.getElementById('comment-popup');
-        console.log('////>/>>////>/ STYLE before if' , commentMenu.style.display);
-        
-            if ( commentMenu.style.visibility === 'hidden') {
-                    document.getElementById('comment-popup').remove('hidden')
-
-            }
-            else {
-                document.getElementById('comment-popup').add('hidden')
-            }
-    });
-
-}
     
 
 </script>

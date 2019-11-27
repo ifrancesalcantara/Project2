@@ -51,6 +51,23 @@
             e.target.innerHTML="Public"
             document.querySelector("#sessionChangeInput").value="Private"
         }
-    })
+    });
     
+        const addCommentIcon = document.querySelector("#profile-nav-container");
+        addCommentIcon.addEventListener("click",()=>{
+            if(isAddCommentDisplayed){
+                const commentForm = document.querySelector("#profile-nav-container");
+                commentForm.style.height = "0vh";
+                isAddCommentDisplayed = false;
+                document.getElementById('profile-nav-container').remove('hidden')
+            }
+            else {
+                const commentForm = document.querySelector(".profile-nav-container");
+                commentForm.style.height = "auto";
+                isAddCommentDisplayed = true;
+                document.getElementById('profile-nav-container').add('hidden')
+            }
+    });
+
+
 </script>
