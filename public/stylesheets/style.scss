@@ -189,7 +189,7 @@ a {
 }
 
 main {
-  margin: 6vh auto;
+  margin: 10vh auto;
   position: relative;
 }
 
@@ -1020,8 +1020,8 @@ label {
   display: none;
 }
 
-.a.mapboxgl-ctrl-logo {
-  display: none;
+.mapboxgl-ctrl-logo {
+  display: none !important;
 }
 
 .comment-view-reply-trash img {
