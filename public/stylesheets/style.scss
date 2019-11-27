@@ -1069,3 +1069,19 @@ label {
 .currentMapCenter {
   color: $button-font-color;
 }
+
+.mapboxgl-popup-content {
+  width: 25vw;
+  height: 18vh;
+  padding: 0.5vh;
+}
+
+.mabboxgl-popup-content>div {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.mabboxgl-popup-content form {
+  display: inline;
+}

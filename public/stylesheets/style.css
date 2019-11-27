@@ -1177,4 +1177,27 @@ label {
 .currentMapCenter {
   color: #ffffff;
 }
+
+.mapboxgl-popup-content {
+  width: 25vw;
+  height: 18vh;
+  padding: 0.5vh;
+}
+
+.mabboxgl-popup-content > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.mabboxgl-popup-content form {
+  display: inline;
+}
 /*# sourceMappingURL=style.css.map */
