@@ -131,9 +131,7 @@ table {
 /* END CSS RESET>>>>>>>>>>>>>>>>>>>>> */
 
 /* GLOBAL VARIABLES >>>>>>>>>>>>>>>>>>>>> */
-$main-font: "Fredoka One", cursive;
-$main-color: black;
-$nav-font-color: #ffffff;
+
 
 
 //FONTSIZE
@@ -148,7 +146,7 @@ $button-width: 25vw;
 $button-radius: 1.2vh;
 $button-padding: 5vw;
 $button-font-size: 0.9em;
-$button-border-color: rgba(74, 177, 211, 0.8);
+
 
 //CONTAINER
 $container-width: 60vw;
@@ -163,7 +161,13 @@ $check-box-width: 4vw;
 
 
 //COLORS
-$nav-color: #00b7ff;
+$main-font: 'Lato', sans-serif;
+$main-color: black;
+$nav-font-color: rgb(189, 195, 199);
+$button-color: rgb(4, 102, 140);
+$button-border-color: rgb(189, 195, 199);
+$nav-color: rgb(4, 102, 140);
+$button-font-color: #ffffff;
 
 
 
@@ -189,7 +193,11 @@ a {
 }
 
 main {
+<<<<<<< HEAD
   margin: 10vh auto;
+=======
+  margin: 5.4vh auto;
+>>>>>>> 66592e439f4d5b93f5c7ba641c256fca6280f2cf
   position: relative;
 }
 
@@ -318,20 +326,25 @@ main {
   height: $button-height;
   padding: 1vh 3vw;
   border-radius: $button-radius;
-  font-family: "Fredoka One", cursive;
+  font-family: $main-font;
   font-size: $button-font-size;
   margin-bottom: 3vh;
   width: $button-width;
+  background-color: $button-color;
+  color: $button-font-color;
 }
 
 .change-pw-btn, #profile-location-change-btn {
   height: $button-height;
   padding: 1vh 3vw;
   border-radius: $button-radius;
-  font-family: "Fredoka One", cursive;
+  font-family: $main-font;
   font-size: $button-font-size;
   margin-top: 3vh 3vw 3vh 3vw;
   width: $button-width*1.5;
+  background-color: $button-color;
+  color: $button-font-color;
+  border-color: $button-border-color;
 }
 
 
@@ -458,10 +471,14 @@ main {
 .add-comment-form button {
   height: $button-height*0.6;
   border-radius: $button-radius/2;
-  font-family: "Fredoka One", cursive;
+  font-family: $main-font;
   font-size: $button-font-size*0.8;
   width: $button-width*0.7;
   margin-bottom: 2vh;
+  color: $button-font-color;
+  background-color: $button-color;
+  border-color: $button-border-color;
+  color: $nav-font-color;
 }
 
 .add-comment-form button:hover {
@@ -826,6 +843,7 @@ label {
   display: block;
   overflow: hidden;
   max-height: 5vh;
+  text-align: center;
 }
 
 .displayed-comment-creator-username {
@@ -938,9 +956,13 @@ label {
 }
 
 .comment-view-reply-form input {
-  margin-right: 4vw;
-  height: 5vh;
-  width: 50vw;
+  width: $input-width;
+  height: $input-height;
+  max-height: $input-height;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 3vh auto;
 }
 
 .reply {
@@ -963,6 +985,7 @@ label {
 
 .change-map-btn, .change-map-btn img {
   height: 20vw;
+  background-color: $button-color;
 }
 
 .map-change-container {
@@ -1024,6 +1047,10 @@ label {
   display: none !important;
 }
 
+.mapboxgl-ctrl-logo  a {
+  display: none;
+}
+
 .comment-view-reply-trash img {
   height: 3vw;
   // background-color: red;
@@ -1040,6 +1067,10 @@ label {
 }
 
 .replyDateDisplayed{
-  display: flex;
+    display: flex;
   align-items: center;
+}
+
+.currentMapCenter {
+  color: $nav-font-color;
 }

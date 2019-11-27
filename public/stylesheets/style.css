@@ -137,11 +137,11 @@ table {
 /* GLOBAL VARIABLES >>>>>>>>>>>>>>>>>>>>> */
 /* START STYLING >>>>>>>>>>>>>>>>>>>>>> */
 body {
-  font-family: "Fredoka One", cursive;
+  font-family: "Lato", sans-serif;
 }
 
 a {
-  color: #ffffff;
+  color: #bdc3c7;
 }
 
 main {
@@ -322,20 +322,25 @@ main {
   height: 5vh;
   padding: 1vh 3vw;
   border-radius: 1.2vh;
-  font-family: "Fredoka One", cursive;
+  font-family: "Lato", sans-serif;
   font-size: 0.9em;
   margin-bottom: 3vh;
   width: 25vw;
+  background-color: #04668c;
+  color: #ffffff;
 }
 
 .change-pw-btn, #profile-location-change-btn {
   height: 5vh;
   padding: 1vh 3vw;
   border-radius: 1.2vh;
-  font-family: "Fredoka One", cursive;
+  font-family: "Lato", sans-serif;
   font-size: 0.9em;
   margin-top: 3vh 3vw 3vh 3vw;
   width: 37.5vw;
+  background-color: #04668c;
+  color: #ffffff;
+  border-color: #bdc3c7;
 }
 
 .profile-btn:hover,
@@ -370,7 +375,7 @@ main {
 
 .nav-top,
 .nav-bot {
-  background-color: #00b7ff;
+  background-color: #04668c;
   height: 10vh;
   width: 100vw;
   position: fixed;
@@ -401,14 +406,14 @@ main {
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
-  color: #ffffff;
+  color: #bdc3c7;
   font-weight: bold;
   padding: 0 7vw;
 }
 
 .nav-bot a,
 .nav-top a {
-  color: #ffffff;
+  color: #bdc3c7;
   list-style-type: none;
   text-decoration: none;
   font-weight: bold;
@@ -478,10 +483,14 @@ main {
 .add-comment-form button {
   height: 3vh;
   border-radius: 0.6vh;
-  font-family: "Fredoka One", cursive;
+  font-family: "Lato", sans-serif;
   font-size: 0.72em;
   width: 17.5vw;
   margin-bottom: 2vh;
+  color: #ffffff;
+  background-color: #04668c;
+  border-color: #bdc3c7;
+  color: #bdc3c7;
 }
 
 .add-comment-form button:hover {
@@ -753,8 +762,8 @@ label {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  background-color: #00b7ff;
-  color: #ffffff;
+  background-color: #04668c;
+  color: #bdc3c7;
   padding: 0 0;
   margin-bottom: 0;
 }
@@ -792,8 +801,8 @@ label {
   border-top-right-radius: 0;
   border-bottom-right-radius: 1.2vh;
   border-bottom-left-radius: 1.2vh;
-  background-color: #00b7ff;
-  color: #ffffff;
+  background-color: #04668c;
+  color: #bdc3c7;
 }
 
 #allDiscoverComments, #allMyComments {
@@ -870,6 +879,7 @@ label {
   display: block;
   overflow: hidden;
   max-height: 5vh;
+  text-align: center;
 }
 
 .displayed-comment-creator-username {
@@ -1005,9 +1015,13 @@ label {
 }
 
 .comment-view-reply-form input {
-  margin-right: 4vw;
-  height: 5vh;
-  width: 50vw;
+  width: 55vw;
+  height: 3vh;
+  max-height: 3vh;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 3vh auto;
 }
 
 .reply {
@@ -1030,6 +1044,7 @@ label {
 
 .change-map-btn, .change-map-btn img {
   height: 20vw;
+  background-color: #04668c;
 }
 
 .map-change-container {
@@ -1109,6 +1124,10 @@ label {
   display: none !important;
 }
 
+.mapboxgl-ctrl-logo a {
+  display: none;
+}
+
 .comment-view-reply-trash img {
   height: 3vw;
 }
@@ -1136,5 +1155,9 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.currentMapCenter {
+  color: #bdc3c7;
 }
 /*# sourceMappingURL=style.css.map */
