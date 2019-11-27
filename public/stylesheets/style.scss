@@ -384,6 +384,10 @@ main {
   height: 100%;
 }
 
+.bot-nav-logo {
+  width: 7vh
+}
+
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
@@ -941,26 +945,49 @@ label {
   flex-wrap: wrap;
   margin-top: 5vh;
   position: relative;
-}
-
-.map-change-container form {
-  padding: 4vw;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.map-change-container form {
+  padding: 0 3.5vw 4vw 3.5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  margin: 1.5vw 2vw 2vw 2vw;
+  border-radius: 1vw;
+  background-color: rgb(213, 245, 255)
+}
+
+.map-change-container form:hover, .map-change-container form:active {
+  transform: scale(0.98);
+}
+
 .map-change-container img {
   position: relative;
-  left: -1vw
 }
 
 .map-change-container button {
   border: none;
   background-color: white;
+  padding: 0
 }
 
 .map-change-container h4 {
+  padding: 2vh 0;
+  width: 100%;
+  text-align: center;
+}
+
+.map-change-view-title h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-top: 16vh;
   margin-bottom: 2vh;
+}
+
+.map-change-view-title p {
+  text-align: center;
 }

@@ -142,8 +142,10 @@ router.post('/', (req, res) => {
 router.post('/delete/:_id', (req, res) => {
     Comment.findById(req.params._id)
         .then( (commentToDelete) => {
-            const currentLocation = commentToDelete.location 
-            console.log(commentToDelete.replies)
+
+            const currentLocation = commentToDelete.location;
+
+            console.log('HERE', commentToDelete.replies)
             commentToDelete.replies.forEach(replyId=>{
                 Reply.findByIdAndDelete(replyId)
                 .then( (deletion) => console.log(deletion))
