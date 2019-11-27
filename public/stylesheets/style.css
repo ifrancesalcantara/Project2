@@ -817,7 +817,8 @@ label {
       flex-wrap: wrap;
   position: absolute;
   z-index: -2;
-  height: 80vh;
+  height: auto;
+  padding-bottom: 10vh;
 }
 
 #allDiscoverComments > *, #allMyComments > * {
