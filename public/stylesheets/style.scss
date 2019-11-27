@@ -668,7 +668,8 @@ label {
   justify-content: space-evenly;
   margin: 2vh 2vw;
   position: absolute;
-  bottom: 1.5vh;
+  bottom: 0.8vh;
+  right: 0.8vw;
   transition: height 2.5s;
   display: flex;
   flex-direction: column;
@@ -695,14 +696,15 @@ label {
   border-color: black;
   border-top: none;
   border-bottom: solid;
-  border-left: solid;
-  border-right: solid;
+  border-left: none;
+  border-right: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-right-radius: $button-radius ;
-  border-bottom-left-radius: $button-radius;
+  border-bottom-right-radius: none ;
+  border-bottom-left-radius: none;
   background-color: $nav-color;
   color: $nav-font-color;
+  padding: 0 0;
 }
 
 #profile-nav-container button:hover {
