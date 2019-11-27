@@ -65,7 +65,7 @@
         //console.log(currentUser, "vs ", allReplyUsernames[index].innerHTML)
         if(currentUser === allReplyUsernames[index].innerHTML) {
             const deleteDiv = document.createElement("div")
-            deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button class="comment-view-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
+            deleteDiv.innerHTML= (`<form method="POST" action="/reply/delete/${replyIds[index].innerHTML}/${commentId}"><button class="comment-view-reply-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
             dateDisplayed.appendChild(deleteDiv)
         }
     })

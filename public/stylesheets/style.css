@@ -145,7 +145,7 @@ a {
 }
 
 main {
-  margin: 10vh auto;
+  margin: 6vh auto;
   position: relative;
 }
 
@@ -592,11 +592,9 @@ label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: blue;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 200px;
 }
 
 .delete-popup, .popup-details {
@@ -1109,5 +1107,34 @@ label {
 
 .a.mapboxgl-ctrl-logo {
   display: none;
+}
+
+.comment-view-reply-trash img {
+  height: 3vw;
+}
+
+.comment-view-reply-trash {
+  border: none;
+  background-color: red;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 5vw;
+  margin-left: 3vw;
+}
+
+.replyDateDisplayed {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=style.css.map */
