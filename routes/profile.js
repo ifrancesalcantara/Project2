@@ -49,7 +49,7 @@ router.post('/security', (req, res) => {
 
 router.post("/session", (req,res)=>{
     const actualSession = req.body.session
-    console.log("actual session",actualSession);
+    console.log("actual session", actualSession);
     let nextSession
     if(actualSession=="Public"){        
         nextSession="Private"
@@ -57,9 +57,12 @@ router.post("/session", (req,res)=>{
     console.log("changing to ", nextSession);
     
     User.findByIdAndUpdate({_id: req.session.currentUser._id}, {session: nextSession})
-    .then( (updatedUser) => {
-        console.log("updated session", updatedUser.session);
-        res.render('secure/profile', updatedUser)
+    .then( (notUpdatedUser) => {
+        User.findById(req.session.currentUser._id)
+            .then( (realluUpdatedUser) => {
+                res.render('secure/profile', realluUpdatedUser)
+            })
+            .catch( (err) => console.log(err));
         
     })
     .catch((err) => console.log(err))    
