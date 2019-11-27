@@ -193,11 +193,7 @@ a {
 }
 
 main {
-<<<<<<< HEAD
   margin: 10vh auto;
-=======
-  margin: 5.4vh auto;
->>>>>>> 66592e439f4d5b93f5c7ba641c256fca6280f2cf
   position: relative;
 }
 
@@ -762,22 +758,14 @@ label {
   color: $nav-font-color;
 }
 
-#allDiscoverComments, #allMyComments {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  position: absolute;
-  z-index: -2;
-  height: 80vh;
-  // padding-top: 2vh;
-  // margin-bottom: 10vh
-  // margin: 10vh 0;
-}
-
-#allDiscoverComments img, #allMyComments img {
-  margin: 0;
-  padding: 0;
-}
+// #allDiscoverComments, #allMyComments {
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   position: absolute;
+//   z-index: -2;
+//   height: 80vh;
+// }
 
 #allDiscoverComments > *, #allMyComments > * {
   border: solid;
@@ -787,29 +775,7 @@ label {
 
 #allDiscoverComments p, #allMyComments p {
   font-size: 0.7em;
-  
 }
-
-
-// #allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
-//   margin-right: 2vh;
-//   position: relative;
-// }
-
-// #allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
-//   margin-left: 2vh;
-// }
-
-// #allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
-//   // margin-top: 3vw
-  
-// }
-
-// #allDiscoverComments > *:last-of-type, #allMyComments > *:last-of-type {
-//   margin-bottom: 10vh;
-// }
-
-
 
 .displayedComment {
   display: flex;

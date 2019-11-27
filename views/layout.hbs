@@ -66,20 +66,9 @@
 
 <script>
   document.querySelector('#profile-nav-container').classList.add('hidden')
-  let isAddProfileMenu = false;
-  const addProfileMenu = document.querySelector("#profile-menu");
-        addProfileMenu.addEventListener("click",()=>{
-            //{{!-- if(isAddProfileMenu){ --}}
-                const profileMenu = document.querySelector("#profile-nav-container");
-                /*{{!-- profileMenu.style.height = "0vh"; --}}
-                {{!-- isAddProfileMenu = false; --}}*/
-                document.querySelector('#profile-nav-container').classList.toggle('hidden')
-            /*{{!-- } --}}
-            {{!-- else {
-                const profileMenu = document.querySelector("#profile-nav-container");
-                profileMenu.style.height = "auto";
-                isAddProfileMenu = true;
-                document.querySelector('#profile-nav-container').classList.remove('hidden')
-            } --}}*/
-    });
+  const addProfileMenu2 = document.querySelector("#profile-menu");
+  addProfileMenu2.addEventListener("click",()=>{
+          const profileMenu = document.querySelector("#profile-nav-container");
+          document.querySelector('#profile-nav-container').classList.toggle('hidden')
+  });
 </script>

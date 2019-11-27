@@ -171,7 +171,7 @@ router.post('/delete/:_id', (req, res) => {
                                         currentLocation: JSON.stringify(currentLocation),
                                         userComments: JSON.stringify(userComments),
                                         currentUser: JSON.stringify(req.session.currentUser._id),
-                                        mapStyle: req.session.currentUser.mapStyle
+                                        mapStyle: updatedUser.mapStyle
 
                                     }
                                     res.render("secure/map", data)
@@ -186,7 +186,7 @@ router.post('/delete/:_id', (req, res) => {
                                     currentLocation: JSON.stringify(commentToDelete.location),
                                     userComments: JSON.stringify(userComments),
                                     currentUser: JSON.stringify(req.session.currentUser._id),
-                                    mapStyle: req.session.currentUser.mapStyle
+                                    mapStyle: updatedUser.mapStyle
                                     
                                 }
                                 res.render("secure/map", data)
