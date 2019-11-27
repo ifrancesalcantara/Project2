@@ -189,7 +189,7 @@ a {
 }
 
 main {
-  margin: 10vh auto;
+  margin: 6vh auto;
   position: relative;
 }
 
@@ -546,12 +546,10 @@ label {
   overflow: hidden
 }
 
-.private-marker form, .public-marker form {
+.private-marker form, .public-marker form { //!!!
   display: flex;
   // flex-direction: column;
-  background-color: blue;
   align-items: center;
-  width: 200px
 }
 
 // .private-marker form:first-child {
@@ -1033,4 +1031,24 @@ label {
 
 .mapboxgl-ctrl-logo  a {
   display: none;
+}
+
+.comment-view-reply-trash img {
+  height: 3vw;
+  // background-color: red;
+}
+
+.comment-view-reply-trash {
+  border: none;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vw;
+  margin-left: 3vw
+}
+
+.replyDateDisplayed{
+  display: flex;
+  align-items: center;
 }
