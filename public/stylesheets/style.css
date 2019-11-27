@@ -145,7 +145,7 @@ a {
 }
 
 main {
-  margin: 5.4vh auto;
+  margin: 10vh auto;
   position: relative;
 }
 
@@ -818,6 +818,7 @@ label {
   position: absolute;
   z-index: -2;
   height: 80vh;
+  position: fixed;
 }
 
 #allDiscoverComments img, #allMyComments img {
