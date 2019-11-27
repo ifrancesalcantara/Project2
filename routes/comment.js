@@ -58,7 +58,7 @@ router.get("/:commentId", (req, res)=>{
 
 
 router.post('/', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     
     User.findOne({_id: req.session.currentUser._id})
     .then(user=>{
@@ -73,7 +73,8 @@ router.post('/', (req, res) => {
         
         Comment.create({ title, text, location: {lng, lat}, creatorId: req.session.currentUser._id, creatorUsername: req.session.currentUser.username, public, type, likes: [], date: new Date() })
         .then( comment => {
-            console.log(comment);
+            // console.log(comment);
+            // console.log(user.mapStyle);
             
             User.findOneAndUpdate({_id: req.session.currentUser._id}, {$push: {comments: comment._id}})
                 .populate("comments")
@@ -82,7 +83,6 @@ router.post('/', (req, res) => {
                     .populate("comments")
                     .then( (updatedUser) => {
                         //LocalCommentCol.create({})    Not time to do load chunks.
-                        //console.log(notYetUpdatedUser.ubication);
                         
                         if(updatedUser.session=="Public") {
                             const allUserComments = [];                
@@ -106,7 +106,7 @@ router.post('/', (req, res) => {
                                     currentLocation: JSON.stringify(comment.location),
                                     userComments: JSON.stringify(userComments),
                                     currentUser: JSON.stringify(req.session.currentUser._id),
-                                    mapStyle: req.session.currentUser.mapStyle
+                                    mapStyle: updatedUser.mapStyle
                                 }
                                 res.render("secure/map", data)
                             })
@@ -120,7 +120,7 @@ router.post('/', (req, res) => {
                                 currentLocation: JSON.stringify(comment.location),
                                 userComments: JSON.stringify(userComments),
                                 currentUser: JSON.stringify(req.session.currentUser._id),
-                                mapStyle: req.session.currentUser.mapStyle
+                                mapStyle: updatedUser.mapStyle
                             }
                             res.render("secure/map", data)
 
@@ -145,7 +145,7 @@ router.post('/delete/:_id', (req, res) => {
 
             const currentLocation = commentToDelete.location;
 
-            console.log('HERE', commentToDelete.replies)
+            console.log('HEREEEEEEE')
             commentToDelete.replies.forEach(replyId=>{
                 Reply.findByIdAndDelete(replyId)
                 .then( (deletion) => console.log(deletion))

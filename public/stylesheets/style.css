@@ -1106,4 +1106,8 @@ label {
 .mapboxgl-ctrl-attrib.mapboxgl-compact::after {
   display: none;
 }
+
+.a.mapboxgl-ctrl-logo {
+  display: none;
+}
 /*# sourceMappingURL=style.css.map */
