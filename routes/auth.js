@@ -54,7 +54,6 @@ router.post("/login", (req, res)=>{
                     })
                     .catch( (err) => console.log(err));
                 } else if (userData.session=="Private") {
-                    console.log("private");
                     
                     userComments = userData.comments.map(comment=> {return {comment}})
                     const currentLocation = {
@@ -122,7 +121,7 @@ router.post('/signup', function(req, res) {
                     User.create({username, password:hashedPassword, defaultLocation: {lng, lat}, comments: [], session: "Public", mapStyle: 'mapbox://styles/mapbox/streets-v9'})
                         .then(newUser=>{
                             req.session.currentUser = newUser;
-                            console.log("mapstyle in creation: ", newUser.mapStyle)
+                            // console.log("mapstyle in creation: ", newUser.mapStyle)
                             //CREATE HOME COMMENT
                             Comment.create({ title:"HOME", location: {lng, lat}, creatorId: req.session.currentUser._id, type:"home", public: false})
                                 .then( homeComment => {

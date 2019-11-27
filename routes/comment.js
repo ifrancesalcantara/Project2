@@ -33,8 +33,6 @@ router.get("/:commentId", (req, res)=>{
         }
     }})
     .catch( (err) => {
-        console.log("idn't find comment");
-        
         console.log(err)
         User.findById(req.session.currentUser._id)
         .populate("comments")
@@ -145,7 +143,6 @@ router.post('/delete/:_id', (req, res) => {
 
             const currentLocation = commentToDelete.location;
 
-            console.log('HEREEEEEEE')
             commentToDelete.replies.forEach(replyId=>{
                 Reply.findByIdAndDelete(replyId)
                 .then( (deletion) => console.log(deletion))
@@ -154,7 +151,6 @@ router.post('/delete/:_id', (req, res) => {
             setTimeout(()=>{
                 Comment.findByIdAndDelete(req.params._id)
                     .then( (deletion) => {
-                        console.log(deletion)
                         User.findById(req.session.currentUser)
                         .populate("comments")
                         .then( (updatedUser) => {
@@ -216,7 +212,7 @@ router.post("/like/:commentId/:username", (req, res)=>{
     Comment.findById(commentId)
     .then( (comment) => {
         if (comment.likes.indexOf(username)>-1) {
-            console.log("already liked, see: ", comment.likes);
+            // console.log("already liked, see: ", comment.likes);
             Comment.findByIdAndUpdate(commentId, {$pull: {likes: username}})
                 .then( (notYetUpdatedComment) => {
                     Comment.findById(commentId)
@@ -236,7 +232,6 @@ router.post("/like/:commentId/:username", (req, res)=>{
                     })
                     .catch( (err) => {console.log(err)});
         } else {
-            console.log("not yet liked, see: ", comment.likes);
             User.find({username})
             .then( (user) => {
                 Comment.findByIdAndUpdate(commentId, {$push: {likes: username}})
@@ -245,9 +240,6 @@ router.post("/like/:commentId/:username", (req, res)=>{
                         .populate("creatorId")
                         .populate("replies")
                         .then( (data) => {{
-                        console.log("already liked, see: ", data.likes);
-
-                        console.log("already liked, see: ", notYetUpdatedComment.likes);
                             if (req.session.currentUser) {   
                                 data["currentUserUsername"] = req.session.currentUser.username 
                                 data["currentLikes"] = data.likes.length

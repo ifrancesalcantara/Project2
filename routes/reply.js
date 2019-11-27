@@ -13,7 +13,6 @@ router.post('/:_id', function(req, res, next) {
             .then( (commentToUpdate) => {
                 // console.log("commentToUpdate", commentToUpdate)
                 const { text, date, currentLikes } = req.body
-                console.log(req.body);
                 
                 Reply.create({ text, creatorUsername: req.session.currentUser.username, date })
                     .then( (newReply) => {

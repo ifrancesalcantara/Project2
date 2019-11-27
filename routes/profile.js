@@ -49,12 +49,10 @@ router.post('/security', (req, res) => {
 
 router.post("/session", (req,res)=>{
     const actualSession = req.body.session
-    console.log("actual session", actualSession);
     let nextSession
     if(actualSession=="Public"){        
         nextSession="Private"
     } else {nextSession="Public"}
-    console.log("changing to ", nextSession);
     
     User.findByIdAndUpdate({_id: req.session.currentUser._id}, {session: nextSession})
     .then( (notUpdatedUser) => {
@@ -88,7 +86,6 @@ router.post('/location', (req, res) => {
 
     User.findByIdAndUpdate(req.session.currentUser._id, {defaultLocation: {lng: lng, lat: lat}})
         .then( (e) => {
-            console.log(e);
             
             User.findById(req.session.currentUser._id)
                 .then((userUpdated) => {
@@ -231,7 +228,7 @@ router.get('/picture', (req, res) => {
     
     User.findOne({_id: req.session.currentUser._id} )
     .then( () => {
-        console.log('secure/profile/picture', req.session.currentUser.picture);
+        // console.log('secure/profile/picture', req.session.currentUser.picture);
         if (req.session.currentUser) {
             
             res.render('secure/profile/picture', req.session.currentUser)
@@ -250,7 +247,6 @@ router.get("/", (req, res)=>{
                 res.render('secure/profile', req.session.currentUser)
                 }
                 else {
-                    console.log('////>>>>>>>>>>>>>>>>>>>>>>////////');
                     
                 res.render("index", {errorMessage: "Session ended."})
                 }
