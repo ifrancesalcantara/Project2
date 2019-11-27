@@ -710,7 +710,8 @@ label {
           justify-content: space-evenly;
   margin: 2vh 2vw;
   position: absolute;
-  bottom: 1.5vh;
+  top: 46vh;
+  right: 0;
   -webkit-transition: height 2.5s;
   transition: height 2.5s;
   display: flex;
@@ -748,14 +749,24 @@ label {
   border-color: black;
   border-top: none;
   border-bottom: solid;
-  border-left: solid;
-  border-right: solid;
+  border-left: none;
+  border-right: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-right-radius: 1.2vh;
-  border-bottom-left-radius: 1.2vh;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   background-color: #00b7ff;
   color: #ffffff;
+  padding: 0 0;
+  margin-bottom: 0;
+}
+
+#profile-nav-container button:first-child {
+  margin-top: 0.8vh;
+}
+
+#profile-nav-container button:last-child {
+  margin-bottom: 0.8vh;
 }
 
 #profile-nav-container button:hover {
@@ -800,23 +811,21 @@ label {
   position: absolute;
   z-index: -2;
   height: 80vh;
-  padding-top: 5vh;
+}
+
+#allDiscoverComments img, #allMyComments img {
+  margin: 0;
+  padding: 0;
 }
 
 #allDiscoverComments > *, #allMyComments > * {
-  border-top: 1vw solid black;
-  border-right: 1vw solid black;
-  border-radius: 10vw;
-  margin: 4vw 0;
+  border: solid;
+  border-radius: 1.5vw;
+  margin: 0.5vh auto;
 }
 
-#allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
-  margin-left: 2vh;
-  position: relative;
-}
-
-#allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
-  margin-left: 2vh;
+#allDiscoverComments p, #allMyComments p {
+  font-size: 0.7em;
 }
 
 .displayedComment {
@@ -827,8 +836,14 @@ label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding: 3vh 0;
+  padding: .5vh 0;
   width: 45vw;
+  min-height: 7vh;
+}
+
+.displayedComment:hover {
+  -webkit-transform: scale(0.95);
+          transform: scale(0.95);
 }
 
 .displayedComment div {
@@ -841,6 +856,7 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 15vw;
 }
 
 .displayed-comment-title {
@@ -855,11 +871,12 @@ label {
   width: 80%;
   display: block;
   overflow: hidden;
+  max-height: 5vh;
 }
 
 .displayed-comment-creator-username {
   text-align: right;
-  margin: 3vh 3vw 0 0;
+  margin: .9vh 2vw 0 2vw;
 }
 
 .displayedComment img {
@@ -1084,5 +1101,9 @@ label {
 
 .map-change-view-title p {
   text-align: center;
+}
+
+.mapboxgl-ctrl-attrib.mapboxgl-compact::after {
+  display: none;
 }
 /*# sourceMappingURL=style.css.map */

@@ -672,7 +672,8 @@ label {
   justify-content: space-evenly;
   margin: 2vh 2vw;
   position: absolute;
-  bottom: 1.5vh;
+  top: 46vh;
+  right: 0;
   transition: height 2.5s;
   display: flex;
   flex-direction: column;
@@ -699,14 +700,24 @@ label {
   border-color: black;
   border-top: none;
   border-bottom: solid;
-  border-left: solid;
-  border-right: solid;
+  border-left: none;
+  border-right: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-right-radius: $button-radius ;
-  border-bottom-left-radius: $button-radius;
+  border-bottom-right-radius: 0 ;
+  border-bottom-left-radius: 0;
   background-color: $nav-color;
   color: $nav-font-color;
+  padding: 0 0;
+  margin-bottom: 0;
+}
+
+#profile-nav-container button:first-child {
+  margin-top: 0.8vh;
+}
+
+#profile-nav-container button:last-child {
+  margin-bottom: 0.8vh;
 }
 
 #profile-nav-container button:hover {
@@ -743,27 +754,36 @@ label {
   position: absolute;
   z-index: -2;
   height: 80vh;
-  padding-top: 5vh;
+  // padding-top: 2vh;
   // margin-bottom: 10vh
   // margin: 10vh 0;
 }
 
+#allDiscoverComments img, #allMyComments img {
+  margin: 0;
+  padding: 0;
+}
+
 #allDiscoverComments > *, #allMyComments > * {
-  border-top:1vw solid black;
-  border-right:1vw solid black;
-  border-radius: 10vw;
-  margin: 4vw 0;
-
+  border: solid;
+  border-radius: 1.5vw;
+  margin: 0.5vh auto;
 }
 
-#allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
-  margin-left: 2vh;
-  position: relative;
+#allDiscoverComments p, #allMyComments p {
+  font-size: 0.7em;
+  
 }
 
-#allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
-  margin-left: 2vh;
-}
+
+// #allDiscoverComments div:nth-child(even), #allMyComments div:nth-child(even) {
+//   margin-right: 2vh;
+//   position: relative;
+// }
+
+// #allDiscoverComments div:nth-child(odd), #allMyComments div:nth-child(odd) {
+//   margin-left: 2vh;
+// }
 
 // #allDiscoverComments div:nth-child(1), #allMyComments div:nth-child(1), #allDiscoverComments div:nth-child(2), #allMyComments div:nth-child(2) {
 //   // margin-top: 3vw
@@ -779,14 +799,20 @@ label {
 .displayedComment {
   display: flex;
   flex-direction: column;
-  padding: 3vh 0;
+  padding: .5vh 0;
   width: 45vw;
+  min-height: 7vh;
+}
+
+.displayedComment:hover {
+  transform: scale(0.95);
 }
 
 .displayedComment div {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 15vw;
 }
 
 .displayed-comment-title {
@@ -800,12 +826,13 @@ label {
   text-overflow: ellipsis;
   width: 80%;
   display: block;
-  overflow: hidden
+  overflow: hidden;
+  max-height: 5vh;
 }
 
 .displayed-comment-creator-username {
   text-align: right;
-  margin: 3vh 3vw 0 0;
+  margin: .9vh 2vw 0 2vw;
 }
 
 .displayedComment img {
@@ -990,4 +1017,7 @@ label {
 
 .map-change-view-title p {
   text-align: center;
+}
+.mapboxgl-ctrl-attrib.mapboxgl-compact::after {
+  display: none;
 }
