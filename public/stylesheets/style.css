@@ -331,15 +331,11 @@ main {
   width: 37.5vw;
 }
 
-#signup-btn:hover,
 .profile-btn:hover,
 .signin-btn:hover,
-<<<<<<< HEAD
 .profile-nav-btn:hover,
-.comment-view-reply-form button:hover {
-=======
-.profile-nav-btn:hover, .change-pw-btn:hover, #profile-location-change-btn:hover {
->>>>>>> feat
+.change-pw-btn:hover,
+#profile-location-change-btn:hover, #signup-btn:hover {
   -webkit-box-shadow: 8px 8px 5px 0px #807b72;
   box-shadow: 8px 8px 5px 0px #807b72;
 }
@@ -462,6 +458,7 @@ main {
   font-family: "Fredoka One", cursive;
   font-size: 0.72em;
   width: 17.5vw;
+  margin-bottom: 2vh;
 }
 
 .add-comment-form button:hover {
@@ -526,6 +523,10 @@ main {
   margin: 1vh auto;
 }
 
+#show-pass label {
+  display: inline;
+}
+
 #show-password-container input,
 label {
   font-weight: 100;
@@ -539,7 +540,6 @@ label {
 }
 
 #show-pass-checkbox {
-  width: 4vw;
   height: 3vh;
   width: 3vw;
   padding: 0;
