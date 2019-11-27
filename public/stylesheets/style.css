@@ -805,6 +805,30 @@ label {
   color: #bdc3c7;
 }
 
+<<<<<<< HEAD
+=======
+#allDiscoverComments, #allMyComments {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: absolute;
+  z-index: -2;
+  height: 80vh;
+  position: fixed;
+}
+
+#allDiscoverComments img, #allMyComments img {
+  margin: 0;
+  padding: 0;
+}
+
+>>>>>>> feat
 #allDiscoverComments > *, #allMyComments > * {
   border: solid;
   border-radius: 1.5vw;
