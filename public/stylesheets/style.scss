@@ -828,6 +828,7 @@ label {
   display: block;
   overflow: hidden;
   max-height: 5vh;
+  text-align: center;
 }
 
 .displayed-comment-creator-username {
@@ -940,9 +941,13 @@ label {
 }
 
 .comment-view-reply-form input {
-  margin-right: 4vw;
-  height: 5vh;
-  width: 50vw;
+  width: $input-width;
+  height: $input-height;
+  max-height: $input-height;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin: 3vh auto;
 }
 
 .reply {
