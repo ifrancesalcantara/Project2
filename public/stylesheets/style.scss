@@ -668,8 +668,8 @@ label {
   justify-content: space-evenly;
   margin: 2vh 2vw;
   position: absolute;
-  bottom: 0.8vh;
-  right: 0.8vw;
+  top: 46vh;
+  right: 0;
   transition: height 2.5s;
   display: flex;
   flex-direction: column;
@@ -700,11 +700,20 @@ label {
   border-right: none;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-right-radius: none ;
-  border-bottom-left-radius: none;
+  border-bottom-right-radius: 0 ;
+  border-bottom-left-radius: 0;
   background-color: $nav-color;
   color: $nav-font-color;
   padding: 0 0;
+  margin-bottom: 0;
+}
+
+#profile-nav-container button:first-child {
+  margin-top: 0.8vh;
+}
+
+#profile-nav-container button:last-child {
+  margin-bottom: 0.8vh;
 }
 
 #profile-nav-container button:hover {
@@ -965,4 +974,8 @@ label {
 
 .map-change-container h4 {
   margin-bottom: 2vh;
+}
+
+.mapboxgl-ctrl-attrib.mapboxgl-compact::after {
+  display: none;
 }
