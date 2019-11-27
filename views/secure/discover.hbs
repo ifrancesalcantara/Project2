@@ -52,19 +52,23 @@
             imageSrc = "./images/home-marker-img.png"
         } else if(comment.public == true) {
             if(comment.type == "social"){
-                imageSrc = "./images/social.jpg"
+                imageSrc = "./images/public-marker-social-img.png"
             } else if (comment.type == "sight") {
-                imageSrc = "./images/sight.png"
+                imageSrc = "./images/public-marker-sight-img.png"
+            } else if (comment.type == "claim") {
+                imageSrc = "./images/public-marker-claim-img.png"
             } else {
-                imageSrc = "./images/marker_template.png"
+                imageSrc = "./images/public-marker-generic-img.png"
             }
         } else if(comment.public == false) {
             if (comment.type == "social") {
-                imageSrc = "./images/social.jpg"
+                imageSrc = "./images/private-marker-social-img.png"
             } else if (comment.type == "sight") {
-                imageSrc = "./images/sight.png"
+                imageSrc = "./images/private-marker-sight-img.png"
+            } else if (comment.type == "claim") {
+                imageSrc = "./images/private-marker-claim-img.png"
             } else {
-                imageSrc = "./images/private-marker-img.png"
+                imageSrc = "./images/private-marker-generic-img.png"
             }
         }
 
