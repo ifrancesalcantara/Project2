@@ -58,7 +58,7 @@ router.post("/session", (req,res)=>{
     .then( (notUpdatedUser) => {
         User.findById(req.session.currentUser._id)
             .then( (realluUpdatedUser) => {
-                res.render('secure/profile', realluUpdatedUser)
+                res.render('secure/profile/picture', realluUpdatedUser)
             })
             .catch( (err) => console.log(err));
         
@@ -226,11 +226,11 @@ router.get('/security', (req, res ) => {
 router.get('/picture', (req, res) => {
     
     User.findOne({_id: req.session.currentUser._id} )
-    .then( () => {
+    .then( (data) => {
         // console.log('secure/profile/picture', req.session.currentUser.picture);
         if (req.session.currentUser) {
             
-            res.render('secure/profile/picture', req.session.currentUser)
+            res.render('secure/profile/picture', data)
         }
         else {
             res.render('index', {errorMessage: "session ended"})

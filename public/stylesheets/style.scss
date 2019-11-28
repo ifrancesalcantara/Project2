@@ -240,7 +240,6 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 5vh 0 0 0;
   position: "relative";
   margin: 0 auto;
   min-width: $container-min-width;
@@ -297,6 +296,7 @@ main {
   padding: 1vh;
   background-color: $input-backgound-color;
   border-radius: 1vh;
+  margin-bottom: 1.5vh;
 }
 
 .signup-form-input:first-of-type,
@@ -409,19 +409,19 @@ main {
 }
 
 .bot-nav-logo {
-  width: 7vh
+  width: 5vh
 }
 
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
   color: $button-font-color;
-  font-weight: bold;
   padding: 0 7vw;
 }
 
 .nav-top li {
-  font-size: 1.8em;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 .nav-bot a,
@@ -541,6 +541,7 @@ main {
   width: auto;
   max-width: 60vw;
   object-fit: scale-down;
+  margin-top: 5vh;
 }
 
 #show-password-container {
