@@ -86,7 +86,7 @@ router.post('/location', (req, res) => {
 
     User.findByIdAndUpdate(req.session.currentUser._id, {defaultLocation: {lng: lng, lat: lat}})
         .then( (e) => {
-            User.findById(req.session.currentUser._id, {$push: {comments: newHomeComment._id}})
+            User.findById(req.session.currentUser._id)
                 .then((userUpdated) => {
                     res.render('secure/profile', userUpdated)
                 })

@@ -500,6 +500,10 @@ main {
 
 .add-img-plus {
   height: 7vh;
+  z-index: 2;
+  position: absolute;
+  top: -8.5vh;
+  left: 4vw;
 }
 
 .add-img-plus:active {
