@@ -901,7 +901,7 @@ label {
   display: block;
   overflow: hidden;
   max-height: 5vh;
-  text-align: center;
+  text-align: left;
 }
 
 .displayed-comment-creator-username {
@@ -964,12 +964,13 @@ label {
 
 .close-img-link {
   position: absolute;
-  left: 77vw;
-  top: 1vh;
+  left: 85vw;
+  top: 3vh;
 }
 
 .close-img-link img {
-  width: 20vw;
+  width: 8vw;
+  height: auto;
 }
 
 .comment-in-comment-view {
@@ -1215,7 +1216,7 @@ label {
 
 .mapboxgl-popup-content {
   width: 25vw;
-  height: 15vh;
+  height: auto;
   padding: 0.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1251,6 +1252,6 @@ label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: orange;
+  background-color: rgba(4, 102, 140, 0.8);
 }
 /*# sourceMappingURL=style.css.map */
