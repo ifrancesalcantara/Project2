@@ -558,7 +558,8 @@ main {
 
 #profile-picture {
   height: 30vh;
-  width: 30vw;
+  width: auto;
+  max-width: 60vw;
   -o-object-fit: scale-down;
      object-fit: scale-down;
 }
