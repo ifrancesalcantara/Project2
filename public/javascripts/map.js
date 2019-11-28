@@ -200,37 +200,43 @@ mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3a
             if(feature.place_type[0]=="country"){
                 country = feature.place_name
             } else {
-                const country = address.split(", ").pop()
+                if(address){
+                    const country = address.split(", ").pop()
+                }
             }
-            if(feature.place_type[0]=="locality"){
-                locality = feature.place_name
-            } else if (feature.place_type[0]=="city"){
-                locality = feature.place_name
-            } else {
+            // if(feature.place_type[0]=="locality"){
+            //     locality = feature.place_name
+            // } else if (feature.place_type[0]=="city"){
+            //     locality = feature.place_name
+            // } else {
+            if(address){
                 const country = address.split(", ")
                 country.pop()
-                locality=country.pop()
+                country.pop()
+                locality = country.pop()
                 locality = locality.split(" ")
                 locality.shift()
                 locality = locality.join(" ")
+                console.log(locality)
                 if(!locality){
-                    const country = address.split(", ")
-                    country.pop()
-                    locality=country.pop()
-                    locality = locality.split(" ")
-                    locality = locality.join(" ")
+                    locality=""
+                    // const country = address.split(", ")
+                    // country.pop()
+                    // locality=country.pop()
+                    // locality = locality.split(" ")
+                    // locality = locality.join(" ")
                 }
+                // }
+            }  else {
+                locality=""
             }
             if(feature.place_type[0]=="neighborhood"){
                 neighborhood = feature.place_name
             } else {
-                const country = address.split(", ")
-                country.pop()
-                country.pop()
-                street=country.pop()
-                street = street.split(" ")
-                street.shift()
-                street = street.join(" ")
+                if(address){
+                    let addressArr = address.split(", ")
+                    street = addressArr[0]
+                }
             }
         })
 
@@ -249,6 +255,11 @@ mapboxgl.accessToken = "pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3a
         newCommentUbication.value = JSON.stringify({country, locality, street})
 
     }, 500)
+
+
+
+///.json?access_token=pk.eyJ1IjoiaXZhbmZyYWwiLCJhIjoiY2szOTFzMm9pMGJteTNtcDI3aDJua2s5MSJ9.y5iUZoRKCEeCny5m2sJrlg
+
 
 
     //Add selected location marker, set input values to coords
