@@ -208,7 +208,18 @@
             if(comment.creatorId == currentUserId.innerHTML) {
                 myComments++            
                 if(comment.text) {
-                    commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class = "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-text">${comment.text}</p><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()
+                    commentDiv.innerHTML= (`
+                    <div>
+                        <a href="/comment/${comment._id}">
+                            <img class = "displayedComment" src=${imageSrc}>
+                        </a>
+                    </div>
+                    <a href="/comment/${comment._id}">
+                        <p class="displayed-comment-title">${comment.title}</p>
+                    </a>
+                    <p class="displayed-comment-text">${comment.text}</p>
+                    <p class="displayed-comment-creator-username">${comment.creatorUsername}</p>
+                    `).trim()
                     allMyCommentsFresh.appendChild(commentDiv)
                 } else {
                     commentDiv.innerHTML= (`<div><a href="/comment/${comment._id}"><img class= "displayedComment" src=${imageSrc}></a></div><a href="/comment/${comment._id}"><p class="displayed-comment-title">${comment.title}</p></a><p class="displayed-comment-creator-username">${comment.creatorUsername}</p>`).trim()

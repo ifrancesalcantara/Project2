@@ -9,6 +9,8 @@ const commentId = document.querySelector("#commentId").innerHTML
 dateInput.value = new Date()
 
 //Create Delete comment button if user is the creator
+console.log('currentUser === commentCreatorUsername', currentUser === commentCreatorUsername);
+
 if(currentUser === commentCreatorUsername) {
     const deleteCommentDiv = document.createElement("div")
         deleteCommentDiv.innerHTML= (`<form method="POST" action="/comment/delete/${commentId}"><button class="comment-view-comment-trash" type="submit"><img src="../../../../images/trash.png"></button></form>`).trim()
