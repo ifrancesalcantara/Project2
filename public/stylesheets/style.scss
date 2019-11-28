@@ -292,7 +292,7 @@ main {
 }
 
 .picture-upload-form-input {
-  width: $button-width*.8;
+  width: $input-width;
   padding: 1vh;
   background-color: $input-backgound-color;
   border-radius: 1vh;
@@ -524,14 +524,16 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  flex-direction: column-reverse;
   width: $input-width;
   min-width: $container-min-width;
   margin: 5vh auto;
 }
 
-#profile-picture-container h2 {
+#profile-picture-container h4 {
   margin: 2vh auto 2vh auto;
-  display: flex;
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
 #profile-picture {

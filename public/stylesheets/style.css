@@ -289,7 +289,7 @@ main {
 }
 
 .picture-upload-form-input {
-  width: 20vw;
+  width: 55vw;
   padding: 1vh;
   background-color: rgba(189, 195, 199, 0.6);
   border-radius: 1vh;
@@ -541,16 +541,19 @@ main {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
   width: 55vw;
   min-width: 330px;
   margin: 5vh auto;
 }
 
-#profile-picture-container h2 {
+#profile-picture-container h4 {
   margin: 2vh auto 2vh auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  font-size: 1.8em;
+  font-weight: bold;
 }
 
 #profile-picture {
