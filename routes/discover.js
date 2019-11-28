@@ -37,7 +37,7 @@ router.get('/', function(req, res, next) {
         }
         
         const data = {
-          allCommentData: JSON.stringify(shuffle(allComments).splice(0, 50)),
+          allCommentData: JSON.stringify(shuffle(allComments)),
           currentUserId: req.session.currentUser._id
         };
         res.render('secure/discover', data)
