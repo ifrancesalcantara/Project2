@@ -148,7 +148,6 @@ router.post('/delete/:_id', (req, res) => {
                 .then( (deletion) => console.log(deletion))
                 .catch( (err) => console.log(err));
             })
-            setTimeout(()=>{
                 Comment.findByIdAndDelete(req.params._id)
                     .then( (deletion) => {
                         User.findById(req.session.currentUser)
@@ -162,7 +161,12 @@ router.post('/delete/:_id', (req, res) => {
                                 .then( (allUsersArr) => {
                                     allUsersArr.forEach(user=>{
                                         user.comments.forEach(comment=>{
-                                            allUserComments.push(comment)
+                                            if(comment.creatorId==updatedUser._id){
+                                                allUserComments.push(comment)
+                                            }
+                                            else if(comment.public){
+                                                allUserComments.push(comment)
+                                            }
                                         })
                                     })
                                     userComments = allUserComments.map(comment=> {return {comment}})
@@ -200,11 +204,10 @@ router.post('/delete/:_id', (req, res) => {
                     })
                     .catch( (err) => console.log(err));
             })
-        })
         .catch( (err) => console.log(err));
+    })
     
     
-})
 
 
 router.post("/like/:commentId/:username", (req, res)=>{

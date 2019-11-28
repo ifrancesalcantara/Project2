@@ -17,9 +17,9 @@ socialComment.classList.add("white-background-add-comment-img");
 sightComment.classList.add("white-background-add-comment-img");
 claimComment.classList.add("white-background-add-comment-img");
 
-socialComment.setAttribute("src", "./images/public-marker-social-img.png");
-sightComment.setAttribute("src", "./images/public-marker-sight-img.png");
-claimComment.setAttribute("src", "./images/public-marker-claim-img.png");
+socialComment.setAttribute("src", "/images/public-marker-social-img.png");
+sightComment.setAttribute("src", "/images/public-marker-sight-img.png");
+claimComment.setAttribute("src", "/images/public-marker-claim-img.png");
 // claimComment.addAttribute("src", );
 
 imagesDiv.appendChild(socialComment)
@@ -69,14 +69,14 @@ let goingToPlacePublicComment=true;
 privatePublicBtn2.addEventListener("click", (e)=>{
     e.preventDefault()
     if(goingToPlacePublicComment){
-        socialComment.setAttribute("src", "./images/private-marker-social-img.png");
-        sightComment.setAttribute("src", "./images/private-marker-sight-img.png");
-        claimComment.setAttribute("src", "./images/private-marker-danger-img.png");
+        socialComment.setAttribute("src", "/images/private-marker-social-img.png");
+        sightComment.setAttribute("src", "/images/private-marker-sight-img.png");
+        claimComment.setAttribute("src", "/images/private-marker-danger-img.png");
         goingToPlacePublicComment=false;
     } else {
-        socialComment.setAttribute("src", "./images/public-marker-social-img.png");
-        sightComment.setAttribute("src", "./images/public-marker-sight-img.png");
-        claimComment.setAttribute("src", "./images/public-marker-claim-img.png");
+        socialComment.setAttribute("src", "/images/public-marker-social-img.png");
+        sightComment.setAttribute("src", "/images/public-marker-sight-img.png");
+        claimComment.setAttribute("src", "/images/public-marker-claim-img.png");
         goingToPlacePublicComment=true;
     }
 })
