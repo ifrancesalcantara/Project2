@@ -28,3 +28,32 @@
         <input type="file" name="photo" class="picture-upload-form-input"/>
         <button type="submit" class="profile-btn" >Upload</button>
     </form>
+
+
+
+<div class="profile-form-container">
+    <form action='/profile/session' method='POST' class="profile-form">
+        <input id="sessionChangeInput" type='text' name='session' hidden>
+        <button id="sessionChangeBtn" type='submit' class="profile-btn">{{this.session}}</button>
+    </form>
+</div>
+
+
+
+<script>
+
+    var sessionChangeBtn = document.querySelector("#sessionChangeBtn")
+    sessionChangeBtn.addEventListener("click", (e)=>{
+        if(e.target.innerHTML=="Public"){
+            e.target.innerHTML="Private"
+            document.querySelector("#sessionChangeInput").value="Public"
+        } else {
+            e.target.innerHTML="Public"
+            document.querySelector("#sessionChangeInput").value="Private"
+        }
+    });
+    
+        
+
+
+</script>

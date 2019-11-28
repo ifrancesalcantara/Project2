@@ -199,6 +199,7 @@ main {
 
 #profile-form h2 {
   margin-bottom: 5vh;
+  font-size: 1.8em;
 }
 
 .profile-form-container {
@@ -217,7 +218,6 @@ main {
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  padding: 5vh 0 0 0;
   position: "relative";
   margin: 0 auto;
   min-width: 330px;
@@ -289,10 +289,11 @@ main {
 }
 
 .picture-upload-form-input {
-  width: 20vw;
+  width: 55vw;
   padding: 1vh;
   background-color: rgba(189, 195, 199, 0.6);
   border-radius: 1vh;
+  margin-bottom: 1.5vh;
 }
 
 .signup-form-input:first-of-type,
@@ -411,19 +412,19 @@ main {
 }
 
 .bot-nav-logo {
-  width: 7vh;
+  width: 5vh;
 }
 
 .nav-bot li,
 .nav-top li {
   list-style-type: none;
   color: #ffffff;
-  font-weight: bold;
   padding: 0 7vw;
 }
 
 .nav-top li {
-  font-size: 1.8em;
+  font-size: 1.2em;
+  text-align: center;
 }
 
 .nav-bot a,
@@ -541,23 +542,27 @@ main {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+          flex-direction: column-reverse;
   width: 55vw;
   min-width: 330px;
   margin: 5vh auto;
 }
 
-#profile-picture-container h2 {
+#profile-picture-container h4 {
   margin: 2vh auto 2vh auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  font-size: 1.8em;
 }
 
 #profile-picture {
   height: 30vh;
-  width: 30vw;
+  width: auto;
+  max-width: 60vw;
   -o-object-fit: scale-down;
      object-fit: scale-down;
+  margin-top: 5vh;
 }
 
 #show-password-container {
@@ -901,7 +906,7 @@ label {
   display: block;
   overflow: hidden;
   max-height: 5vh;
-  text-align: center;
+  text-align: left;
 }
 
 .displayed-comment-creator-username {
@@ -964,12 +969,13 @@ label {
 
 .close-img-link {
   position: absolute;
-  left: 77vw;
-  top: 1vh;
+  left: 85vw;
+  top: 3vh;
 }
 
 .close-img-link img {
-  width: 20vw;
+  width: 8vw;
+  height: auto;
 }
 
 .comment-in-comment-view {
@@ -1215,7 +1221,7 @@ label {
 
 .mapboxgl-popup-content {
   width: 25vw;
-  height: 15vh;
+  height: auto;
   padding: 0.5vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1251,6 +1257,6 @@ label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: orange;
+  background-color: rgba(4, 102, 140, 0.8);
 }
 /*# sourceMappingURL=style.css.map */
